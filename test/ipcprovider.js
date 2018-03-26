@@ -5,18 +5,18 @@ var FakeIpcRequest = require('./helpers/FakeIpcRequest')
 var net = new FakeIpcRequest();
 
 SandboxedModule.registerBuiltInSourceTransformer('istanbul');
-var IpcProvider = SandboxedModule.require('../lib/web3/ipcprovider', {
+var IpcProvider = SandboxedModule.require('../lib/webu/ipcprovider', {
     requires: {
-        'bignumber.js': require('bignumber.js'), 
+        'bignumber.js': require('bignumber.js'),
     },
     singleOnly: true
 });
 
-describe('lib/web3/ipcprovider', function () {
+describe('lib/webu/ipcprovider', function () {
     describe('send', function () {
         it('should send basic request', function () {
             var provider = new IpcProvider('', net);
-            var result = provider.send({id: 1, method: 'eth_test'});
+            var result = provider.send({id: 1, method: 'huc_test'});
 
             assert.isObject(result);
         });
@@ -25,11 +25,11 @@ describe('lib/web3/ipcprovider', function () {
     describe('sendAsync', function () {
         it('should send basic async request', function (done) {
             var provider = new IpcProvider('', net);
-            provider.sendAsync({id: 1, method: 'eth_test'}, function (err, result) {
+            provider.sendAsync({id: 1, method: 'huc_test'}, function (err, result) {
                 assert.isObject(result);
                 done();
             });
-        }); 
+        });
     });
 
     describe('isConnected', function () {
@@ -53,7 +53,7 @@ describe('lib/web3/ipcprovider', function () {
             provider.connection.writable = true;
 
             assert.isTrue(provider.isConnected());
-        }); 
+        });
     });
 });
 

@@ -1,18 +1,18 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Method = require('../lib/web3/method');
+var Method = require('../lib/webu/method');
 
-describe('lib/web3/method', function () {
+describe('lib/webu/method', function () {
     describe('formatOutput', function () {
         it('should format plain output', function () {
-            
+
             // given
             var formatter = function (args) {
                 return args.map(function (arg) {
                     return arg + '*';
                 });
             };
-            
+
             var method = new Method({
                 outputFormatter: formatter
             });
@@ -25,7 +25,7 @@ describe('lib/web3/method', function () {
             // then
             assert.deepEqual(result, expectedArgs);
         });
-        
+
         it('should do nothing if there is no formatter', function () {
 
             // given
@@ -34,7 +34,7 @@ describe('lib/web3/method', function () {
 
             // when
             var result = method.formatOutput(args);
-            
+
             // then
             assert.deepEqual(result, args);
         });

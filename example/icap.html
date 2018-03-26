@@ -5,15 +5,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../dist/web3.js"></script>
+<script type="text/javascript" src="../dist/webu.js"></script>
 <script type="text/javascript">
 
-    var Web3 = require('web3');
-    var web3 = new Web3();
+    var Webu = require('webu');
+    var webu = new Webu();
     var BigNumber = require('bignumber.js');
-    web3.setProvider(new web3.providers.HttpProvider("http://localhost:8545"));
-    var from = web3.eth.coinbase;
-    web3.eth.defaultAccount = from;
+    webu.setProvider(new webu.providers.HttpProvider("http://localhost:8545"));
+    var from = webu.huc.coinbase;
+    webu.huc.defaultAccount = from;
 
     var nameregAbi = [
         {"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"name","outputs":[{"name":"o_name","type":"bytes32"}],"type":"function"},
@@ -35,18 +35,18 @@
 
     var depositAbi = [{"constant":false,"inputs":[{"name":"name","type":"bytes32"}],"name":"deposit","outputs":[],"type":"function"}];
 
-    var Namereg = web3.eth.contract(nameregAbi);
-    var Deposit = web3.eth.contract(depositAbi);
+    var Namereg = webu.huc.contract(nameregAbi);
+    var Deposit = webu.huc.contract(depositAbi);
 
-    var namereg = web3.eth.ibanNamereg;
-    var deposit; 
+    var namereg = webu.huc.ibanNamereg;
+    var deposit;
     var iban;
 
     function validateNamereg() {
         var address = document.getElementById('namereg').value;
-        var ok = web3.isAddress(address) || address === 'default';
+        var ok = webu.isAddress(address) || address === 'default';
         if (ok) {
-            namereg = address === 'default' ? web3.eth.ibanNamereg : Namereg.at(address);
+            namereg = address === 'default' ? webu.huc.ibanNamereg : Namereg.at(address);
             document.getElementById('nameregValidation').innerText = 'ok!';
         } else {
             document.getElementById('nameregValidation').innerText = 'namereg address is incorrect!';
@@ -58,7 +58,7 @@
         updateIBAN(validateNamereg());
         onExchangeKeyUp();
     };
-    
+
     function validateExchange() {
         var exchange = document.getElementById('exchange').value;
         var ok = /^[0-9A-Z]{4}$/.test(exchange);
@@ -116,8 +116,8 @@
 
     function updateIBAN(ok) {
         var exchangeId = document.getElementById('exchange').value;
-        var clientId = document.getElementById('client').value; 
-        iban = web3.eth.iban.createIndirect({
+        var clientId = document.getElementById('client').value;
+        iban = webu.huc.iban.createIndirect({
             institution: exchangeId,
             identifier: clientId
         });
@@ -129,7 +129,7 @@
         var value = new BigNumber(document.getElementById('value').value);
         var exchange = document.getElementById('exchange').value;
         var client = document.getElementById('client').value;
-        deposit.deposit(web3.fromAscii(client), {value: value});
+        deposit.deposit(webu.fromAscii(client), {value: value});
         displayTransfer("deposited client's " + client + " funds " + value.toString(10) + " to exchange " + exchange);
     };
 
@@ -139,7 +139,7 @@
         node.appendChild(textnode);
         document.getElementById('transfers').appendChild(node);
     }
-    
+
 </script>
 </head>
 <body>

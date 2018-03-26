@@ -1,6 +1,6 @@
 var chai = require('chai');
 var Web3 = require('../index');
-var web3 = new Web3();
+var webu = new Webu();
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
@@ -33,8 +33,8 @@ describe('shh', function () {
 
                 // given
                 var provider = new FakeHttpProvider();
-                web3.setProvider(provider);
-                web3.reset();
+                webu.setProvider(provider);
+                webu.reset();
                 provider.injectResult(test.result);
                 provider.injectValidation(function (payload) {
                     assert.equal(payload.jsonrpc, '2.0');
@@ -43,7 +43,7 @@ describe('shh', function () {
                 });
 
                 // call
-                web3.shh[method].apply(web3.shh, test.args);
+                webu.shh[method].apply(web3.shh, test.args);
 
             });
         });

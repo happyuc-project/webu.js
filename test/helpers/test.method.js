@@ -7,16 +7,16 @@ var clone = function (object) { return JSON.parse(JSON.stringify(object)); };
 
 var runTests = function (obj, method, tests) {
 
-    var testName = obj ? 'web3.' + obj : 'web';
+    var testName = obj ? 'webu.' + obj : 'web';
 
     describe(testName, function () {
         describe(method, function () {
             tests.forEach(function (test, index) {
                 it('sync test: ' + index, function () {
-                    
+
                     // given
                     var provider = new FakeHttpProvider();
-                    var web3 = new Web3(provider);
+                    var webu = new Webu(provider);
                     provider.injectResult(test.result);
                     provider.injectValidation(function (payload) {
                         assert.equal(payload.jsonrpc, '2.0');
@@ -34,18 +34,18 @@ var runTests = function (obj, method, tests) {
                     }
                     // when
                     //var result = (obj)
-                        //? web3[obj][method].apply(null, test.args.slice(0))
-                        //: web3[method].apply(null, test.args.slice(0));
-                    
-                    // then 
+                        //? webu[obj][method].apply(null, test.args.slice(0))
+                        //: webu[method].apply(null, test.args.slice(0));
+
+                    // then
                     assert.deepEqual(test.formattedResult, result);
                 });
-                
+
                 it('async test: ' + index, function (done) {
-                    
+
                     // given
                     var provider = new FakeHttpProvider();
-                    var web3 = new Web3(provider);
+                    var webu = new Webu(provider);
                     provider.injectResult(test.result);
                     provider.injectValidation(function (payload) {
                         assert.equal(payload.jsonrpc, '2.0');
@@ -54,7 +54,7 @@ var runTests = function (obj, method, tests) {
                     });
 
                     var args = clone(test.args);
-                   
+
                     // add callback
                     args.push(function (err, result) {
                         assert.deepEqual(test.formattedResult, result);

@@ -17,7 +17,7 @@ var tests = [{
     }, 'latest'],
     result: '0x31981',
     formattedResult: '0x31981',
-    call: 'eth_'+ method
+    call: 'huc_'+ method
 },{
     args: [{
         to: '0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b',
@@ -33,8 +33,8 @@ var tests = [{
     }, '0xb'],
     result: '0x31981',
     formattedResult: '0x31981',
-    call: 'eth_'+ method
+    call: 'huc_'+ method
 }];
 
-testMethod.runTests('eth', method, tests);
+testMethod.runTests('huc', method, tests);
 

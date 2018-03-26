@@ -602,20 +602,20 @@ module.exports = SolidityTypeBytes;
 
 },{"./formatters":9,"./type":14}],7:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file coder.js
@@ -873,20 +873,20 @@ module.exports = SolidityTypeDynamicBytes;
 
 },{"./formatters":9,"./type":14}],9:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file formatters.js
@@ -1161,22 +1161,22 @@ module.exports = SolidityTypeInt;
 
 },{"./formatters":9,"./type":14}],11:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file param.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -1195,7 +1195,7 @@ var SolidityParam = function (value, offset) {
 
 /**
  * This method should be used to get length of params's dynamic part
- * 
+ *
  * @method dynamicPartLength
  * @returns {Number} length of dynamic part (in bytes)
  */
@@ -1223,7 +1223,7 @@ SolidityParam.prototype.withOffset = function (offset) {
  * @param {SolidityParam} result of combination
  */
 SolidityParam.prototype.combine = function (param) {
-    return new SolidityParam(this.value + param.value); 
+    return new SolidityParam(this.value + param.value);
 };
 
 /**
@@ -1255,8 +1255,8 @@ SolidityParam.prototype.offsetAsBytes = function () {
  */
 SolidityParam.prototype.staticPart = function () {
     if (!this.isDynamic()) {
-        return this.value; 
-    } 
+        return this.value;
+    }
     return this.offsetAsBytes();
 };
 
@@ -1288,7 +1288,7 @@ SolidityParam.prototype.encode = function () {
  * @returns {String}
  */
 SolidityParam.encodeList = function (params) {
-    
+
     // updating offsets
     var totalOffset = params.length * 32;
     var offsetParams = params.map(function (param) {
@@ -1707,20 +1707,20 @@ if (typeof XMLHttpRequest === 'undefined') {
 
 },{}],18:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file config.js
  * @authors:
@@ -1730,13 +1730,13 @@ if (typeof XMLHttpRequest === 'undefined') {
 
 /**
  * Utils
- * 
+ *
  * @module utils
  */
 
 /**
  * Utility functions
- * 
+ *
  * @class [utils] config
  * @constructor
  */
@@ -1788,22 +1788,22 @@ module.exports = {
 
 },{"bignumber.js":"bignumber.js"}],19:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file sha3.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -1828,20 +1828,20 @@ module.exports = function (value, options) {
 
 },{"crypto-js":58,"crypto-js/sha3":79}],20:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file utils.js
@@ -2476,23 +2476,23 @@ module.exports={
 
 },{}],22:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
- * @file web3.js
+ * @file webu.js
  * @authors:
  *   Jeffrey Wilcke <jeff@ethdev.com>
  *   Marek Kotewicz <marek@ethdev.com>
@@ -2502,23 +2502,23 @@ module.exports={
  * @date 2014
  */
 
-var RequestManager = require('./web3/requestmanager');
-var Iban = require('./web3/iban');
-var Eth = require('./web3/methods/eth');
-var DB = require('./web3/methods/db');
-var Shh = require('./web3/methods/shh');
-var Net = require('./web3/methods/net');
-var Personal = require('./web3/methods/personal');
-var Swarm = require('./web3/methods/swarm');
-var Settings = require('./web3/settings');
+var RequestManager = require('./webu/requestmanager');
+var Iban = require('./webu/iban');
+var Eth = require('./webu/methods/huc');
+var DB = require('./webu/methods/db');
+var Shh = require('./webu/methods/shh');
+var Net = require('./webu/methods/net');
+var Personal = require('./webu/methods/personal');
+var Swarm = require('./webu/methods/swarm');
+var Settings = require('./webu/settings');
 var version = require('./version.json');
 var utils = require('./utils/utils');
 var sha3 = require('./utils/sha3');
-var extend = require('./web3/extend');
-var Batch = require('./web3/batch');
-var Property = require('./web3/property');
-var HttpProvider = require('./web3/httpprovider');
-var IpcProvider = require('./web3/ipcprovider');
+var extend = require('./webu/extend');
+var Batch = require('./webu/batch');
+var Property = require('./webu/property');
+var HttpProvider = require('./webu/httpprovider');
+var IpcProvider = require('./webu/ipcprovider');
 var BigNumber = require('bignumber.js');
 
 
@@ -2547,48 +2547,48 @@ function Web3 (provider) {
 }
 
 // expose providers on the class
-Web3.providers = {
+Webu.providers = {
     HttpProvider: HttpProvider,
     IpcProvider: IpcProvider
 };
 
-Web3.prototype.setProvider = function (provider) {
+Webu.prototype.setProvider = function (provider) {
     this._requestManager.setProvider(provider);
     this.currentProvider = provider;
 };
 
-Web3.prototype.reset = function (keepIsSyncing) {
+Webu.prototype.reset = function (keepIsSyncing) {
     this._requestManager.reset(keepIsSyncing);
     this.settings = new Settings();
 };
 
-Web3.prototype.BigNumber = BigNumber;
-Web3.prototype.toHex = utils.toHex;
-Web3.prototype.toAscii = utils.toAscii;
-Web3.prototype.toUtf8 = utils.toUtf8;
-Web3.prototype.fromAscii = utils.fromAscii;
-Web3.prototype.fromUtf8 = utils.fromUtf8;
-Web3.prototype.toDecimal = utils.toDecimal;
-Web3.prototype.fromDecimal = utils.fromDecimal;
-Web3.prototype.toBigNumber = utils.toBigNumber;
-Web3.prototype.toWei = utils.toWei;
-Web3.prototype.fromWei = utils.fromWei;
-Web3.prototype.isAddress = utils.isAddress;
-Web3.prototype.isChecksumAddress = utils.isChecksumAddress;
-Web3.prototype.toChecksumAddress = utils.toChecksumAddress;
-Web3.prototype.isIBAN = utils.isIBAN;
-Web3.prototype.padLeft = utils.padLeft;
-Web3.prototype.padRight = utils.padRight;
+Webu.prototype.BigNumber = BigNumber;
+Webu.prototype.toHex = utils.toHex;
+Webu.prototype.toAscii = utils.toAscii;
+Webu.prototype.toUtf8 = utils.toUtf8;
+Webu.prototype.fromAscii = utils.fromAscii;
+Webu.prototype.fromUtf8 = utils.fromUtf8;
+Webu.prototype.toDecimal = utils.toDecimal;
+Webu.prototype.fromDecimal = utils.fromDecimal;
+Webu.prototype.toBigNumber = utils.toBigNumber;
+Webu.prototype.toWei = utils.toWei;
+Webu.prototype.fromWei = utils.fromWei;
+Webu.prototype.isAddress = utils.isAddress;
+Webu.prototype.isChecksumAddress = utils.isChecksumAddress;
+Webu.prototype.toChecksumAddress = utils.toChecksumAddress;
+Webu.prototype.isIBAN = utils.isIBAN;
+Webu.prototype.padLeft = utils.padLeft;
+Webu.prototype.padRight = utils.padRight;
 
 
-Web3.prototype.sha3 = function(string, options) {
+Webu.prototype.sha3 = function(string, options) {
     return '0x' + sha3(string, options);
 };
 
 /**
  * Transforms direct icap to address
  */
-Web3.prototype.fromICAP = function (icap) {
+Webu.prototype.fromICAP = function (icap) {
     var iban = new Iban(icap);
     return iban.address();
 };
@@ -2606,7 +2606,7 @@ var properties = function () {
         }),
         new Property({
             name: 'version.ethereum',
-            getter: 'eth_protocolVersion',
+            getter: 'huc_protocolVersion',
             inputFormatter: utils.toDecimal
         }),
         new Property({
@@ -2617,33 +2617,33 @@ var properties = function () {
     ];
 };
 
-Web3.prototype.isConnected = function(){
+Webu.prototype.isConnected = function(){
     return (this.currentProvider && this.currentProvider.isConnected());
 };
 
-Web3.prototype.createBatch = function () {
+Webu.prototype.createBatch = function () {
     return new Batch(this);
 };
 
-module.exports = Web3;
+module.exports = Webu;
 
 
-},{"./utils/sha3":19,"./utils/utils":20,"./version.json":21,"./web3/batch":24,"./web3/extend":28,"./web3/httpprovider":32,"./web3/iban":33,"./web3/ipcprovider":34,"./web3/methods/db":37,"./web3/methods/eth":38,"./web3/methods/net":39,"./web3/methods/personal":40,"./web3/methods/shh":41,"./web3/methods/swarm":42,"./web3/property":45,"./web3/requestmanager":46,"./web3/settings":47,"bignumber.js":"bignumber.js"}],23:[function(require,module,exports){
+},{"./utils/sha3":19,"./utils/utils":20,"./version.json":21,"./webu/batch":24,"./webu/extend":28,"./webu/httpprovider":32,"./webu/iban":33,"./webu/ipcprovider":34,"./webu/methods/db":37,"./webu/methods/eth":38,"./webu/methods/net":39,"./webu/methods/personal":40,"./webu/methods/shh":41,"./webu/methods/swarm":42,"./webu/property":45,"./webu/requestmanager":46,"./webu/settings":47,"bignumber.js":"bignumber.js"}],23:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file allevents.js
@@ -2706,7 +2706,7 @@ AllSolidityEvents.prototype.execute = function (options, callback) {
 
     var o = this.encode(options);
     var formatter = this.decode.bind(this);
-    return new Filter(o, 'eth', this._requestManager, watches.eth(), formatter, callback);
+    return new Filter(o, 'huc', this._requestManager, watches.huc(), formatter, callback);
 };
 
 AllSolidityEvents.prototype.attachToContract = function (contract) {
@@ -2719,22 +2719,22 @@ module.exports = AllSolidityEvents;
 
 },{"../utils/sha3":19,"../utils/utils":20,"./event":27,"./filter":29,"./formatters":30,"./methods/watches":43}],24:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file batch.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -2744,7 +2744,7 @@ var Jsonrpc = require('./jsonrpc');
 var errors = require('./errors');
 
 var Batch = function (web3) {
-    this.requestManager = web3._requestManager;
+    this.requestManager = webu._requestManager;
     this.requests = [];
 };
 
@@ -2779,7 +2779,7 @@ Batch.prototype.execute = function () {
                 requests[index].callback(null, (requests[index].format ? requests[index].format(result.result) : result.result));
             }
         });
-    }); 
+    });
 };
 
 module.exports = Batch;
@@ -2787,20 +2787,20 @@ module.exports = Batch;
 
 },{"./errors":26,"./jsonrpc":35}],25:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file contract.js
@@ -2844,7 +2844,7 @@ var addFunctionsToContract = function (contract) {
     contract.abi.filter(function (json) {
         return json.type === 'function';
     }).map(function (json) {
-        return new SolidityFunction(contract._eth, json, contract.address);
+        return new SolidityFunction(contract._huc, json, contract.address);
     }).forEach(function (f) {
         f.attachToContract(contract);
     });
@@ -2862,11 +2862,11 @@ var addEventsToContract = function (contract) {
         return json.type === 'event';
     });
 
-    var All = new AllEvents(contract._eth._requestManager, events, contract.address);
+    var All = new AllEvents(contract._huc._requestManager, events, contract.address);
     All.attachToContract(contract);
 
     events.map(function (json) {
-        return new SolidityEvent(contract._eth._requestManager, json, contract.address);
+        return new SolidityEvent(contract._huc._requestManager, json, contract.address);
     }).forEach(function (e) {
         e.attachToContract(contract);
     });
@@ -2886,7 +2886,7 @@ var checkForContractAddress = function(contract, callback){
         callbackFired = false;
 
     // wait for receipt
-    var filter = contract._eth.filter('latest', function(e){
+    var filter = contract._huc.filter('latest', function(e){
         if (!e && !callbackFired) {
             count++;
 
@@ -2904,10 +2904,10 @@ var checkForContractAddress = function(contract, callback){
 
             } else {
 
-                contract._eth.getTransactionReceipt(contract.transactionHash, function(e, receipt){
+                contract._huc.getTransactionReceipt(contract.transactionHash, function(e, receipt){
                     if(receipt && receipt.blockHash && !callbackFired) {
 
-                        contract._eth.getCode(receipt.contractAddress, function(e, code){
+                        contract._huc.getCode(receipt.contractAddress, function(e, code){
                             /*jshint maxcomplexity: 6 */
 
                             if(callbackFired || !code)
@@ -2951,7 +2951,7 @@ var checkForContractAddress = function(contract, callback){
  * @param {Array} abi
  */
 var ContractFactory = function (eth, abi) {
-    this.eth = eth;
+    this.huc = eth;
     this.abi = abi;
 
     /**
@@ -2967,7 +2967,7 @@ var ContractFactory = function (eth, abi) {
     this.new = function () {
         /*jshint maxcomplexity: 7 */
 
-        var contract = new Contract(this.eth, this.abi);
+        var contract = new Contract(this.huc, this.abi);
 
         // parse arguments
         var options = {}; // required!
@@ -2999,7 +2999,7 @@ var ContractFactory = function (eth, abi) {
         if (callback) {
 
             // wait for the contract address and check if the code was deployed
-            this.eth.sendTransaction(options, function (err, hash) {
+            this.huc.sendTransaction(options, function (err, hash) {
                 if (err) {
                     callback(err);
                 } else {
@@ -3013,7 +3013,7 @@ var ContractFactory = function (eth, abi) {
                 }
             });
         } else {
-            var hash = this.eth.sendTransaction(options);
+            var hash = this.huc.sendTransaction(options);
             // add the transaction hash
             contract.transactionHash = hash;
             checkForContractAddress(contract);
@@ -3048,7 +3048,7 @@ var ContractFactory = function (eth, abi) {
  * otherwise calls callback function (err, contract)
  */
 ContractFactory.prototype.at = function (address, callback) {
-    var contract = new Contract(this.eth, this.abi, address);
+    var contract = new Contract(this.huc, this.abi, address);
 
     // this functions are not part of prototype,
     // because we dont want to spoil the interface
@@ -3089,7 +3089,7 @@ ContractFactory.prototype.getData = function () {
  * @param {Address} contract address
  */
 var Contract = function (eth, abi, address) {
-    this._eth = eth;
+    this._huc = eth;
     this.transactionHash = null;
     this.address = address;
     this.abi = abi;
@@ -3099,22 +3099,22 @@ module.exports = ContractFactory;
 
 },{"../solidity/coder":7,"../utils/utils":20,"./allevents":23,"./event":27,"./function":31}],26:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file errors.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -3144,20 +3144,20 @@ module.exports = {
 
 },{}],27:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file event.js
@@ -3332,7 +3332,7 @@ SolidityEvent.prototype.execute = function (indexed, options, callback) {
 
     var o = this.encode(indexed, options);
     var formatter = this.decode.bind(this);
-    return new Filter(o, 'eth', this._requestManager, watches.eth(), formatter, callback);
+    return new Filter(o, 'huc', this._requestManager, watches.huc(), formatter, callback);
 };
 
 /**
@@ -3390,7 +3390,7 @@ var extend = function (web3) {
         }
     };
 
-    ex.formatters = formatters; 
+    ex.formatters = formatters;
     ex.utils = utils;
     ex.Method = Method;
     ex.Property = Property;
@@ -3405,20 +3405,20 @@ module.exports = extend;
 
 },{"./../utils/utils":20,"./formatters":30,"./method":36,"./property":45}],29:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file filter.js
  * @authors:
@@ -3466,7 +3466,7 @@ var getOptions = function (options, type) {
 
 
     switch(type) {
-        case 'eth':
+        case 'huc':
 
             // make sure topics, get converted to hex
             options.topics = options.topics || [];
@@ -3652,20 +3652,20 @@ module.exports = Filter;
 
 },{"../utils/utils":20,"./formatters":30}],30:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file formatters.js
@@ -3963,20 +3963,20 @@ module.exports = {
 
 },{"../utils/config":18,"../utils/utils":20,"./iban":33}],31:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file function.js
@@ -3994,7 +3994,7 @@ var sha3 = require('../utils/sha3');
  * This prototype should be used to call/sendTransaction to solidity functions
  */
 var SolidityFunction = function (eth, json, address) {
-    this._eth = eth;
+    this._huc = eth;
     this._inputTypes = json.inputs.map(function (i) {
         return i.type;
     });
@@ -4096,12 +4096,12 @@ SolidityFunction.prototype.call = function () {
 
 
     if (!callback) {
-        var output = this._eth.call(payload, defaultBlock);
+        var output = this._huc.call(payload, defaultBlock);
         return this.unpackOutput(output);
     }
 
     var self = this;
-    this._eth.call(payload, defaultBlock, function (error, output) {
+    this._huc.call(payload, defaultBlock, function (error, output) {
         if (error) return callback(error, null);
 
         var unpacked = null;
@@ -4131,10 +4131,10 @@ SolidityFunction.prototype.sendTransaction = function () {
     }
 
     if (!callback) {
-        return this._eth.sendTransaction(payload);
+        return this._huc.sendTransaction(payload);
     }
 
-    this._eth.sendTransaction(payload, callback);
+    this._huc.sendTransaction(payload, callback);
 };
 
 /**
@@ -4148,10 +4148,10 @@ SolidityFunction.prototype.estimateGas = function () {
     var payload = this.toPayload(args);
 
     if (!callback) {
-        return this._eth.estimateGas(payload);
+        return this._huc.estimateGas(payload);
     }
 
-    this._eth.estimateGas(payload, callback);
+    this._huc.estimateGas(payload, callback);
 };
 
 /**
@@ -4200,7 +4200,7 @@ SolidityFunction.prototype.request = function () {
     var format = this.unpackOutput.bind(this);
 
     return {
-        method: this._constant ? 'eth_call' : 'eth_sendTransaction',
+        method: this._constant ? 'huc_call' : 'huc_sendTransaction',
         callback: callback,
         params: [payload],
         format: format
@@ -4248,20 +4248,20 @@ module.exports = SolidityFunction;
 
 },{"../solidity/coder":7,"../utils/sha3":19,"../utils/utils":20,"./errors":26,"./formatters":30}],32:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file httpprovider.js
  * @authors:
@@ -4413,22 +4413,22 @@ module.exports = HttpProvider;
 
 },{"./errors":26,"xhr2":85,"xmlhttprequest":17}],33:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file iban.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -4628,7 +4628,7 @@ Iban.prototype.address = function () {
         var base36 = this._iban.substr(4);
         var asBn = new BigNumber(base36, 36);
         return padLeft(asBn.toString(16), 20);
-    } 
+    }
 
     return '';
 };
@@ -4642,20 +4642,20 @@ module.exports = Iban;
 
 },{"bignumber.js":"bignumber.js"}],34:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file ipcprovider.js
  * @authors:
@@ -4673,7 +4673,7 @@ var IpcProvider = function (path, net) {
     var _this = this;
     this.responseCallbacks = {};
     this.path = path;
-    
+
     this.connection = net.connect({path: this.path});
 
     this.connection.on('error', function(e){
@@ -4683,7 +4683,7 @@ var IpcProvider = function (path, net) {
 
     this.connection.on('end', function(){
         _this._timeout();
-    }); 
+    });
 
 
     // LISTEN FOR CONNECTION RESPONSES
@@ -4722,7 +4722,7 @@ Will parse the response and make an array out of it.
 IpcProvider.prototype._parseResponse = function(data) {
     var _this = this,
         returnValues = [];
-    
+
     // DE-CHUNKER
     var dechunkedData = data
         .replace(/\}[\n\r]?\{/g,'}|--|{') // }{
@@ -4826,7 +4826,7 @@ IpcProvider.prototype.send = function (payload) {
         try {
             result = JSON.parse(data);
         } catch(e) {
-            throw errors.InvalidResponse(data);                
+            throw errors.InvalidResponse(data);
         }
 
         return result;
@@ -4851,20 +4851,20 @@ module.exports = IpcProvider;
 
 },{"../utils/utils":20,"./errors":26}],35:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file jsonrpc.js
  * @authors:
@@ -4938,20 +4938,20 @@ module.exports = Jsonrpc;
 
 },{}],36:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file method.js
@@ -5001,7 +5001,7 @@ Method.prototype.extractCallback = function (args) {
 
 /**
  * Should be called to check if the number of arguments is correct
- * 
+ *
  * @method validateArgs
  * @param {Array} arguments
  * @throws {Error} if it is not
@@ -5014,7 +5014,7 @@ Method.prototype.validateArgs = function (args) {
 
 /**
  * Should be called to format input args of method
- * 
+ *
  * @method formatInput
  * @param {Array}
  * @return {Array}
@@ -5068,7 +5068,7 @@ Method.prototype.attachToObject = function (obj) {
         obj[name[0]] = obj[name[0]] || {};
         obj[name[0]][name[1]] = func;
     } else {
-        obj[name[0]] = func; 
+        obj[name[0]] = func;
     }
 };
 
@@ -5104,20 +5104,20 @@ module.exports = Method;
 
 },{"../utils/utils":20,"./errors":26}],37:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file db.js
  * @authors:
@@ -5128,11 +5128,11 @@ module.exports = Method;
 var Method = require('../method');
 
 var DB = function (web3) {
-    this._requestManager = web3._requestManager;
+    this._requestManager = webu._requestManager;
 
     var self = this;
-    
-    methods().forEach(function(method) { 
+
+    methods().forEach(function(method) {
         method.attachToObject(self);
         method.setRequestManager(web3._requestManager);
     });
@@ -5172,23 +5172,23 @@ module.exports = DB;
 
 },{"../method":36}],38:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
- * @file eth.js
+ * @file huc.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @author Fabian Vogelsteller <fabian@ethdev.com>
  * @date 2015
@@ -5210,27 +5210,27 @@ var Iban = require('../iban');
 var transfer = require('../transfer');
 
 var blockCall = function (args) {
-    return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? "eth_getBlockByHash" : "eth_getBlockByNumber";
+    return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? "huc_getBlockByHash" : "huc_getBlockByNumber";
 };
 
 var transactionFromBlockCall = function (args) {
-    return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'eth_getTransactionByBlockHashAndIndex' : 'eth_getTransactionByBlockNumberAndIndex';
+    return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'huc_getTransactionByBlockHashAndIndex' : 'huc_getTransactionByBlockNumberAndIndex';
 };
 
 var uncleCall = function (args) {
-    return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'eth_getUncleByBlockHashAndIndex' : 'eth_getUncleByBlockNumberAndIndex';
+    return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'huc_getUncleByBlockHashAndIndex' : 'huc_getUncleByBlockNumberAndIndex';
 };
 
 var getBlockTransactionCountCall = function (args) {
-    return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'eth_getBlockTransactionCountByHash' : 'eth_getBlockTransactionCountByNumber';
+    return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'huc_getBlockTransactionCountByHash' : 'huc_getBlockTransactionCountByNumber';
 };
 
 var uncleCountCall = function (args) {
-    return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'eth_getUncleCountByBlockHash' : 'eth_getUncleCountByBlockNumber';
+    return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'huc_getUncleCountByBlockHash' : 'huc_getUncleCountByBlockNumber';
 };
 
 function Eth(web3) {
-    this._requestManager = web3._requestManager;
+    this._requestManager = webu._requestManager;
 
     var self = this;
 
@@ -5272,7 +5272,7 @@ Object.defineProperty(Eth.prototype, 'defaultAccount', {
 var methods = function () {
     var getBalance = new Method({
         name: 'getBalance',
-        call: 'eth_getBalance',
+        call: 'huc_getBalance',
         params: 2,
         inputFormatter: [formatters.inputAddressFormatter, formatters.inputDefaultBlockNumberFormatter],
         outputFormatter: formatters.outputBigNumberFormatter
@@ -5280,14 +5280,14 @@ var methods = function () {
 
     var getStorageAt = new Method({
         name: 'getStorageAt',
-        call: 'eth_getStorageAt',
+        call: 'huc_getStorageAt',
         params: 3,
         inputFormatter: [null, utils.toHex, formatters.inputDefaultBlockNumberFormatter]
     });
 
     var getCode = new Method({
         name: 'getCode',
-        call: 'eth_getCode',
+        call: 'huc_getCode',
         params: 2,
         inputFormatter: [formatters.inputAddressFormatter, formatters.inputDefaultBlockNumberFormatter]
     });
@@ -5311,7 +5311,7 @@ var methods = function () {
 
     var getCompilers = new Method({
         name: 'getCompilers',
-        call: 'eth_getCompilers',
+        call: 'huc_getCompilers',
         params: 0
     });
 
@@ -5333,7 +5333,7 @@ var methods = function () {
 
     var getTransaction = new Method({
         name: 'getTransaction',
-        call: 'eth_getTransactionByHash',
+        call: 'huc_getTransactionByHash',
         params: 1,
         outputFormatter: formatters.outputTransactionFormatter
     });
@@ -5348,14 +5348,14 @@ var methods = function () {
 
     var getTransactionReceipt = new Method({
         name: 'getTransactionReceipt',
-        call: 'eth_getTransactionReceipt',
+        call: 'huc_getTransactionReceipt',
         params: 1,
         outputFormatter: formatters.outputTransactionReceiptFormatter
     });
 
     var getTransactionCount = new Method({
         name: 'getTransactionCount',
-        call: 'eth_getTransactionCount',
+        call: 'huc_getTransactionCount',
         params: 2,
         inputFormatter: [null, formatters.inputDefaultBlockNumberFormatter],
         outputFormatter: utils.toDecimal
@@ -5363,42 +5363,42 @@ var methods = function () {
 
     var sendRawTransaction = new Method({
         name: 'sendRawTransaction',
-        call: 'eth_sendRawTransaction',
+        call: 'huc_sendRawTransaction',
         params: 1,
         inputFormatter: [null]
     });
 
     var sendTransaction = new Method({
         name: 'sendTransaction',
-        call: 'eth_sendTransaction',
+        call: 'huc_sendTransaction',
         params: 1,
         inputFormatter: [formatters.inputTransactionFormatter]
     });
 
     var signTransaction = new Method({
         name: 'signTransaction',
-        call: 'eth_signTransaction',
+        call: 'huc_signTransaction',
         params: 1,
         inputFormatter: [formatters.inputTransactionFormatter]
     });
 
     var sign = new Method({
         name: 'sign',
-        call: 'eth_sign',
+        call: 'huc_sign',
         params: 2,
         inputFormatter: [formatters.inputAddressFormatter, null]
     });
 
     var call = new Method({
         name: 'call',
-        call: 'eth_call',
+        call: 'huc_call',
         params: 2,
         inputFormatter: [formatters.inputCallFormatter, formatters.inputDefaultBlockNumberFormatter]
     });
 
     var estimateGas = new Method({
         name: 'estimateGas',
-        call: 'eth_estimateGas',
+        call: 'huc_estimateGas',
         params: 1,
         inputFormatter: [formatters.inputCallFormatter],
         outputFormatter: utils.toDecimal
@@ -5406,31 +5406,31 @@ var methods = function () {
 
     var compileSolidity = new Method({
         name: 'compile.solidity',
-        call: 'eth_compileSolidity',
+        call: 'huc_compileSolidity',
         params: 1
     });
 
     var compileLLL = new Method({
         name: 'compile.lll',
-        call: 'eth_compileLLL',
+        call: 'huc_compileLLL',
         params: 1
     });
 
     var compileSerpent = new Method({
         name: 'compile.serpent',
-        call: 'eth_compileSerpent',
+        call: 'huc_compileSerpent',
         params: 1
     });
 
     var submitWork = new Method({
         name: 'submitWork',
-        call: 'eth_submitWork',
+        call: 'huc_submitWork',
         params: 3
     });
 
     var getWork = new Method({
         name: 'getWork',
-        call: 'eth_getWork',
+        call: 'huc_getWork',
         params: 0
     });
 
@@ -5466,39 +5466,39 @@ var properties = function () {
     return [
         new Property({
             name: 'coinbase',
-            getter: 'eth_coinbase'
+            getter: 'huc_coinbase'
         }),
         new Property({
             name: 'mining',
-            getter: 'eth_mining'
+            getter: 'huc_mining'
         }),
         new Property({
             name: 'hashrate',
-            getter: 'eth_hashrate',
+            getter: 'huc_hashrate',
             outputFormatter: utils.toDecimal
         }),
         new Property({
             name: 'syncing',
-            getter: 'eth_syncing',
+            getter: 'huc_syncing',
             outputFormatter: formatters.outputSyncingFormatter
         }),
         new Property({
             name: 'gasPrice',
-            getter: 'eth_gasPrice',
+            getter: 'huc_gasPrice',
             outputFormatter: formatters.outputBigNumberFormatter
         }),
         new Property({
             name: 'accounts',
-            getter: 'eth_accounts'
+            getter: 'huc_accounts'
         }),
         new Property({
             name: 'blockNumber',
-            getter: 'eth_blockNumber',
+            getter: 'huc_blockNumber',
             outputFormatter: utils.toDecimal
         }),
         new Property({
             name: 'protocolVersion',
-            getter: 'eth_protocolVersion'
+            getter: 'huc_protocolVersion'
         })
     ];
 };
@@ -5509,7 +5509,7 @@ Eth.prototype.contract = function (abi) {
 };
 
 Eth.prototype.filter = function (options, callback, filterCreationErrorCallback) {
-    return new Filter(options, 'eth', this._requestManager, watches.eth(), formatters.outputLogFormatter, callback, filterCreationErrorCallback);
+    return new Filter(options, 'huc', this._requestManager, watches.huc(), formatters.outputLogFormatter, callback, filterCreationErrorCallback);
 };
 
 Eth.prototype.namereg = function () {
@@ -5528,22 +5528,22 @@ module.exports = Eth;
 
 },{"../../utils/config":18,"../../utils/utils":20,"../contract":25,"../filter":29,"../formatters":30,"../iban":33,"../method":36,"../namereg":44,"../property":45,"../syncing":48,"../transfer":49,"./watches":43}],39:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** @file eth.js
+/** @file huc.js
  * @authors:
  *   Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -5553,17 +5553,17 @@ var utils = require('../../utils/utils');
 var Property = require('../property');
 
 var Net = function (web3) {
-    this._requestManager = web3._requestManager;
+    this._requestManager = webu._requestManager;
 
     var self = this;
 
-    properties().forEach(function(p) { 
+    properties().forEach(function(p) {
         p.attachToObject(self);
         p.setRequestManager(web3._requestManager);
     });
 };
 
-/// @returns an array of objects describing web3.eth api properties
+/// @returns an array of objects describing webu.huc api properties
 var properties = function () {
     return [
         new Property({
@@ -5582,23 +5582,23 @@ module.exports = Net;
 
 },{"../../utils/utils":20,"../property":45}],40:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
- * @file eth.js
+ * @file huc.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @author Fabian Vogelsteller <fabian@ethdev.com>
  * @date 2015
@@ -5611,7 +5611,7 @@ var Property = require('../property');
 var formatters = require('../formatters');
 
 function Personal(web3) {
-    this._requestManager = web3._requestManager;
+    this._requestManager = webu._requestManager;
 
     var self = this;
 
@@ -5699,20 +5699,20 @@ module.exports = Personal;
 
 },{"../formatters":30,"../method":36,"../property":45}],41:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file shh.js
  * @authors:
@@ -5726,7 +5726,7 @@ var Filter = require('../filter');
 var watches = require('./watches');
 
 var Shh = function (web3) {
-    this._requestManager = web3._requestManager;
+    this._requestManager = webu._requestManager;
 
     var self = this;
 
@@ -5845,27 +5845,27 @@ module.exports = Shh;
 
 },{"../filter":29,"../method":36,"./watches":43}],42:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file bzz.js
  * @author Alex Beregszaszi <alex@rtfs.hu>
  * @date 2016
  *
- * Reference: https://github.com/ethereum/go-ethereum/blob/swarm/internal/web3ext/web3ext.go#L33
+ * Reference: https://github.com/ethereum/go-ethereum/blob/swarm/internal/webuext/webuext.go#L33
  */
 
 "use strict";
@@ -5874,7 +5874,7 @@ var Method = require('../method');
 var Property = require('../property');
 
 function Swarm(web3) {
-    this._requestManager = web3._requestManager;
+    this._requestManager = webu._requestManager;
 
     var self = this;
 
@@ -5992,20 +5992,20 @@ module.exports = Swarm;
 
 },{"../method":36,"../property":45}],43:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file watches.js
  * @authors:
@@ -6015,7 +6015,7 @@ module.exports = Swarm;
 
 var Method = require('../method');
 
-/// @returns an array of objects describing web3.eth.filter api methods
+/// @returns an array of objects describing webu.huc.filter api methods
 var eth = function () {
     var newFilterCall = function (args) {
         var type = args[0];
@@ -6024,13 +6024,13 @@ var eth = function () {
             case 'latest':
                 args.shift();
                 this.params = 0;
-                return 'eth_newBlockFilter';
+                return 'huc_newBlockFilter';
             case 'pending':
                 args.shift();
                 this.params = 0;
-                return 'eth_newPendingTransactionFilter';
+                return 'huc_newPendingTransactionFilter';
             default:
-                return 'eth_newFilter';
+                return 'huc_newFilter';
         }
     };
 
@@ -6042,19 +6042,19 @@ var eth = function () {
 
     var uninstallFilter = new Method({
         name: 'uninstallFilter',
-        call: 'eth_uninstallFilter',
+        call: 'huc_uninstallFilter',
         params: 1
     });
 
     var getLogs = new Method({
         name: 'getLogs',
-        call: 'eth_getFilterLogs',
+        call: 'huc_getFilterLogs',
         params: 1
     });
 
     var poll = new Method({
         name: 'poll',
-        call: 'eth_getFilterChanges',
+        call: 'huc_getFilterChanges',
         params: 1
     });
 
@@ -6066,7 +6066,7 @@ var eth = function () {
     ];
 };
 
-/// @returns an array of objects describing web3.shh.watch api methods
+/// @returns an array of objects describing webu.shh.watch api methods
 var shh = function () {
 
     return [
@@ -6094,29 +6094,29 @@ var shh = function () {
 };
 
 module.exports = {
-    eth: eth,
+    huc: eth,
     shh: shh
 };
 
 
 },{"../method":36}],44:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file namereg.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -6142,20 +6142,20 @@ module.exports = {
 
 },{"../contracts/GlobalRegistrar.json":1,"../contracts/ICAPRegistrar.json":2}],45:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file property.js
@@ -6288,22 +6288,22 @@ module.exports = Property;
 
 },{"../utils/utils":20}],46:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file requestmanager.js
  * @author Jeffrey Wilcke <jeff@ethdev.com>
  * @author Marek Kotewicz <marek@ethdev.com>
@@ -6370,7 +6370,7 @@ RequestManager.prototype.sendAsync = function (data, callback) {
         if (err) {
             return callback(err);
         }
-        
+
         if (!Jsonrpc.isValidResponse(result)) {
             return callback(errors.InvalidResponse(result));
         }
@@ -6403,7 +6403,7 @@ RequestManager.prototype.sendBatch = function (data, callback) {
         }
 
         callback(err, results);
-    }); 
+    });
 };
 
 /**
@@ -6507,7 +6507,7 @@ RequestManager.prototype.poll = function () {
     }
 
     var payload = Jsonrpc.toBatchPayload(pollsData);
-    
+
     // map the request id to they poll id
     var pollsIdMap = {};
     payload.forEach(function(load, index){
@@ -6537,7 +6537,7 @@ RequestManager.prototype.poll = function () {
             } else
                 return false;
         }).filter(function (result) {
-            return !!result; 
+            return !!result;
         }).filter(function (result) {
             var valid = Jsonrpc.isValidResponse(result);
             if (!valid) {
@@ -6566,20 +6566,20 @@ module.exports = Settings;
 
 },{}],48:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file syncing.js
  * @authors:
@@ -6612,23 +6612,23 @@ var pollSyncing = function(self) {
 
         self.callbacks.forEach(function (callback) {
             if (self.lastSyncState !== sync) {
-                
+
                 // call the callback with true first so the app can stop anything, before receiving the sync data
                 if(!self.lastSyncState && utils.isObject(sync))
                     callback(null, true);
-                
+
                 // call on the next CPU cycle, so the actions of the sync stop can be processes first
                 setTimeout(function() {
                     callback(null, sync);
                 }, 0);
-                
+
                 self.lastSyncState = sync;
             }
         });
     };
 
     self.requestManager.startPolling({
-        method: 'eth_syncing',
+        method: 'huc_syncing',
         params: [],
     }, self.pollId, onMessage, self.stopWatching.bind(self));
 
@@ -6661,22 +6661,22 @@ module.exports = IsSyncing;
 
 },{"../utils/utils":20,"./formatters":30}],49:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of webu.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    webu.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    webu.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file transfer.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -6695,7 +6695,7 @@ var exchangeAbi = require('../contracts/SmartExchange.json');
  * @param {Function} callback, callback
  */
 var transfer = function (eth, from, to, value, callback) {
-    var iban = new Iban(to); 
+    var iban = new Iban(to);
     if (!iban.isValid()) {
         throw new Error('invalid iban address');
     }
@@ -6703,7 +6703,7 @@ var transfer = function (eth, from, to, value, callback) {
     if (iban.isDirect()) {
         return transferToAddress(eth, from, iban.address(), value, callback);
     }
-    
+
     if (!callback) {
         var address = eth.icapNamereg().addr(iban.institution());
         return deposit(eth, from, address, value, iban.client());
@@ -6712,7 +6712,7 @@ var transfer = function (eth, from, to, value, callback) {
     eth.icapNamereg().addr(iban.institution(), function (err, address) {
         return deposit(eth, from, address, value, iban.client(), callback);
     });
-    
+
 };
 
 /**
@@ -16345,15 +16345,15 @@ module.exports = XMLHttpRequest;
     }
 })(this);
 
-},{}],"web3":[function(require,module,exports){
-var Web3 = require('./lib/web3');
+},{}],"webu":[function(require,module,exports){
+var Web3 = require('./lib/webu');
 
 // dont override global variable
-if (typeof window !== 'undefined' && typeof window.Web3 === 'undefined') {
-    window.Web3 = Web3;
+if (typeof window !== 'undefined' && typeof window.Webu === 'undefined') {
+    window.Web3 = Webu;
 }
 
-module.exports = Web3;
+module.exports = Webu;
 
-},{"./lib/web3":22}]},{},["web3"])
-//# sourceMappingURL=web3.js.map
+},{"./lib/webu":22}]},{},["webu"])
+//# sourceMappingURL=webu.js.map

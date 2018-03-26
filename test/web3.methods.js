@@ -1,8 +1,8 @@
 var Web3 = require('../index.js');
-var web3 = new Web3();
+var webu = new Webu();
 var u = require('./helpers/test.utils.js');
 
-describe('web3', function() {
+describe('webu', function() {
     describe('methods', function () {
         u.methodExists(web3, 'sha3');
         u.methodExists(web3, 'toAscii');
@@ -17,7 +17,7 @@ describe('web3', function() {
         u.methodExists(web3, 'reset');
 
         u.propertyExists(web3, 'providers');
-        u.propertyExists(web3, 'eth');
+        u.propertyExists(web3, 'huc');
         u.propertyExists(web3, 'db');
         u.propertyExists(web3, 'shh');
     });

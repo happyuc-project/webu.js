@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert;
 var Web3 = require('../index');
-var web3 = new Web3();
+var webu = new Webu();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
 var method = 'listAccounts';
@@ -12,14 +12,14 @@ var tests = [{
     call: 'personal_'+ method
 }];
 
-describe('web3.personal', function () {
+describe('webu.personal', function () {
     describe(method, function () {
         tests.forEach(function (test, index) {
             it('property test: ' + index, function () {
 
                 // given
                 var provider = new FakeHttpProvider();
-                web3.setProvider(provider);
+                webu.setProvider(provider);
                 provider.injectResult(test.result);
                 provider.injectValidation(function (payload) {
                     assert.equal(payload.jsonrpc, '2.0');
@@ -28,7 +28,7 @@ describe('web3.personal', function () {
                 });
 
                 // when
-                var result = web3.personal[method];
+                var result = webu.personal[method];
 
                 // then
                 assert.deepEqual(test.formattedResult, result);

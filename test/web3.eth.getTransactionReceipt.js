@@ -1,5 +1,5 @@
 var chai = require('chai');
-var web3 = require('../index');
+var webu = require('../index');
 var BigNumber = require('bignumber.js');
 var testMethod = require('./helpers/test.method.js');
 
@@ -20,7 +20,7 @@ var txResult = {
         transactionHash: '0xd6960376d6c6dea93647383ffb245cfced97ccc5c7525397a543a72fdaea5265',
         blockHash: '0xd6960376d6c6dea93647383ffb245cfced97ccc5c7525397a543a72fdaea5265',
         data: '0x7b2274657374223a2274657374227',
-        topics: ['0x68656c6c6f','0x6d79746f70696373']      
+        topics: ['0x68656c6c6f','0x6d79746f70696373']
     },{
         transactionIndex: null,
         logIndex: null,
@@ -28,7 +28,7 @@ var txResult = {
         transactionHash: null,
         blockHash: null,
         data: '0x7b2274657374223a2274657374227',
-        topics: ['0x68656c6c6f','0x6d79746f70696373']                
+        topics: ['0x68656c6c6f','0x6d79746f70696373']
     }]
 };
 var formattedTxResult = {
@@ -63,8 +63,8 @@ var tests = [{
     formattedArgs: ['0x2dbab4c0612bf9caf4c195085547dc0612bf9caf4c1950855'],
     result: txResult,
     formattedResult: formattedTxResult,
-    call: 'eth_'+ method
+    call: 'huc_'+ method
 }];
 
-testMethod.runTests('eth', method, tests);
+testMethod.runTests('huc', method, tests);
 

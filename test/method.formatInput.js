@@ -1,16 +1,16 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Method = require('../lib/web3/method');
+var Method = require('../lib/webu/method');
 
-describe('lib/web3/method', function () {
+describe('lib/webu/method', function () {
     describe('formatInput', function () {
         it('should format plain input', function () {
-            
+
             // given
             var star = function (arg) {
                 return arg + '*';
             };
-            
+
             var method = new Method({
                 inputFormatter: [star, star, star]
             });
@@ -32,7 +32,7 @@ describe('lib/web3/method', function () {
 
             // when
             var result = method.formatInput(args);
-            
+
             // then
             assert.deepEqual(result, args);
         });

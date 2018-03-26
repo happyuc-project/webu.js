@@ -1,10 +1,10 @@
 var chai = require('chai');
 var assert = chai.assert;
 var Web3 = require('../index.js');
-var web3 = new Web3();
+var webu = new Webu();
 var u = require('./helpers/test.utils.js');
 
-describe('web3.shh', function() {
+describe('webu.shh', function() {
     describe('methods', function() {
         u.methodExists(web3.shh, 'version');
         u.methodExists(web3.shh, 'info');

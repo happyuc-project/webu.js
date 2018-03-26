@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert;
 var Web3 = require('../index');
-var web3 = new Web3();
+var webu = new Webu();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
 var method = 'peerCount';
@@ -12,14 +12,14 @@ var tests = [{
     call: 'net_'+ method
 }];
 
-describe('web3.net', function () {
+describe('webu.net', function () {
     describe(method, function () {
         tests.forEach(function (test, index) {
             it('property test: ' + index, function () {
-                
+
                 // given
                 var provider = new FakeHttpProvider();
-                web3.setProvider(provider);
+                webu.setProvider(provider);
                 provider.injectResult(test.result);
                 provider.injectValidation(function (payload) {
                     assert.equal(payload.jsonrpc, '2.0');
@@ -27,9 +27,9 @@ describe('web3.net', function () {
                     assert.deepEqual(payload.params, []);
                 });
 
-                // when 
-                var result = web3.net[method];
-                
+                // when
+                var result = webu.net[method];
+
                 // then
                 assert.deepEqual(test.formattedResult, result);
             });
