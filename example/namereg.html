@@ -25,15 +25,13 @@
             var name = document.getElementById('registerOwner').value;
             webu.huc.namereg().reserve(name);
             document.getElementById('nameAvailability').innerText += ' Registering name in progress, please wait...';
-        };
-
+        }
         function changeAddress() {
             var name = document.getElementById('registerOwner').value;
             var address = document.getElementById('newAddress').value;
             webu.huc.namereg().setAddress(name, address, true);
             document.getElementById('currentAddress').innerText += ' Changing address in progress. Please wait.';
-        };
-
+        }
         function onRegisterOwnerKeyUp() {
             var name = document.getElementById('registerOwner').value;
             var owner = webu.huc.namereg().owner(name);
@@ -50,21 +48,20 @@
                 return;
             }
             document.getElementById('nameAvailability').innerText = 'This name is available. You can register it.';
-        };
-
+        }
         function onAddressKeyUp() {
             var address = document.getElementById('address').value;
             document.getElementById('nameOf').innerText = webu.huc.namereg().name(address);
-        };
-
+        }
         function onNameKeyUp() {
             var name = document.getElementById('name').value;
             document.getElementById('addressOf').innerText = webu.huc.namereg().addr(name);
-        };
+        }
 
     </script>
 </head>
 <body>
+<!-- TODO update contract.sol -->
 <i>This example shows only part of namereg functionalities. Namereg contract is available <a
     href="https://github.com/happyuc-project/dapp-bin/blob/master/GlobalRegistrar/contract.sol">here</a>
 </i>

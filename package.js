@@ -19,7 +19,7 @@ Package.onUse(function(api) {
 
   // api.use('3stack:bignumber@2.0.0', 'client');
 
-  api.export(['Web3', 'BigNumber'], ['client', 'server']);
+  api.export(['Webu', 'BigNumber'], ['client', 'server']);
 
   api.addFiles('dist/webu.js', ['client', 'server']);
   api.addFiles('package-init.js', ['client', 'server']);

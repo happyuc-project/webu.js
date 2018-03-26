@@ -1,6 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../../index');
+var Webu = require('../../index');
 
 var FakeHttpProvider = require('./FakeHttpProvider');
 var clone = function (object) { return JSON.parse(JSON.stringify(object)); };
@@ -28,9 +28,9 @@ var runTests = function (obj, method, tests) {
 
                     // when
                     if (obj) {
-                        var result = web3[obj][method].apply(web3[obj], args);
+                        var result = webu[obj][method].apply(webu[obj], args);
                     } else {
-                        var result = web3[method].apply(web3, args);
+                        var result = webu[method].apply(webu, args);
                     }
                     // when
                     //var result = (obj)
@@ -63,9 +63,9 @@ var runTests = function (obj, method, tests) {
 
                     // when
                     if (obj) {
-                        web3[obj][method].apply(web3[obj], args);
+                        webu[obj][method].apply(webu[obj], args);
                     } else {
-                        web3[method].apply(web3, args);
+                        webu[method].apply(webu, args);
                     }
                 });
             });

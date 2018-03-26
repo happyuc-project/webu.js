@@ -1,7 +1,7 @@
 {
     "name": "webu",
     "namespace": "happyuc-project",
-    "version": "0.20.6",
+    "version": "1.0.0",
     "description": "Happyuc JavaScript API, middleware to talk to a happyuc-project node over RPC",
     "main": "./index.js",
     "directories": {
