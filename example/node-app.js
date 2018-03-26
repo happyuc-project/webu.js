@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var Web3 = require('../index.js');
+var Webu = require('../index.js');
 var webu = new Webu();
 
 webu.setProvider(new webu.providers.HttpProvider('http://localhost:8545'));

@@ -1,6 +1,6 @@
 <!doctype>
 <html>
-    <head>
+<head>
     <script type="text/javascript" src="../dist/webu.js"></script>
     <script type="text/javascript">
 
@@ -8,19 +8,19 @@
         var webu = new Webu();
         webu.setProvider(new webu.providers.HttpProvider('http://localhost:8545'));
 
-        var source = "" +
-        "pragma solidity ^0.4.6;" +
-        "contract Contract { " +
-        "   event Incremented(bool indexed odd, uint x); " +
-        "   function Contract() { " +
-        "        x = 70; " +
-        "    } " +
-        "    function inc() { " +
-        "        ++x; " +
-        "        Incremented(x % 2 == 1, x); " +
-        "    } " +
-        "    uint x; " +
-        "}";
+        var source = '' +
+            'pragma solidity ^0.4.6;' +
+            'contract Contract { ' +
+            '   event Incremented(bool indexed odd, uint x); ' +
+            '   function Contract() { ' +
+            '        x = 70; ' +
+            '    } ' +
+            '    function inc() { ' +
+            '        ++x; ' +
+            '        Incremented(x % 2 == 1, x); ' +
+            '    } ' +
+            '    uint x; ' +
+            '}';
 
         var compiled = webu.huc.compile.solidity(source);
         var code = compiled.code;
@@ -30,24 +30,24 @@
         var contract;
         var inc;
 
-        var update = function (err, x) {
+        var update = function(err, x) {
             document.getElementById('result').textContent = JSON.stringify(x, null, 2);
         };
 
-        var createContract = function () {
+        var createContract = function() {
             // let's assume that we have a private key to coinbase ;)
             webu.huc.defaultAccount = webu.huc.coinbase;
 
             document.getElementById('create').style.visibility = 'hidden';
-            document.getElementById('status').innerText = "transaction sent, waiting for confirmation";
+            document.getElementById('status').innerText = 'transaction sent, waiting for confirmation';
 
-            webu.huc.contract(abi).new({data: code}, function (err, c) {
+            webu.huc.contract(abi).new({data: code}, function(err, c) {
                 if (err) {
                     console.error(err);
                     return;
 
-                // callback fires twice, we only want the second call when the contract is deployed
-                } else if(c.address){
+                    // callback fires twice, we only want the second call when the contract is deployed
+                } else if (c.address) {
 
                     contract = c;
                     console.log('address: ' + contract.address);
@@ -60,7 +60,7 @@
         };
 
         var counter = 0;
-        var callContract = function () {
+        var callContract = function() {
             counter++;
             var all = 70 + counter;
             document.getElementById('count').innerText = 'Transaction sent ' + counter + ' times. ' +
@@ -72,18 +72,18 @@
 
 
     </script>
-    </head>
+</head>
 
-    <body>
-        <div id="status"></div>
-        <div>
-            <button id="create" type="button" onClick="createContract();">create contract</button>
-        </div>
-        <div>
-            <button id="call" style="visibility: hidden;" type="button" onClick="callContract();">test1</button>
-        </div>
-        <div id='count'></div>
-        <div id="result">
-        </div>
-    </body>
+<body>
+<div id="status"></div>
+<div>
+    <button id="create" type="button" onClick="createContract();">create contract</button>
+</div>
+<div>
+    <button id="call" style="visibility: hidden;" type="button" onClick="callContract();">test1</button>
+</div>
+<div id='count'></div>
+<div id="result">
+</div>
+</body>
 </html>

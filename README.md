@@ -54,7 +54,7 @@ component install happyuc-project/webu.js
 Use the `webu` object directly from global namespace:
 
 ```js
-console.log(webu); // {eth: .., shh: ...} // it's here!
+console.log(webu); // {huc: .., shh: ...} // it's here!
 ```
 
 Set a provider (HttpProvider)
@@ -77,8 +77,8 @@ webu.setProvider(new webu.providers.HttpProvider('http://host.url', 0, BasicAuth
 There you go, now you can use it:
 
 ```js
-var coinbase = webu.eth.coinbase;
-var balance = webu.eth.getBalance(coinbase);
+var coinbase = webu.huc.coinbase;
+var balance = webu.huc.getBalance(coinbase);
 ```
 
 You can find more examples in [`example`](https://github.com/happyuc-project/webu.js/tree/master/example) directory.
