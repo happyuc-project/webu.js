@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "webu": "ethereum/webu.js#master"
+    "webu": "git+https://github.com/happyuc-project/webu.js.git"
   }
 }

@@ -1,6 +1,6 @@
 /**
  * This utility module helps to demonstrate following features
- * a. Signing a message by an Ethereum user
+ * a. Signing a message by an Happyuc user
  * b. Finding the account address using which the message was signed
  */
 var Webu = require('../index.js');
@@ -30,7 +30,7 @@ function setPassword(pwd) {
     defaultAcPWD = pwd;
 }
 
-function setEthereumURL(url) {
+function setHappyucURL(url) {
     hucURL = url;
 }
 
@@ -38,7 +38,7 @@ function setMessage(msg) {
     signMessage = msg;
 }
 
-function initializeEthereumConnection() {
+function initializeHappyucConnection() {
     if (hucWebu != null && hucWebu.isConnected() == true) {
         return true;
     }
@@ -66,7 +66,7 @@ function unlockAccount(acAddress) {
 }
 
 function initializeContract() {
-    initializeEthereumConnection();
+    initializeHappyucConnection();
     if (hucWebu.isConnected() == false) {
         return;
     }
@@ -78,7 +78,7 @@ function initializeContract() {
 
 function signMessage(message) {
 
-    initializeEthereumConnection();
+    initializeHappyucConnection();
     if (hucWebu.isConnected() == false) {
         return false;
     }
@@ -92,7 +92,7 @@ function signMessage(message) {
 }
 
 function verifySignedByAc(message, sig) {
-    initializeEthereumConnection();
+    initializeHappyucConnection();
 
     if (hucWebu.isConnected() == false) {
         return false;
@@ -103,7 +103,7 @@ function verifySignedByAc(message, sig) {
 
     // Unfortunately Ghuc client adds this line to the message as a prefix while signing
     // So while finding who signed it we need to prefix this part
-    const prefix = new Buffer('\x19Ethereum Signed Message:\n');
+    const prefix = new Buffer('\x19Happyuc Signed Message:\n');
     const msg = new Buffer(message);
     const prefixedMsg = hucWebu.sha3(
         Buffer.concat([prefix, new Buffer(String(msg.length)), msg]).
@@ -151,16 +151,16 @@ function execute() {
     console.log(signatureContractCodeReadable);
     console.log(
         '2. Set the following parameters (i.e. at the end of the code)');
-    console.log('\ta. Ethereum URL');
-    console.log('\tb. Ethereum Account Address');
-    console.log('\tc. Ethereum Account Passphrase');
+    console.log('\ta. Happyuc URL');
+    console.log('\tb. Happyuc Account Address');
+    console.log('\tc. Happyuc Account Passphrase');
     console.log('\td. Signature Contract Address');
     console.log('\te. Message for signing');
     console.log(
         '**********************************************************************');
 
     if (hucURL == '') {
-        console.log('Error: Ethereum URL is not specified');
+        console.log('Error: Happyuc URL is not specified');
         return;
     }
     if (defaultAc == '') {
@@ -181,9 +181,9 @@ function execute() {
     }
 
     console.log('Following parameters applied');
-    console.log('\ta. Ethereum URL                  :', hucURL);
-    console.log('\tb. Ethereum Account Address      :', defaultAc);
-    console.log('\tc. Ethereum Account Passphrase   :', defaultAcPWD);
+    console.log('\ta. Happyuc URL                  :', hucURL);
+    console.log('\tb. Happyuc Account Address      :', defaultAc);
+    console.log('\tc. Happyuc Account Passphrase   :', defaultAcPWD);
     console.log('\td. Signature Contract Address    :', sigContractAddress);
     console.log('\te. Message for signing           :', signMessage);
 
@@ -222,9 +222,9 @@ function execute() {
 //setContractAddress('<Provide the deployed contract address>');
 
 // Value 4- If required please update with a different message
-setEthereumURL('http://localhost:8545');
+setHappyucURL('http://localhost:8545');
 
-// Value 5- If required please update with a Ethereum URL
+// Value 5- If required please update with a Happyuc URL
 setMessage('This the test sign message');
 
 execute();

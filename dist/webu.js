@@ -2455,7 +2455,7 @@ var isJson = function(str) {
 };
 
 /**
- * Returns true if given string is a valid Ethereum block header bloom.
+ * Returns true if given string is a valid Happyuc block header bloom.
  *
  * @method isBloom
  * @param {String} hex encoded bloom filter
@@ -2556,7 +2556,7 @@ module.exports={
 
 var RequestManager = require('./webu/requestmanager');
 var Iban = require('./webu/iban');
-var Eth = require('./webu/methods/huc');
+var Huc = require('./webu/methods/huc');
 var DB = require('./webu/methods/db');
 var Shh = require('./webu/methods/shh');
 var Net = require('./webu/methods/net');
@@ -2576,7 +2576,7 @@ var BigNumber = require('bignumber.js');
 function Webu(provider) {
     this._requestManager = new RequestManager(provider);
     this.currentProvider = provider;
-    this.huc = new Eth(this);
+    this.huc = new Huc(this);
     this.db = new DB(this);
     this.shh = new Shh(this);
     this.net = new Net(this);
@@ -6119,7 +6119,7 @@ module.exports = Swarm;
 var Method = require('../method');
 
 /// @returns an array of objects describing webu.huc.filter api methods
-var eth = function() {
+var huc = function() {
     var newFilterCall = function(args) {
         var type = args[0];
 
@@ -6197,7 +6197,7 @@ var shh = function() {
 };
 
 module.exports = {
-    huc: eth,
+    huc: huc,
     shh: shh,
 };
 
@@ -6850,7 +6850,7 @@ var transferToAddress = function(huc, from, to, value, callback) {
  */
 var deposit = function(huc, from, to, value, client, callback) {
     var abi = exchangeAbi;
-    return eth.contract(abi).at(to).deposit(client, {
+    return huc.contract(abi).at(to).deposit(client, {
         from: from,
         value: value,
     }, callback);
