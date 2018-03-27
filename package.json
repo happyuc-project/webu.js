@@ -54,11 +54,10 @@
         "url": "https://github.com/happyuc-project/webu.js/issues"
     },
     "keywords": [
-        "ethereum",
         "happyuc-project",
         "javascript",
         "API"
     ],
-    "oriAuthor": "ethdev.com",
+    "author": "ethdev.com",
     "license": "LGPL-3.0"
 }

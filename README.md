@@ -6,12 +6,12 @@ To migrate to this version, please follow the guide:
 
 [![Join the chat at https://gitter.im/happyuc-project/webu.js](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/happyuc-project/webu.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This is the Ethereum compatible [JavaScript API](https://github.com/happyuc-project/wiki/wiki/JavaScript-API)
+This is the Happyuc compatible [JavaScript API](https://github.com/happyuc-project/wiki/wiki/JavaScript-API)
 which implements the [Generic JSON RPC](https://github.com/happyuc-project/wiki/wiki/JSON-RPC) spec. It's available on npm as a node module, for bower and component as an embeddable js and as a meteor.js package.
 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![dependency status][dep-image]][dep-url] [![dev dependency status][dep-dev-image]][dep-dev-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Stories in Ready][waffle-image]][waffle-url]
 
-You need to run a local Ethereum node to use this library.
+You need to run a local Happyuc node to use this library.
 
 [Documentation](https://github.com/happyuc-project/wiki/wiki/JavaScript-API)
 
