@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index');
-var web3 = new Web3();
+var Webu = require('../index');
+var webu = new Webu();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
 // use sendTransaction as dummy
@@ -18,16 +18,16 @@ var tests = [{
     },
     result: '0xb',
     formattedResult: '0xb',
-    call: 'eth_'+ method
+    call: 'huc_'+ method
 }];
 
 describe('async', function () {
     tests.forEach(function (test, index) {
         it('test: ' + index, function (done) {
-            
+
             // given
             var provider = new FakeHttpProvider();
-            web3.setProvider(provider);
+            webu.setProvider(provider);
             provider.injectResult(test.result);
             provider.injectValidation(function (payload) {
                 assert.equal(payload.jsonrpc, '2.0');
@@ -35,23 +35,23 @@ describe('async', function () {
                 assert.deepEqual(payload.params, [test.formattedInput]);
             });
 
-            // when 
-            web3.eth[method](test.input, function(error, result){
+            // when
+            webu.huc[method](test.input, function(error, result){
 
                 // then
                 assert.isNull(error);
                 assert.strictEqual(test.formattedResult, result);
-                
+
                 done();
             });
-            
+
         });
 
         it('error test: ' + index, function (done) {
-            
+
             // given
             var provider = new FakeHttpProvider();
-            web3.setProvider(provider);
+            webu.setProvider(provider);
             provider.injectError({
                     message: test.result,
                     code: -32603
@@ -62,8 +62,8 @@ describe('async', function () {
                 assert.deepEqual(payload.params, [test.formattedInput]);
             });
 
-            // when 
-            web3.eth[method](test.input, function(error, result){
+            // when
+            webu.huc[method](test.input, function(error, result){
 
                 // then
                 assert.isUndefined(result);
@@ -71,7 +71,7 @@ describe('async', function () {
 
                 done();
             });
-            
+
         });
     });
 });

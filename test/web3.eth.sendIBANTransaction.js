@@ -1,10 +1,10 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index');
-var web3 = new Web3();
+var Webu = require('../index');
+var webu = new Webu();
 var FakeHttpProvider2 = require('./helpers/FakeHttpProvider2');
 
-describe('web3.eth.sendIBANTransaction', function () {
+describe('webu.huc.sendIBANTransaction', function () {
     it('should send transaction', function () {
 
         var iban = 'XE81ETHXREGGAVOFYORK';
@@ -12,8 +12,8 @@ describe('web3.eth.sendIBANTransaction', function () {
         var exAddress = '0x1234567890123456789012345678901234567890'
 
         var provider = new FakeHttpProvider2();
-        web3.setProvider(provider);
-        web3.reset();
+        webu.setProvider(provider);
+        webu.reset();
 
         provider.injectResultList([{
             result: exAddress
@@ -25,15 +25,15 @@ describe('web3.eth.sendIBANTransaction', function () {
         provider.injectValidation(function (payload) {
             if (step === 0) {
                 step++;
-                assert.equal(payload.method, 'eth_call');
+                assert.equal(payload.method, 'huc_call');
                 assert.deepEqual(payload.params, [{
                    data: "0x3b3b57de5852454700000000000000000000000000000000000000000000000000000000",
-                   to: web3.eth.icapNamereg().address
+                   to: webu.huc.icapNamereg().address
                 }, "latest"]);
 
                 return;
-            } 
-            assert.equal(payload.method, 'eth_sendTransaction');
+            }
+            assert.equal(payload.method, 'huc_sendTransaction');
             assert.deepEqual(payload.params, [{
                 data: '0xb214faa54741564f46594f524b0000000000000000000000000000000000000000000000',
                 from: address,
@@ -42,7 +42,7 @@ describe('web3.eth.sendIBANTransaction', function () {
             }]);
         });
 
-        web3.eth.sendIBANTransaction(address, iban, 10000);
+        webu.huc.sendIBANTransaction(address, iban, 10000);
 
     });
 });

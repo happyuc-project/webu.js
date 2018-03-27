@@ -1,5 +1,5 @@
 var chai = require('chai');
-var web3 = require('../index');
+var webu = require('../index');
 var testMethod = require('./helpers/test.method.js');
 
 var method = 'getCompilers';
@@ -10,14 +10,14 @@ var tests = [{
     formattedArgs: [],
     result: ['solidity'],
     formattedResult: ['solidity'],
-    call: 'eth_'+ method
+    call: 'huc_'+ method
 },{
     args: [],
     formattedArgs: [],
     result: ['solidity'],
     formattedResult: ['solidity'],
-    call: 'eth_'+ method
+    call: 'huc_'+ method
 }];
 
-testMethod.runTests('eth', method, tests);
+testMethod.runTests('huc', method, tests);
 

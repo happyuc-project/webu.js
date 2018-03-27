@@ -1,52 +1,52 @@
 var chai = require('chai');
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
-var Web3 = require('../lib/web3');
-var web3 = new Web3();
+var Webu = require('../lib/webu');
+var webu = new Webu();
 
 
 var tests = [{
-    properties: [new web3._extend.Property({
+    properties: [new webu._extend.Property({
         name: 'gasPrice',
-        getter: 'eth_gasPrice',
-        outputFormatter: web3._extend.formatters.outputBigNumberFormatter
+        getter: 'huc_gasPrice',
+        outputFormatter: webu._extend.formatters.outputBigNumberFormatter
     })]
 },{
-    methods: [new web3._extend.Method({
+    methods: [new webu._extend.Method({
         name: 'getBalance',
-        call: 'eth_getBalance',
+        call: 'huc_getBalance',
         params: 2,
-        inputFormatter: [web3._extend.utils.toAddress, web3._extend.formatters.inputDefaultBlockNumberFormatter],
-        outputFormatter: web3._extend.formatters.outputBigNumberFormatter
+        inputFormatter: [webu._extend.utils.toAddress, webu._extend.formatters.inputDefaultBlockNumberFormatter],
+        outputFormatter: webu._extend.formatters.outputBigNumberFormatter
     })]
 },{
     property: 'admin',
-    properties: [new web3._extend.Property({
+    properties: [new webu._extend.Property({
         name: 'gasPrice',
-        getter: 'eth_gasPrice',
-        outputFormatter: web3._extend.formatters.outputBigNumberFormatter
+        getter: 'huc_gasPrice',
+        outputFormatter: webu._extend.formatters.outputBigNumberFormatter
     })],
-    methods: [new web3._extend.Method({
+    methods: [new webu._extend.Method({
         name: 'getBalance',
-        call: 'eth_getBalance',
+        call: 'huc_getBalance',
         params: 2,
-        inputFormatter: [web3._extend.utils.toAddress, web3._extend.formatters.inputDefaultBlockNumberFormatter],
-        outputFormatter: web3._extend.formatters.outputBigNumberFormatter
+        inputFormatter: [webu._extend.utils.toAddress, webu._extend.formatters.inputDefaultBlockNumberFormatter],
+        outputFormatter: webu._extend.formatters.outputBigNumberFormatter
     })]
 }];
 
-describe('web3', function () {
+describe('webu', function () {
     describe('_extend', function () {
         tests.forEach(function (test, index) {
             it('test no: ' + index, function () {
-                web3._extend(test);
+                webu._extend(test);
 
 
                 if(test.properties)
                     test.properties.forEach(function(property){
 
                         var provider = new FakeHttpProvider();
-                        web3.setProvider(provider);
+                        webu.setProvider(provider);
                         provider.injectResult('');
                         provider.injectValidation(function (payload) {
                             assert.equal(payload.jsonrpc, '2.0');
@@ -54,20 +54,20 @@ describe('web3', function () {
                         });
 
                         if(test.property) {
-                            assert.isObject(web3[test.property][property.name]);
-                            assert.isFunction(web3[test.property]['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);
+                            assert.isObject(webu[test.property][property.name]);
+                            assert.isFunction(webu[test.property]['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);
                         } else {
-                            assert.isObject(web3[property.name]);
-                            assert.isFunction(web3['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);                        
+                            assert.isObject(webu[property.name]);
+                            assert.isFunction(webu['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);
                         }
                     });
 
                 if(test.methods)
                     test.methods.forEach(function(property){
                         if(test.property)
-                            assert.isFunction(web3[test.property][property.name]);
+                            assert.isFunction(webu[test.property][property.name]);
                         else
-                            assert.isFunction(web3[property.name]);
+                            assert.isFunction(webu[property.name]);
                     });
 
             });

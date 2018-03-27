@@ -1,9 +1,9 @@
 var chai = require('chai');
-var Web3 = require('../index');
-var web3 = new Web3();
+var Webu = require('../index');
+var webu = new Webu();
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
-var errors = require('../lib/web3/errors');
+var errors = require('../lib/webu/errors');
 
 var method = 'filter';
 
@@ -21,7 +21,7 @@ var tests = [{
     }],
     result: '0xf',
     formattedResult: '0xf',
-    call: 'eth_newFilter'
+    call: 'huc_newFilter'
 },{
     args: [{
         fromBlock: 'latest',
@@ -36,30 +36,30 @@ var tests = [{
     }],
     result: '0xf',
     formattedResult: '0xf',
-    call: 'eth_newFilter'
+    call: 'huc_newFilter'
 },{
     args: ['latest'],
     formattedArgs: [],
     result: '0xf',
     formattedResult: '0xf',
-    call: 'eth_newBlockFilter'
+    call: 'huc_newBlockFilter'
 },{
     args: ['pending'],
     formattedArgs: [],
     result: '0xf',
     formattedResult: '0xf',
-    call: 'eth_newPendingTransactionFilter'
+    call: 'huc_newPendingTransactionFilter'
 }];
 
-describe('web3.eth', function () {
+describe('webu.huc', function () {
     describe(method, function () {
         tests.forEach(function (test, index) {
             it('property test: ' + index, function () {
 
                 // given
                var provider = new FakeHttpProvider();
-               web3.reset();
-               web3.setProvider(provider);
+               webu.reset();
+               webu.setProvider(provider);
                provider.injectResult(test.result);
                provider.injectValidation(function (payload) {
                    assert.equal(payload.jsonrpc, '2.0');
@@ -68,7 +68,7 @@ describe('web3.eth', function () {
                });
 
                // call
-               var filter = web3.eth[method].apply(web3.eth, test.args);
+               var filter = webu.huc[method].apply(webu.huc, test.args);
 
                // test filter.get
                if(typeof test.args === 'object') {
@@ -78,7 +78,7 @@ describe('web3.eth', function () {
                    provider.injectResult(logs);
                    provider.injectValidation(function (payload) {
                        assert.equal(payload.jsonrpc, '2.0');
-                       assert.equal(payload.method, 'eth_getFilterLogs');
+                       assert.equal(payload.method, 'huc_getFilterLogs');
                        assert.deepEqual(payload.params, [test.formattedResult]);
                    });
 
@@ -92,7 +92,7 @@ describe('web3.eth', function () {
                    // async should get the fake logs
                    filter.get(function(e, res){
                        assert.equal(logs, res);
-                       web3.reset();
+                       webu.reset();
                        done();
                    });
                }
@@ -101,8 +101,8 @@ describe('web3.eth', function () {
             it('should call filterCreationErrorCallback on error while filter creation', function () {
                 // given
                 var provider = new FakeHttpProvider();
-                web3.reset();
-                web3.setProvider(provider);
+                webu.reset();
+                webu.setProvider(provider);
                 provider.injectError(errors.InvalidConnection());
                 // call
                 var args = test.args.slice();
@@ -111,7 +111,7 @@ describe('web3.eth', function () {
                     assert.include(errors, err);
                     done();
                 });
-                web3.eth[method].apply(web3.eth, args);
+                webu.huc[method].apply(webu.huc, args);
             })
         });
     });

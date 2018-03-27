@@ -1,8 +1,8 @@
-var Web3 = require('./lib/web3');
+var Webu = require('./lib/webu');
 
 // dont override global variable
-if (typeof window !== 'undefined' && typeof window.Web3 === 'undefined') {
-    window.Web3 = Web3;
+if (typeof window !== 'undefined' && typeof window.Webu === 'undefined') {
+    window.Webu = Webu;
 }
 
-module.exports = Web3;
+module.exports = Webu;

@@ -1,13 +1,13 @@
 var chai = require('chai');
 var assert = chai.assert;
-var errors = require('../lib/web3/errors');
+var errors = require('../lib/webu/errors');
 
-describe('lib/web3/method', function () {
+describe('lib/webu/method', function () {
     describe('getCall', function () {
 
         for(var key in errors) {
             it('should return and error', function () {
-        
+
                 assert.instanceOf(errors[key](), Error);
             });
         }
