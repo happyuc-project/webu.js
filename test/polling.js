@@ -1,6 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index');
+var Webu = require('../index');
 var webu = new Webu();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 var utils = require('../lib/utils/utils');
@@ -61,7 +61,7 @@ var testPolling = function (tests) {
                 });
 
                 // when
-                var filter = web3[test.protocol].filter.apply(web3[test.protocol], test.args);
+                var filter = webu[test.protocol].filter.apply(webu[test.protocol], test.args);
                 provider.injectBatchResults([test.secondResult]);
                 filter.watch(function (err, result) {
                     if (test.err) {
@@ -115,7 +115,7 @@ var testPolling = function (tests) {
                 });
 
                 // when
-                var filter = web3[test.protocol].filter.apply(web3[test.protocol], test.args);
+                var filter = webu[test.protocol].filter.apply(webu[test.protocol], test.args);
                 provider.injectBatchResults([test.secondResult]);
             });
         });

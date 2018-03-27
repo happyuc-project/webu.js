@@ -20,13 +20,13 @@ You need to run a local Ethereum node to use this library.
 ### Node.js
 
 ```bash
-npm install web3
+npm install webu
 ```
 
 ### Yarn
 
 ```bash
-yarn add web3
+yarn add webu
 ```
 
 ### Meteor.js
@@ -39,7 +39,7 @@ meteor add happyuc-project:webu
 Bower
 
 ```bash
-bower install web3
+bower install webu
 ```
 
 Component

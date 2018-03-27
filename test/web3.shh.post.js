@@ -1,5 +1,5 @@
 var chai = require('chai');
-var Web3 = require('../index');
+var Webu = require('../index');
 var webu = new Webu();
 var testMethod = require('./helpers/test.method.js');
 

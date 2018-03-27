@@ -1,25 +1,25 @@
-var Web3 = require('../index.js');
+var Webu = require('../index.js');
 var webu = new Webu();
 var u = require('./helpers/test.utils.js');
 
 describe('webu', function() {
     describe('methods', function () {
-        u.methodExists(web3, 'sha3');
-        u.methodExists(web3, 'toAscii');
-        u.methodExists(web3, 'fromAscii');
-        u.methodExists(web3, 'toDecimal');
-        u.methodExists(web3, 'fromDecimal');
-        u.methodExists(web3, 'fromWei');
-        u.methodExists(web3, 'toWei');
-        u.methodExists(web3, 'toBigNumber');
-        u.methodExists(web3, 'isAddress');
-        u.methodExists(web3, 'setProvider');
-        u.methodExists(web3, 'reset');
+        u.methodExists(webu, 'sha3');
+        u.methodExists(webu, 'toAscii');
+        u.methodExists(webu, 'fromAscii');
+        u.methodExists(webu, 'toDecimal');
+        u.methodExists(webu, 'fromDecimal');
+        u.methodExists(webu, 'fromWei');
+        u.methodExists(webu, 'toWei');
+        u.methodExists(webu, 'toBigNumber');
+        u.methodExists(webu, 'isAddress');
+        u.methodExists(webu, 'setProvider');
+        u.methodExists(webu, 'reset');
 
-        u.propertyExists(web3, 'providers');
-        u.propertyExists(web3, 'huc');
-        u.propertyExists(web3, 'db');
-        u.propertyExists(web3, 'shh');
+        u.propertyExists(webu, 'providers');
+        u.propertyExists(webu, 'huc');
+        u.propertyExists(webu, 'db');
+        u.propertyExists(webu, 'shh');
     });
 });
 

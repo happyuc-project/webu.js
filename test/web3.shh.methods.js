@@ -1,30 +1,30 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index.js');
+var Webu = require('../index.js');
 var webu = new Webu();
 var u = require('./helpers/test.utils.js');
 
 describe('webu.shh', function() {
     describe('methods', function() {
-        u.methodExists(web3.shh, 'version');
-        u.methodExists(web3.shh, 'info');
-        u.methodExists(web3.shh, 'setMaxMessageSize');
-        u.methodExists(web3.shh, 'setMinPoW');
-        u.methodExists(web3.shh, 'markTrustedPeer');
-        u.methodExists(web3.shh, 'newKeyPair');
-        u.methodExists(web3.shh, 'addPrivateKey');
-        u.methodExists(web3.shh, 'deleteKeyPair');
-        u.methodExists(web3.shh, 'hasKeyPair');
-        u.methodExists(web3.shh, 'getPublicKey');
-        u.methodExists(web3.shh, 'getPrivateKey');
-        u.methodExists(web3.shh, 'newSymKey');
-        u.methodExists(web3.shh, 'addSymKey');
-        u.methodExists(web3.shh, 'generateSymKeyFromPassword');
-        u.methodExists(web3.shh, 'hasSymKey');
-        u.methodExists(web3.shh, 'getSymKey');
-        u.methodExists(web3.shh, 'deleteSymKey');
-        u.methodExists(web3.shh, 'newMessageFilter');
-        u.methodExists(web3.shh, 'post');
+        u.methodExists(webu.shh, 'version');
+        u.methodExists(webu.shh, 'info');
+        u.methodExists(webu.shh, 'setMaxMessageSize');
+        u.methodExists(webu.shh, 'setMinPoW');
+        u.methodExists(webu.shh, 'markTrustedPeer');
+        u.methodExists(webu.shh, 'newKeyPair');
+        u.methodExists(webu.shh, 'addPrivateKey');
+        u.methodExists(webu.shh, 'deleteKeyPair');
+        u.methodExists(webu.shh, 'hasKeyPair');
+        u.methodExists(webu.shh, 'getPublicKey');
+        u.methodExists(webu.shh, 'getPrivateKey');
+        u.methodExists(webu.shh, 'newSymKey');
+        u.methodExists(webu.shh, 'addSymKey');
+        u.methodExists(webu.shh, 'generateSymKeyFromPassword');
+        u.methodExists(webu.shh, 'hasSymKey');
+        u.methodExists(webu.shh, 'getSymKey');
+        u.methodExists(webu.shh, 'deleteSymKey');
+        u.methodExists(webu.shh, 'newMessageFilter');
+        u.methodExists(webu.shh, 'post');
 
     });
 });

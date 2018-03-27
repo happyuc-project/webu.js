@@ -2,7 +2,7 @@ var chai = require('chai');
 var assert = chai.assert;
 var BigNumber = require('bignumber.js');
 var SolidityEvent = require('../lib/webu/event');
-var Web3 = require('../index');
+var Webu = require('../index');
 
 
 var name = 'event1';
@@ -172,7 +172,7 @@ describe('lib/webu/event', function () {
         tests.forEach(function (test, index) {
             it('test no: ' + index, function () {
                 var webu = new Webu();
-                var event = new SolidityEvent(web3, test.abi, address);
+                var event = new SolidityEvent(webu, test.abi, address);
 
                 var result = event.decode(test.data);
                 assert.deepEqual(result, test.expected);

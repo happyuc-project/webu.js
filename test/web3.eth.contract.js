@@ -1,6 +1,6 @@
 var assert = require('assert');
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
-var Web3 = require('../index');
+var Webu = require('../index');
 
 
 describe('webu.huc.contract', function() {

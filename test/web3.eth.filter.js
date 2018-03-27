@@ -1,5 +1,5 @@
 var chai = require('chai');
-var Web3 = require('../index');
+var Webu = require('../index');
 var webu = new Webu();
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
@@ -68,7 +68,7 @@ describe('webu.huc', function () {
                });
 
                // call
-               var filter = webu.huc[method].apply(web3.huc, test.args);
+               var filter = webu.huc[method].apply(webu.huc, test.args);
 
                // test filter.get
                if(typeof test.args === 'object') {
@@ -111,7 +111,7 @@ describe('webu.huc', function () {
                     assert.include(errors, err);
                     done();
                 });
-                webu.huc[method].apply(web3.huc, args);
+                webu.huc[method].apply(webu.huc, args);
             })
         });
     });

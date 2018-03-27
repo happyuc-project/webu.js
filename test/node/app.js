@@ -1,5 +1,5 @@
 var webu = require('webu');
 
-console.log(web3.version.api);
+console.log(webu.version.api);
 
 

@@ -1,6 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index');
+var Webu = require('../index');
 var webu = new Webu();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 var bn = require('bignumber.js');
@@ -40,8 +40,8 @@ describe('lib/webu/batch', function () {
             });
 
             var batch = webu.createBatch();
-            batch.add(web3.huc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
-            batch.add(web3.huc.getBalance.request('0x0000000000000000000000000000000000000005', 'latest', callback2));
+            batch.add(webu.huc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
+            batch.add(webu.huc.getBalance.request('0x0000000000000000000000000000000000000005', 'latest', callback2));
             batch.execute();
         });
 
@@ -78,8 +78,8 @@ describe('lib/webu/batch', function () {
             });
 
             var batch = webu.createBatch();
-            batch.add(web3.huc.getAccounts.request(callback));
-            batch.add(web3.net.getPeerCount.request(callback2));
+            batch.add(webu.huc.getAccounts.request(callback));
+            batch.add(webu.net.getPeerCount.request(callback2));
             batch.execute();
         });
 
@@ -134,8 +134,8 @@ describe('lib/webu/batch', function () {
             });
 
             var batch = webu.createBatch();
-            batch.add(web3.huc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
-            batch.add(web3.huc.contract(abi).at(address).balance.request(address, callback2));
+            batch.add(webu.huc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
+            batch.add(webu.huc.contract(abi).at(address).balance.request(address, callback2));
             provider.injectBatchResults([result, result2]);
             batch.execute();
         });
@@ -192,8 +192,8 @@ describe('lib/webu/batch', function () {
             });
 
             var batch = webu.createBatch();
-            batch.add(web3.huc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
-            batch.add(web3.huc.contract(abi).at(address).balance.request(address, callback2));
+            batch.add(webu.huc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
+            batch.add(webu.huc.contract(abi).at(address).balance.request(address, callback2));
             provider.injectBatchResults([result, result2], true); // injects error
             batch.execute();
         });

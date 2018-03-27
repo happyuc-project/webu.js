@@ -64,27 +64,18 @@ gulp.task('clean', ['lint'], function(cb) {
 });
 
 gulp.task('light', ['clean'], function() {
-    try {
-        return browserify(browserifyOptions).
-            require('./' + src + '.js', {expose: 'webu'}).
-            ignore('bignumber.js').
-            require('./lib/utils/browser-bn.js', {expose: 'bignumber.js'}) // fake bignumber.js
-            .add('./' + src + '.js').
-            bundle();
-        // pipe(exorcist(path.join(DEST, lightDst + '.js.map'))).
-        // pipe(source(lightDst + '.js')).
-        // pipe(gulp.dest(DEST)).
-        // pipe(streamify(uglify())).
-        // pipe(rename(lightDst + '.min.js')).
-        // pipe(gulp.dest(DEST));
-    } catch (e) {
-        console.log(e);
-        // return browserify(browserifyOptions).
-        //     require('./' + src + '.js', {expose: 'webu'}).
-        //     ignore('bignumber.js').
-        //     require('./lib/utils/browser-bn.js', {expose: 'bignumber.js'}) // fake bignumber.js
-        //     .add('./' + src + '.js');
-    }
+    return browserify(browserifyOptions).
+        require('./' + src + '.js', {expose: 'webu'}).
+        ignore('bignumber.js').
+        require('./lib/utils/browser-bn.js', {expose: 'bignumber.js'}) // fake bignumber.js
+        .add('./' + src + '.js').
+        bundle().
+        pipe(exorcist(path.join(DEST, lightDst + '.js.map'))).
+        pipe(source(lightDst + '.js')).
+        pipe(gulp.dest(DEST)).
+        pipe(streamify(uglify())).
+        pipe(rename(lightDst + '.min.js')).
+        pipe(gulp.dest(DEST));
 });
 
 gulp.task('standalone', ['clean'], function() {

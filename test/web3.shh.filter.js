@@ -1,5 +1,5 @@
 var chai = require('chai');
-var Web3 = require('../index');
+var Webu = require('../index');
 var webu = new Webu();
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
@@ -43,7 +43,7 @@ describe('shh', function () {
                 });
 
                 // call
-                webu.shh[method].apply(web3.shh, test.args);
+                webu.shh[method].apply(webu.shh, test.args);
 
             });
         });

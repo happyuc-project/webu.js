@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
-var Web3 = require('../lib/webu');
+var Webu = require('../lib/webu');
 var webu = new Webu();
 
 
@@ -16,7 +16,7 @@ var tests = [{
         name: 'getBalance',
         call: 'huc_getBalance',
         params: 2,
-        inputFormatter: [web3._extend.utils.toAddress, webu._extend.formatters.inputDefaultBlockNumberFormatter],
+        inputFormatter: [webu._extend.utils.toAddress, webu._extend.formatters.inputDefaultBlockNumberFormatter],
         outputFormatter: webu._extend.formatters.outputBigNumberFormatter
     })]
 },{
@@ -30,7 +30,7 @@ var tests = [{
         name: 'getBalance',
         call: 'huc_getBalance',
         params: 2,
-        inputFormatter: [web3._extend.utils.toAddress, webu._extend.formatters.inputDefaultBlockNumberFormatter],
+        inputFormatter: [webu._extend.utils.toAddress, webu._extend.formatters.inputDefaultBlockNumberFormatter],
         outputFormatter: webu._extend.formatters.outputBigNumberFormatter
     })]
 }];
@@ -54,20 +54,20 @@ describe('webu', function () {
                         });
 
                         if(test.property) {
-                            assert.isObject(web3[test.property][property.name]);
-                            assert.isFunction(web3[test.property]['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);
+                            assert.isObject(webu[test.property][property.name]);
+                            assert.isFunction(webu[test.property]['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);
                         } else {
-                            assert.isObject(web3[property.name]);
-                            assert.isFunction(web3['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);
+                            assert.isObject(webu[property.name]);
+                            assert.isFunction(webu['get'+ property.name.charAt(0).toUpperCase() + property.name.slice(1)]);
                         }
                     });
 
                 if(test.methods)
                     test.methods.forEach(function(property){
                         if(test.property)
-                            assert.isFunction(web3[test.property][property.name]);
+                            assert.isFunction(webu[test.property][property.name]);
                         else
-                            assert.isFunction(web3[property.name]);
+                            assert.isFunction(webu[property.name]);
                     });
 
             });

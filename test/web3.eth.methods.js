@@ -1,36 +1,36 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index.js');
+var Webu = require('../index.js');
 var webu = new Webu();
 var u = require('./helpers/test.utils.js');
 
 describe('webu.huc', function() {
     describe('methods', function() {
-        u.methodExists(web3.huc, 'getBalance');
-        u.methodExists(web3.huc, 'getStorageAt');
-        u.methodExists(web3.huc, 'getTransactionCount');
-        u.methodExists(web3.huc, 'getCode');
-        u.methodExists(web3.huc, 'sendTransaction');
-        u.methodExists(web3.huc, 'call');
-        u.methodExists(web3.huc, 'getBlock');
-        u.methodExists(web3.huc, 'getTransaction');
-        u.methodExists(web3.huc, 'getUncle');
-        u.methodExists(web3.huc, 'getCompilers');
-        u.methodExists(web3.huc.compile, 'lll');
-        u.methodExists(web3.huc.compile, 'solidity');
-        u.methodExists(web3.huc.compile, 'serpent');
-        u.methodExists(web3.huc, 'getBlockTransactionCount');
-        u.methodExists(web3.huc, 'getBlockUncleCount');
-        u.methodExists(web3.huc, 'filter');
-        u.methodExists(web3.huc, 'contract');
+        u.methodExists(webu.huc, 'getBalance');
+        u.methodExists(webu.huc, 'getStorageAt');
+        u.methodExists(webu.huc, 'getTransactionCount');
+        u.methodExists(webu.huc, 'getCode');
+        u.methodExists(webu.huc, 'sendTransaction');
+        u.methodExists(webu.huc, 'call');
+        u.methodExists(webu.huc, 'getBlock');
+        u.methodExists(webu.huc, 'getTransaction');
+        u.methodExists(webu.huc, 'getUncle');
+        u.methodExists(webu.huc, 'getCompilers');
+        u.methodExists(webu.huc.compile, 'lll');
+        u.methodExists(webu.huc.compile, 'solidity');
+        u.methodExists(webu.huc.compile, 'serpent');
+        u.methodExists(webu.huc, 'getBlockTransactionCount');
+        u.methodExists(webu.huc, 'getBlockUncleCount');
+        u.methodExists(webu.huc, 'filter');
+        u.methodExists(webu.huc, 'contract');
 
-        u.propertyExists(web3.huc, 'coinbase');
-        u.propertyExists(web3.huc, 'mining');
-        u.propertyExists(web3.huc, 'gasPrice');
-        u.propertyExists(web3.huc, 'accounts');
-        u.propertyExists(web3.huc, 'defaultBlock');
-        u.propertyExists(web3.huc, 'blockNumber');
-        u.propertyExists(web3.huc, 'protocolVersion');
+        u.propertyExists(webu.huc, 'coinbase');
+        u.propertyExists(webu.huc, 'mining');
+        u.propertyExists(webu.huc, 'gasPrice');
+        u.propertyExists(webu.huc, 'accounts');
+        u.propertyExists(webu.huc, 'defaultBlock');
+        u.propertyExists(webu.huc, 'blockNumber');
+        u.propertyExists(webu.huc, 'protocolVersion');
     });
 });
 

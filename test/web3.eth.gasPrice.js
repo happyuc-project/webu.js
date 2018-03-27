@@ -1,6 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index');
+var Webu = require('../index');
 var webu = new Webu();
 var BigNumber = require('bignumber.js');
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');

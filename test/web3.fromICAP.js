@@ -1,5 +1,5 @@
 var chai = require('chai');
-var Web3 = require('../index');
+var Webu = require('../index');
 var webu = new Webu();
 var assert = chai.assert;
 
@@ -11,7 +11,7 @@ describe('webu', function () {
     describe('fromICAP', function () {
         tests.forEach(function (test) {
             it('shoud transform iban to address: ' +  test.address, function () {
-                assert.deepEqual(web3.fromICAP(test.direct), test.address);
+                assert.deepEqual(webu.fromICAP(test.direct), test.address);
             });
         });
     });

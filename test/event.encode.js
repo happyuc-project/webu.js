@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert;
 var SolidityEvent = require('../lib/webu/event');
-var Web3 = require('../index');
+var Webu = require('../index');
 
 
 var address = '0x1234567890123456789012345678901234567890';
@@ -223,7 +223,7 @@ describe('lib/webu/event', function () {
         tests.forEach(function (test, index) {
             it('test no: ' + index, function () {
                 var webu = new Webu();
-                var event = new SolidityEvent(web3, test.abi, address);
+                var event = new SolidityEvent(webu, test.abi, address);
                 event.signature = function () { // inject signature
                     return signature.slice(2);
                 };

@@ -1,6 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Web3 = require('../index');
+var Webu = require('../index');
 var webu = new Webu();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
@@ -24,7 +24,7 @@ var tests = [{
 describe('async', function () {
     tests.forEach(function (test, index) {
         it('test: ' + index, function (done) {
-            
+
             // given
             var provider = new FakeHttpProvider();
             webu.setProvider(provider);
@@ -35,20 +35,20 @@ describe('async', function () {
                 assert.deepEqual(payload.params, [test.formattedInput]);
             });
 
-            // when 
+            // when
             webu.huc[method](test.input, function(error, result){
 
                 // then
                 assert.isNull(error);
                 assert.strictEqual(test.formattedResult, result);
-                
+
                 done();
             });
-            
+
         });
 
         it('error test: ' + index, function (done) {
-            
+
             // given
             var provider = new FakeHttpProvider();
             webu.setProvider(provider);
@@ -62,7 +62,7 @@ describe('async', function () {
                 assert.deepEqual(payload.params, [test.formattedInput]);
             });
 
-            // when 
+            // when
             webu.huc[method](test.input, function(error, result){
 
                 // then
@@ -71,7 +71,7 @@ describe('async', function () {
 
                 done();
             });
-            
+
         });
     });
 });
