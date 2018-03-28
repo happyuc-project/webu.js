@@ -243,7 +243,7 @@ describe('webu.huc.contract', function() {
 
         webu.huc.contract(description).new(2, {from: address, data: code}, function(e, myCon){
                 done();
-                webu.stopWatching();
+                webu.huc.filter().stopWatching();
         });
     });
 });
