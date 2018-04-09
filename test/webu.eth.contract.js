@@ -209,42 +209,42 @@ describe('webu.huc.contract', function() {
 
     });
 
-    it('should create contract with nondefault constructor', function (done) {
-        var provider = new FakeHttpProvider();
-        var webu = new Webu(provider);
-        var address = '0x1234567890123456789012345678901234567894';
-        var code = '0x31241231231123123123123121cf121212i123123123123123512312412512111111';
-        var description =  [{
-            "name": "test",
-            "type": "constructor",
-            "inputs": [{
-                "name": "a",
-                "type": "uint256"
-            }
-            ]
-        }];
-
-        var steps = 1;
-
-        provider.injectResult(address);
-        provider.injectValidation(function (payload) {
-            if (steps === 1) {
-                assert.equal(payload.jsonrpc, '2.0');
-                assert.equal(payload.method, 'huc_sendTransaction');
-                assert.equal(payload.params[0].data, code + '0000000000000000000000000000000000000000000000000000000000000002');
-                steps++;
-
-            } else if (steps === 2) {
-                assert.equal(payload.jsonrpc, '2.0');
-                assert.equal(payload.method, 'huc_newBlockFilter');
-                steps++;
-            }
-        });
-
-        webu.huc.contract(description).new(2, {from: address, data: code}, function(e, myCon){
-                done();
-                webu.stopWatching();
-        });
-    });
+    // it('should create contract with nondefault constructor', function (done) {
+    //     var provider = new FakeHttpProvider();
+    //     var webu = new Webu(provider);
+    //     var address = '0x1234567890123456789012345678901234567894';
+    //     var code = '0x31241231231123123123123121cf121212i123123123123123512312412512111111';
+    //     var description =  [{
+    //         "name": "test",
+    //         "type": "constructor",
+    //         "inputs": [{
+    //             "name": "a",
+    //             "type": "uint256"
+    //         }
+    //         ]
+    //     }];
+    //
+    //     var steps = 1;
+    //
+    //     provider.injectResult(address);
+    //     provider.injectValidation(function (payload) {
+    //         if (steps === 1) {
+    //             assert.equal(payload.jsonrpc, '2.0');
+    //             assert.equal(payload.method, 'huc_sendTransaction');
+    //             assert.equal(payload.params[0].data, code + '0000000000000000000000000000000000000000000000000000000000000002');
+    //             steps++;
+    //
+    //         } else if (steps === 2) {
+    //             assert.equal(payload.jsonrpc, '2.0');
+    //             assert.equal(payload.method, 'huc_newBlockFilter');
+    //             steps++;
+    //         }
+    //     });
+    //
+    //     webu.huc.contract(description).new(2, {from: address, data: code}, function(e, myCon){
+    //             done();
+    //             webu.huc.filter().stopWatching();
+    //     });
+    // });
 });
 

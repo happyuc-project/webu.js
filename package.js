@@ -1,6 +1,6 @@
 /* jshint ignore:start */
 Package.describe({
-  name: 'happyuc-project:webu',
+  name: 'happyuc:webu',
   version: '1.0.0',
   summary: 'Happyuc JavaScript API, middleware to talk to a happyuc-project node over RPC',
   git: 'https://github.com/happyuc-project/webu.js',
