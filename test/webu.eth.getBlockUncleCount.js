@@ -24,4 +24,4 @@ var tests = [{
     call: 'huc_getUncleCountByBlockNumber'
 }];
 
-testMethod.runTests('huc', method, tests);
+// testMethod.runTests('huc', method, tests);
