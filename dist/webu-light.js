@@ -1778,7 +1778,7 @@ if (typeof XMLHttpRequest === 'undefined') {
 /// required to define HUC_BIGNUMBER_ROUNDING_MODE
 var BigNumber = require('bignumber.js');
 
-var ETH_UNITS = [
+var HUC_UNITS = [
     'wei',
     'kwei',
     'Mwei',
@@ -1811,7 +1811,7 @@ var ETH_UNITS = [
 module.exports = {
     HUC_PADDING: 32,
     HUC_SIGNATURE_LENGTH: 4,
-    HUC_UNITS: ETH_UNITS,
+    HUC_UNITS: HUC_UNITS,
     HUC_BIGNUMBER_ROUNDING_MODE: {ROUNDING_MODE: BigNumber.ROUND_DOWN},
     HUC_POLLING_TIMEOUT: 1000 / 2,
     defaultBlock: 'latest',
@@ -3175,7 +3175,7 @@ module.exports = ContractFactory;
     You should have received a copy of the GNU Lesser General Public License
     along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/** 
  * @file errors.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -3609,7 +3609,7 @@ var pollFilter = function(self) {
     }, self.filterId, onMessage, self.stopWatching.bind(self));
 
 };
-
+// TODO fixed call back error
 var Filter = function(
     options, type, requestManager, methods, formatter, callback,
     filterCreationErrorCallback) {
@@ -4389,8 +4389,7 @@ HttpProvider.prototype.prepareRequest = function(async) {
 
     request.open('POST', this.host, async);
     if (this.user && this.password) {
-        var auth = 'Basic ' +
-            new Buffer(this.user + ':' + this.password).toString('base64');
+        var auth = 'Basic ' + new Buffer(this.user + ':' + this.password).toString('base64');
         request.setRequestHeader('Authorization', auth);
     }
     request.setRequestHeader('Content-Type', 'application/json');
@@ -4749,7 +4748,7 @@ var IpcProvider = function (path, net) {
     var _this = this;
     this.responseCallbacks = {};
     this.path = path;
-
+    
     this.connection = net.connect({path: this.path});
 
     this.connection.on('error', function(e){
@@ -4759,7 +4758,7 @@ var IpcProvider = function (path, net) {
 
     this.connection.on('end', function(){
         _this._timeout();
-    });
+    }); 
 
 
     // LISTEN FOR CONNECTION RESPONSES
@@ -4798,7 +4797,7 @@ Will parse the response and make an array out of it.
 IpcProvider.prototype._parseResponse = function(data) {
     var _this = this,
         returnValues = [];
-
+    
     // DE-CHUNKER
     var dechunkedData = data
         .replace(/\}[\n\r]?\{/g,'}|--|{') // }{
@@ -4902,7 +4901,7 @@ IpcProvider.prototype.send = function (payload) {
         try {
             result = JSON.parse(data);
         } catch(e) {
-            throw errors.InvalidResponse(data);
+            throw errors.InvalidResponse(data);                
         }
 
         return result;
@@ -5154,8 +5153,13 @@ Method.prototype.attachToObject = function(obj) {
 
 Method.prototype.buildCall = function() {
     var method = this;
+    // var _name = this.name;
+    // var _call = this.call;
     var send = function() {
+        // console.log(_name + ' : ' + _call);
+        // console.log(arguments);
         var payload = method.toPayload(Array.prototype.slice.call(arguments));
+        // console.log(payload);
         if (payload.callback) {
             return method.requestManager.sendAsync(payload,
                 function(err, result) {
@@ -6122,7 +6126,6 @@ var Method = require('../method');
 var huc = function() {
     var newFilterCall = function(args) {
         var type = args[0];
-
         switch (type) {
             case 'latest':
                 args.shift();
@@ -6514,7 +6517,7 @@ RequestManager.prototype.sendBatch = function(data, callback) {
  * Should be used to set provider of request manager
  *
  * @method setProvider
- * @param {Object}
+ * @param p
  */
 RequestManager.prototype.setProvider = function(p) {
     this.provider = p;

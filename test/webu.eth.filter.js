@@ -59,7 +59,7 @@ var tests = [
 describe('webu.huc', () => describe(method, () =>
     it('rpc node', () => {
         webu.setProvider(new webu.providers.HttpProvider());
-        let filter = webu.huc[method].apply(webu.huc, ['latest']);
+        var filter = webu.huc[method].apply(webu.huc, ['latest']);
         filter.watch();
         filter.stopWatching();
     })));
