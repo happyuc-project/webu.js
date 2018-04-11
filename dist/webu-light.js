@@ -926,7 +926,7 @@ var SolidityParam = require('./param');
  * @returns {SolidityParam}
  */
 var formatInputInt = function(value) {
-    BigNumber.config(c.ETH_BIGNUMBER_ROUNDING_MODE);
+    BigNumber.config(c.HUC_BIGNUMBER_ROUNDING_MODE);
     var result = utils.padLeft(utils.toTwosComplement(value).toString(16), 64);
     return new SolidityParam(result);
 };
@@ -1775,10 +1775,10 @@ if (typeof XMLHttpRequest === 'undefined') {
  */
 
 
-/// required to define ETH_BIGNUMBER_ROUNDING_MODE
+/// required to define HUC_BIGNUMBER_ROUNDING_MODE
 var BigNumber = require('bignumber.js');
 
-var ETH_UNITS = [
+var HUC_UNITS = [
     'wei',
     'kwei',
     'Mwei',
@@ -1809,11 +1809,11 @@ var ETH_UNITS = [
 ];
 
 module.exports = {
-    ETH_PADDING: 32,
-    ETH_SIGNATURE_LENGTH: 4,
-    ETH_UNITS: ETH_UNITS,
-    ETH_BIGNUMBER_ROUNDING_MODE: {ROUNDING_MODE: BigNumber.ROUND_DOWN},
-    ETH_POLLING_TIMEOUT: 1000 / 2,
+    HUC_PADDING: 32,
+    HUC_SIGNATURE_LENGTH: 4,
+    HUC_UNITS: HUC_UNITS,
+    HUC_BIGNUMBER_ROUNDING_MODE: {ROUNDING_MODE: BigNumber.ROUND_DOWN},
+    HUC_POLLING_TIMEOUT: 1000 / 2,
     defaultBlock: 'latest',
     defaultAccount: undefined,
 };
@@ -3609,7 +3609,7 @@ var pollFilter = function(self) {
     }, self.filterId, onMessage, self.stopWatching.bind(self));
 
 };
-
+// TODO fixed call back error
 var Filter = function(
     options, type, requestManager, methods, formatter, callback,
     filterCreationErrorCallback) {
@@ -4389,8 +4389,7 @@ HttpProvider.prototype.prepareRequest = function(async) {
 
     request.open('POST', this.host, async);
     if (this.user && this.password) {
-        var auth = 'Basic ' +
-            new Buffer(this.user + ':' + this.password).toString('base64');
+        var auth = 'Basic ' + new Buffer(this.user + ':' + this.password).toString('base64');
         request.setRequestHeader('Authorization', auth);
     }
     request.setRequestHeader('Content-Type', 'application/json');
@@ -5154,8 +5153,13 @@ Method.prototype.attachToObject = function(obj) {
 
 Method.prototype.buildCall = function() {
     var method = this;
+    // var _name = this.name;
+    // var _call = this.call;
     var send = function() {
+        // console.log(_name + ' : ' + _call);
+        // console.log(arguments);
         var payload = method.toPayload(Array.prototype.slice.call(arguments));
+        // console.log(payload);
         if (payload.callback) {
             return method.requestManager.sendAsync(payload,
                 function(err, result) {
@@ -6122,7 +6126,6 @@ var Method = require('../method');
 var huc = function() {
     var newFilterCall = function(args) {
         var type = args[0];
-
         switch (type) {
             case 'latest':
                 args.shift();
@@ -6514,7 +6517,7 @@ RequestManager.prototype.sendBatch = function(data, callback) {
  * Should be used to set provider of request manager
  *
  * @method setProvider
- * @param {Object}
+ * @param p
  */
 RequestManager.prototype.setProvider = function(p) {
     this.provider = p;
@@ -6593,7 +6596,7 @@ RequestManager.prototype.reset = function(keepIsSyncing) {
  */
 RequestManager.prototype.poll = function() {
     /*jshint maxcomplexity: 6 */
-    this.timeout = setTimeout(this.poll.bind(this), c.ETH_POLLING_TIMEOUT);
+    this.timeout = setTimeout(this.poll.bind(this), c.HUC_POLLING_TIMEOUT);
 
     if (Object.keys(this.polls).length === 0) {
         return;
