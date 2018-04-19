@@ -1779,33 +1779,25 @@ if (typeof XMLHttpRequest === 'undefined') {
 var BigNumber = require('bignumber.js');
 
 var HUC_UNITS = [
-    'wei',
+     'wei',
     'kwei',
-    'Mwei',
-    'Gwei',
-    'szabo',
-    'finney',
-    'femtohucer',
-    'picohucer',
-    'nanohucer',
-    'microhucer',
-    'millihucer',
-    'nano',
-    'micro',
-    'milli',
-    'hucer',
-    'grand',
-    'Mhucer',
-    'Ghucer',
-    'Thucer',
-    'Phucer',
-    'Ehucer',
-    'Zhucer',
-    'Yhucer',
-    'Nhucer',
-    'Dhucer',
-    'Vhucer',
-    'Uhucer',
+    'mwei',
+    'gwei',
+    'twei',
+    'pwei',
+     'huc',
+    'khuc',
+    'mhuc',
+    'ghuc',
+    'thuc',
+    'phuc',
+    'ehuc',
+    'zhuc',
+    'yhuc',
+    'nhuc',
+    'dhuc',
+    'vhuc',
+    'uhuc',
 ];
 
 module.exports = {
@@ -1901,33 +1893,25 @@ var sha3 = require('./sha3.js');
 var utf8 = require('utf8');
 
 var unitMap = {
-    'nohucer': '0',
-    'wei': '1',
-    'kwei': '1000',
-    'Kwei': '1000',
-    'babbage': '1000',
-    'femtohucer': '1000',
-    'mwei': '1000000',
-    'Mwei': '1000000',
-    'lovelace': '1000000',
-    'picohucer': '1000000',
-    'gwei': '1000000000',
-    'Gwei': '1000000000',
-    'shannon': '1000000000',
-    'nanohucer': '1000000000',
-    'nano': '1000000000',
-    'szabo': '1000000000000',
-    'microhucer': '1000000000000',
-    'micro': '1000000000000',
-    'finney': '1000000000000000',
-    'millihucer': '1000000000000000',
-    'milli': '1000000000000000',
-    'hucer': '1000000000000000000',
-    'khucer': '1000000000000000000000',
-    'grand': '1000000000000000000000',
-    'mhucer': '1000000000000000000000000',
-    'ghucer': '1000000000000000000000000000',
-    'thucer': '1000000000000000000000000000000',
+    'nohuc': '0',
+      'wei': '1',
+     'kwei': '1000',  
+     'mwei': '1000000',
+     'gwei': '1000000000',
+     'twei': '1000000000000',   
+     'pwei': '1000000000000000',
+      'huc': '1000000000000000000',
+     'khuc': '1000000000000000000000',
+     'ghuc': '1000000000000000000000000',
+     'thuc': '1000000000000000000000000000',
+     'phuc': '1000000000000000000000000000000',
+     'ehuc': '1000000000000000000000000000000000',
+     'zhuc': '1000000000000000000000000000000000000',
+     'yhuc': '1000000000000000000000000000000000000000',
+     'nhuc': '1000000000000000000000000000000000000000000',
+     'dhuc': '1000000000000000000000000000000000000000000000',
+     'vhuc': '1000000000000000000000000000000000000000000000000',
+     'uhuc': '1000000000000000000000000000000000000000000000000000',
 };
 
 /**
@@ -4613,7 +4597,7 @@ Iban.fromBban = function(bban) {
  * @return {Iban} the IBAN object
  */
 Iban.createIndirect = function(options) {
-    return Iban.fromBban('ETH' + options.institution + options.identifier);
+    return Iban.fromBban('HUC' + options.institution + options.identifier);
 };
 
 /**
@@ -4635,7 +4619,7 @@ Iban.isValid = function(iban) {
  * @returns {Boolean} true if it is, otherwise false
  */
 Iban.prototype.isValid = function() {
-    return /^XE[0-9]{2}(ETH[0-9A-Z]{13}|[0-9A-Z]{30,31})$/.test(this._iban) &&
+    return /^XE[0-9]{2}(HUC[0-9A-Z]{13}|[0-9A-Z]{30,31})$/.test(this._iban) &&
         mod9710(iso13616Prepare(this._iban)) === 1;
 };
 
@@ -5973,7 +5957,7 @@ module.exports = Shh;
  * @author Alex Beregszaszi <alex@rtfs.hu>
  * @date 2016
  * TODO update reference
- * Reference: https://github.com/ethereum/go-ethereum/blob/swarm/internal/webuext/webuext.go#L33
+ * Reference: https://github.com/happyuc-project/happyuc-go/blob/swarm/internal/webuext/webuext.go#L33
  */
 
 'use strict';

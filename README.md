@@ -94,7 +94,7 @@ You can find more examples in [`example`](https://github.com/happyuc-project/web
 ### Building (gulp)
 
 ```bash
-npm run-script build
+gulp
 ```
 
 

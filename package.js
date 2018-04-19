@@ -1,7 +1,7 @@
 /* jshint ignore:start */
 Package.describe({
   name: 'happyuc:webu',
-  version: '1.0.0',
+  version: '1.0.3',
   summary: 'Happyuc JavaScript API, middleware to talk to a happyuc-project node over RPC',
   git: 'https://github.com/happyuc-project/webu.js',
   // By default, Meteor will default to using README.md for documentation.
