@@ -1894,24 +1894,24 @@ var utf8 = require('utf8');
 
 var unitMap = {
     'nohuc': '0',
-      'wei': '1',
-     'kwei': '1000',  
-     'mwei': '1000000',
-     'gwei': '1000000000',
-     'twei': '1000000000000',   
-     'pwei': '1000000000000000',
-      'huc': '1000000000000000000',
-     'khuc': '1000000000000000000000',
-     'ghuc': '1000000000000000000000000',
-     'thuc': '1000000000000000000000000000',
-     'phuc': '1000000000000000000000000000000',
-     'ehuc': '1000000000000000000000000000000000',
-     'zhuc': '1000000000000000000000000000000000000',
-     'yhuc': '1000000000000000000000000000000000000000',
-     'nhuc': '1000000000000000000000000000000000000000000',
-     'dhuc': '1000000000000000000000000000000000000000000000',
-     'vhuc': '1000000000000000000000000000000000000000000000000',
-     'uhuc': '1000000000000000000000000000000000000000000000000000',
+    'wei'  : '1',
+    'kwei' : '1000',
+    'mwei' : '1000000',
+    'gwei' : '1000000000',
+    'twei' : '1000000000000',
+    'pwei' : '1000000000000000',
+    'huc'  : '1000000000000000000',
+    'khuc' : '1000000000000000000000',
+    'ghuc' : '1000000000000000000000000',
+    'thuc' : '1000000000000000000000000000',
+    'phuc' : '1000000000000000000000000000000',
+    'ehuc' : '1000000000000000000000000000000000',
+    'zhuc' : '1000000000000000000000000000000000000',
+    'yhuc' : '1000000000000000000000000000000000000000',
+    'nhuc' : '1000000000000000000000000000000000000000000',
+    'dhuc' : '1000000000000000000000000000000000000000000000',
+    'vhuc' : '1000000000000000000000000000000000000000000000000',
+    'uhuc' : '1000000000000000000000000000000000000000000000000000',
 };
 
 /**
@@ -1919,7 +1919,7 @@ var unitMap = {
  *
  * @method padLeft
  * @param {String} string to be padded
- * @param {Number} characters that result string should have
+ * @param chars
  * @param {String} sign, by default 0
  * @returns {String} right aligned string
  */
@@ -1933,7 +1933,7 @@ var padLeft = function(string, chars, sign) {
  *
  * @method padRight
  * @param {String} string to be padded
- * @param {Number} characters that result string should have
+ * @param chars
  * @param {String} sign, by default 0
  * @returns {String} right aligned string
  */
@@ -1946,8 +1946,8 @@ var padRight = function(string, chars, sign) {
  * Should be called to get utf8 from it's hex representation
  *
  * @method toUtf8
- * @param {String} string in hex
  * @returns {String} ascii string representation of hex value
+ * @param hex
  */
 var toUtf8 = function(hex) {
 // Find termination
@@ -1970,8 +1970,8 @@ var toUtf8 = function(hex) {
  * Should be called to get ascii from it's hex representation
  *
  * @method toAscii
- * @param {String} string in hex
  * @returns {String} ascii string representation of hex value
+ * @param hex
  */
 var toAscii = function(hex) {
 // Find termination
@@ -1992,7 +1992,7 @@ var toAscii = function(hex) {
  * Should be called to get hex representation (prefixed by 0x) of utf8 string
  *
  * @method fromUtf8
- * @param {String} string
+ * @param str
  * @param {Boolean} allowZero to convert code point zero to 00 instead of end of string
  * @returns {String} hex representation of input string
  */
@@ -2020,9 +2020,8 @@ var fromUtf8 = function(str, allowZero) {
  * Should be called to get hex representation (prefixed by 0x) of ascii string
  *
  * @method fromAscii
- * @param {String} string
- * @param {Number} optional padding
  * @returns {String} hex representation of input string
+ * @param str
  */
 var fromAscii = function(str) {
     var hex = '';
@@ -2039,8 +2038,8 @@ var fromAscii = function(str) {
  * Should be used to create full function/event name from json abi
  *
  * @method transformToFullName
- * @param {Object} json-abi
  * @return {String} full fnction/event name
+ * @param json
  */
 var transformToFullName = function(json) {
     if (json.name.indexOf('(') !== -1) {
@@ -2088,8 +2087,8 @@ var extractTypeName = function(name) {
  * Converts value to it's decimal representation in string
  *
  * @method toDecimal
- * @param {String|Number|BigNumber}
  * @return {String}
+ * @param value
  */
 var toDecimal = function(value) {
     return toBigNumber(value).toNumber();
@@ -2099,8 +2098,8 @@ var toDecimal = function(value) {
  * Converts value to it's hex representation
  *
  * @method fromDecimal
- * @param {String|Number|BigNumber}
  * @return {String}
+ * @param value
  */
 var fromDecimal = function(value) {
     var number = toBigNumber(value);
@@ -2115,8 +2114,8 @@ var fromDecimal = function(value) {
  * And even stringifys objects before.
  *
  * @method toHex
- * @param {String|Number|BigNumber|Object}
  * @return {String}
+ * @param val
  */
 var toHex = function(val) {
     /*jshint maxcomplexity: 8 */
@@ -2147,12 +2146,12 @@ var toHex = function(val) {
  * Returns value of unit in Wei
  *
  * @method getValueOfUnit
- * @param {String} unit the unit to convert to, default hucer
+ * @param {String} unit the unit to convert to, default huc
  * @returns {BigNumber} value of the unit (in Wei)
  * @throws error if the unit is not correct:w
  */
 var getValueOfUnit = function(unit) {
-    unit = unit ? unit.toLowerCase() : 'hucer';
+    unit = unit ? unit.toLowerCase() : 'huc';
     var unitValue = unitMap[unit];
     if (unitValue === undefined) {
         throw new Error('This unit doesn\'t exists, please use the one of the following units' +
@@ -2162,24 +2161,10 @@ var getValueOfUnit = function(unit) {
 };
 
 /**
- * Takes a number of wei and converts it to any other hucer unit.
- *
- * Possible units are:
- *   SI Short   SI Full        Effigy       Other
- * - kwei       femtohucer     babbage
- * - mwei       picohucer      lovelace
- * - gwei       nanohucer      shannon      nano
- * - --         microhucer     szabo        micro
- * - --         millihucer     finney       milli
- * - hucer      --             --
- * - khucer                    --           grand
- * - mhucer
- * - ghucer
- * - thucer
- *
+ * Takes a number of wei and converts it to any other huc unit.
  * @method fromWei
  * @param {Number|String} number can be a number, number string or a HEX of a decimal
- * @param {String} unit the unit to convert to, default hucer
+ * @param {String} unit the unit to convert to, default huc
  * @return {String|Object} When given a BigNumber object it returns one as well, otherwise a number
  */
 var fromWei = function(number, unit) {
@@ -2190,23 +2175,9 @@ var fromWei = function(number, unit) {
 
 /**
  * Takes a number of a unit and converts it to wei.
- *
- * Possible units are:
- *   SI Short   SI Full        Effigy       Other
- * - kwei       femtohucer     babbage
- * - mwei       picohucer      lovelace
- * - gwei       nanohucer      shannon      nano
- * - --         microhucer     szabo        micro
- * - --         millihucer     finney       milli
- * - hucer      --             --
- * - khucer                    --           grand
- * - mhucer
- * - ghucer
- * - thucer
- *
  * @method toWei
  * @param {Number|String|BigNumber} number can be a number, number string or a HEX of a decimal
- * @param {String} unit the unit to convert from, default hucer
+ * @param {String} unit the unit to convert from, default huc
  * @return {String|Object} When given a BigNumber object it returns one as well, otherwise a number
  */
 var toWei = function(number, unit) {
@@ -2219,8 +2190,8 @@ var toWei = function(number, unit) {
  * Takes an input and transforms it into an bignumber
  *
  * @method toBigNumber
- * @param {Number|String|BigNumber} a number, string, HEX string or BigNumber
  * @return {BigNumber} BigNumber
+ * @param number
  */
 var toBigNumber = function(number) {
     /*jshint maxcomplexity:5 */
@@ -2240,8 +2211,8 @@ var toBigNumber = function(number) {
  * Takes and input transforms it into bignumber and if it is negative value, into two's complement
  *
  * @method toTwosComplement
- * @param {Number|String|BigNumber}
  * @return {BigNumber}
+ * @param number
  */
 var toTwosComplement = function(number) {
     var bigNumber = toBigNumber(number).round();
@@ -2357,8 +2328,8 @@ var toAddress = function(address) {
  * Returns true if object is BigNumber, otherwise false
  *
  * @method isBigNumber
- * @param {Object}
  * @return {Boolean}
+ * @param object
  */
 var isBigNumber = function(object) {
     return object instanceof BigNumber ||
@@ -2370,8 +2341,8 @@ var isBigNumber = function(object) {
  * Returns true if object is string, otherwise false
  *
  * @method isString
- * @param {Object}
  * @return {Boolean}
+ * @param object
  */
 var isString = function(object) {
     return typeof object === 'string' ||
@@ -2382,8 +2353,8 @@ var isString = function(object) {
  * Returns true if object is function, otherwise false
  *
  * @method isFunction
- * @param {Object}
  * @return {Boolean}
+ * @param object
  */
 var isFunction = function(object) {
     return typeof object === 'function';
@@ -2393,8 +2364,8 @@ var isFunction = function(object) {
  * Returns true if object is Objet, otherwise false
  *
  * @method isObject
- * @param {Object}
  * @return {Boolean}
+ * @param object
  */
 var isObject = function(object) {
     return object !== null && !(Array.isArray(object)) && typeof object ===
@@ -2405,8 +2376,8 @@ var isObject = function(object) {
  * Returns true if object is boolean, otherwise false
  *
  * @method isBoolean
- * @param {Object}
  * @return {Boolean}
+ * @param object
  */
 var isBoolean = function(object) {
     return typeof object === 'boolean';
@@ -2416,8 +2387,8 @@ var isBoolean = function(object) {
  * Returns true if object is array, otherwise false
  *
  * @method isArray
- * @param {Object}
  * @return {Boolean}
+ * @param object
  */
 var isArray = function(object) {
     return Array.isArray(object);
@@ -2427,8 +2398,8 @@ var isArray = function(object) {
  * Returns true if given string is valid json object
  *
  * @method isJson
- * @param {String}
  * @return {Boolean}
+ * @param str
  */
 var isJson = function(str) {
     try {
@@ -2442,8 +2413,8 @@ var isJson = function(str) {
  * Returns true if given string is a valid Happyuc block header bloom.
  *
  * @method isBloom
- * @param {String} hex encoded bloom filter
  * @return {Boolean}
+ * @param bloom
  */
 var isBloom = function(bloom) {
     if (!/^(0x)?[0-9a-f]{512}$/i.test(bloom)) {
@@ -2459,8 +2430,8 @@ var isBloom = function(bloom) {
  * Returns true if given string is a valid log topic.
  *
  * @method isTopic
- * @param {String} hex encoded topic
  * @return {Boolean}
+ * @param topic
  */
 var isTopic = function(topic) {
     if (!/^(0x)?[0-9a-f]{64}$/i.test(topic)) {
@@ -2473,36 +2444,36 @@ var isTopic = function(topic) {
 };
 
 module.exports = {
-    padLeft: padLeft,
-    padRight: padRight,
-    toHex: toHex,
-    toDecimal: toDecimal,
-    fromDecimal: fromDecimal,
-    toUtf8: toUtf8,
-    toAscii: toAscii,
-    fromUtf8: fromUtf8,
-    fromAscii: fromAscii,
+    padLeft            : padLeft,
+    padRight           : padRight,
+    toHex              : toHex,
+    toDecimal          : toDecimal,
+    fromDecimal        : fromDecimal,
+    toUtf8             : toUtf8,
+    toAscii            : toAscii,
+    fromUtf8           : fromUtf8,
+    fromAscii          : fromAscii,
     transformToFullName: transformToFullName,
-    extractDisplayName: extractDisplayName,
-    extractTypeName: extractTypeName,
-    toWei: toWei,
-    fromWei: fromWei,
-    toBigNumber: toBigNumber,
-    toTwosComplement: toTwosComplement,
-    toAddress: toAddress,
-    isBigNumber: isBigNumber,
-    isStrictAddress: isStrictAddress,
-    isAddress: isAddress,
-    isChecksumAddress: isChecksumAddress,
-    toChecksumAddress: toChecksumAddress,
-    isFunction: isFunction,
-    isString: isString,
-    isObject: isObject,
-    isBoolean: isBoolean,
-    isArray: isArray,
-    isJson: isJson,
-    isBloom: isBloom,
-    isTopic: isTopic,
+    extractDisplayName : extractDisplayName,
+    extractTypeName    : extractTypeName,
+    toWei              : toWei,
+    fromWei            : fromWei,
+    toBigNumber        : toBigNumber,
+    toTwosComplement   : toTwosComplement,
+    toAddress          : toAddress,
+    isBigNumber        : isBigNumber,
+    isStrictAddress    : isStrictAddress,
+    isAddress          : isAddress,
+    isChecksumAddress  : isChecksumAddress,
+    toChecksumAddress  : toChecksumAddress,
+    isFunction         : isFunction,
+    isString           : isString,
+    isObject           : isObject,
+    isBoolean          : isBoolean,
+    isArray            : isArray,
+    isJson             : isJson,
+    isBloom            : isBloom,
+    isTopic            : isTopic,
 };
 
 },{"./sha3.js":19,"bignumber.js":"bignumber.js","utf8":85}],21:[function(require,module,exports){
