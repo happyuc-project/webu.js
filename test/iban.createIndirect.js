@@ -3,7 +3,7 @@ var Iban = require('../lib/webu/iban.js');
 var assert = chai.assert;
 
 var tests = [
-    { institution: 'XREG', identifier: 'GAVOFYORK', expected: 'XE81HUCXREGGAVOFYORK'}
+    { institution: 'XREG', identifier: 'GAVOFYORK', expected: 'XE81ETHXREGGAVOFYORK'}
 ];
 
 describe('lib/webu/iban', function () {

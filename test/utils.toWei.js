@@ -26,13 +26,13 @@ describe('lib/utils/utils', function () {
             assert.equal(utils.toWei(1, 'vhuc'),   '1000000000000000000000000000000000000000000000000000');
             assert.equal(utils.toWei(1, 'uhuc'),   '1000000000000000000000000000000000000000000000000000000');
 
-            // assert.equal(utils.toWei(1, 'kwei'),    utils.toWei(1, 'femtohucer'));
-            // assert.equal(utils.toWei(1, 'szabo'),   utils.toWei(1, 'microhucer'));
-            // assert.equal(utils.toWei(1, 'finney'),  utils.toWei(1, 'millihucer'));
-            // assert.equal(utils.toWei(1, 'milli'),    utils.toWei(1, 'millihucer'));
-            // assert.equal(utils.toWei(1, 'milli'),    utils.toWei(1000, 'micro'));
+            // assert.equal(utils.toWei(1, 'kwei'),     utils.toWei(1,    'femtohucer'));
+            // assert.equal(utils.toWei(1, 'szabo'),    utils.toWei(1,    'microhucer'));
+            // assert.equal(utils.toWei(1, 'finney'),   utils.toWei(1,    'millihucer'));
+            // assert.equal(utils.toWei(1, 'milli'),    utils.toWei(1,    'millihucer'));
+            // assert.equal(utils.toWei(1, 'milli'),    utils.toWei(1000, 'micro'     ));
 
-            assert.throws(function () {utils.toWei(1, 'wei');}, Error);
+            assert.throws(function () { utils.toWei(1, 'hucer');}, Error);
         });
     });
 });

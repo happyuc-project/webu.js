@@ -1902,16 +1902,17 @@ var unitMap = {
      'pwei': '1000000000000000',
       'huc': '1000000000000000000',
      'khuc': '1000000000000000000000',
-     'ghuc': '1000000000000000000000000',
-     'thuc': '1000000000000000000000000000',
-     'phuc': '1000000000000000000000000000000',
-     'ehuc': '1000000000000000000000000000000000',
-     'zhuc': '1000000000000000000000000000000000000',
-     'yhuc': '1000000000000000000000000000000000000000',
-     'nhuc': '1000000000000000000000000000000000000000000',
-     'dhuc': '1000000000000000000000000000000000000000000000',
-     'vhuc': '1000000000000000000000000000000000000000000000000',
-     'uhuc': '1000000000000000000000000000000000000000000000000000',
+     'mhuc': '1000000000000000000000000',
+     'ghuc': '1000000000000000000000000000',
+     'thuc': '1000000000000000000000000000000',
+     'phuc': '1000000000000000000000000000000000',
+     'ehuc': '1000000000000000000000000000000000000',
+     'zhuc': '1000000000000000000000000000000000000000',
+     'yhuc': '1000000000000000000000000000000000000000000',
+     'nhuc': '1000000000000000000000000000000000000000000000',
+     'dhuc': '1000000000000000000000000000000000000000000000000',
+     'vhuc': '1000000000000000000000000000000000000000000000000000',
+     'uhuc': '1000000000000000000000000000000000000000000000000000000',
 };
 
 /**
@@ -2152,7 +2153,7 @@ var toHex = function(val) {
  * @throws error if the unit is not correct:w
  */
 var getValueOfUnit = function(unit) {
-    unit = unit ? unit.toLowerCase() : 'hucer';
+    unit = unit ? unit.toLowerCase() : 'huc';
     var unitValue = unitMap[unit];
     if (unitValue === undefined) {
         throw new Error('This unit doesn\'t exists, please use the one of the following units' +
@@ -2184,7 +2185,6 @@ var getValueOfUnit = function(unit) {
  */
 var fromWei = function(number, unit) {
     var returnValue = toBigNumber(number).dividedBy(getValueOfUnit(unit));
-
     return isBigNumber(number) ? returnValue : returnValue.toString(10);
 };
 
@@ -2211,7 +2211,6 @@ var fromWei = function(number, unit) {
  */
 var toWei = function(number, unit) {
     var returnValue = toBigNumber(number).times(getValueOfUnit(unit));
-
     return isBigNumber(number) ? returnValue : returnValue.toString(10);
 };
 
@@ -2232,7 +2231,6 @@ var toBigNumber = function(number) {
         (number.indexOf('0x') === 0 || number.indexOf('-0x') === 0)) {
         return new BigNumber(number.replace('0x', ''), 16);
     }
-
     return new BigNumber(number.toString(10), 10);
 };
 
@@ -2507,7 +2505,7 @@ module.exports = {
 
 },{"./sha3.js":19,"bignumber.js":"bignumber.js","utf8":85}],21:[function(require,module,exports){
 module.exports={
-    "version": "1.0.0"
+    "version": "1.0.1"
 }
 
 },{}],22:[function(require,module,exports){
@@ -4583,7 +4581,7 @@ Iban.fromAddress = function(address) {
 Iban.fromBban = function(bban) {
     var countryCode = 'XE';
 
-    var remainder = mod9710(iso13616Prepare(countryCode + '00' + bban));
+    var remainder  = mod9710(iso13616Prepare(countryCode + '00' + bban));
     var checkDigit = ('0' + (98 - remainder)).slice(-2);
 
     return new Iban(countryCode + checkDigit + bban);
@@ -4597,7 +4595,7 @@ Iban.fromBban = function(bban) {
  * @return {Iban} the IBAN object
  */
 Iban.createIndirect = function(options) {
-    return Iban.fromBban('HUC' + options.institution + options.identifier);
+    return Iban.fromBban('ETH' + options.institution + options.identifier);
 };
 
 /**
@@ -4619,7 +4617,7 @@ Iban.isValid = function(iban) {
  * @returns {Boolean} true if it is, otherwise false
  */
 Iban.prototype.isValid = function() {
-    return /^XE[0-9]{2}(HUC[0-9A-Z]{13}|[0-9A-Z]{30,31})$/.test(this._iban) &&
+    return /^XE[0-9]{2}(ETH[0-9A-Z]{13}|[0-9A-Z]{30,31})$/.test(this._iban) &&
         mod9710(iso13616Prepare(this._iban)) === 1;
 };
 

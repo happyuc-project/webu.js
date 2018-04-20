@@ -1,7 +1,7 @@
 {
   "name": "webu",
   "namespace": "happyuc-project",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Happyuc Compatible JavaScript API",
   "main": [
     "./dist/webu.js",

@@ -1,7 +1,7 @@
-var chai = require('chai');
+var chai   = require('chai');
 var assert = chai.assert;
-var Webu = require('../index');
-var webu = new Webu();
+var Webu   = require('../index');
+var webu   = new Webu();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
 var method = 'listening';

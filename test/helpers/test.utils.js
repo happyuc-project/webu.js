@@ -6,7 +6,7 @@ var FakeHttpProvider = require('./FakeHttpProvider');
 
 var methodExists = function (object, method) {
     it('should have method ' + method + ' implemented', function() {
-        //webu.setProvider(null);
+        // webu.setProvider(null);
         assert.equal('function', typeof object[method], 'method ' + method + ' is not implemented');
     });
 };
@@ -14,7 +14,7 @@ var methodExists = function (object, method) {
 var propertyExists = function (object, property) {
     it('should have property ' + property + ' implemented', function() {
         // set dummy providor, to prevent error
-        //webu.setProvider(new FakeHttpProvider());
+        // webu.setProvider(new FakeHttpProvider());
         assert.notEqual('undefined', typeof object[property], 'property ' + property + ' is not implemented');
     });
 };
