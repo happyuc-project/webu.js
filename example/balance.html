@@ -10,16 +10,19 @@
         var webu = new Webu();
         webu.setProvider(new webu.providers.HttpProvider());
 
-        function watchBalance() {
-            var coinbase = webu.huc.coinbase;
+        function watchBalance() 
+        {
+            var coinbase            = webu.huc.coinbase;
+            var originalBalance     = webu.huc.getBalance(coinbase).toNumber();
+            var originalBlockNumber = webu.huc.getBlockNumber();
 
-            var originalBalance = webu.huc.getBalance(coinbase).toNumber();
             document.getElementById('coinbase').innerText = 'coinbase: ' + coinbase;
-            document.getElementById('original').innerText = ' original balance: ' + originalBalance + '    watching...';
+            document.getElementById('original').innerText = 'original BlockNumber: ' + originalBlockNumber + ' Balance: ' + webu.fromWei(originalBalance , "huc") + '    watching...';
 
             webu.huc.filter('latest').watch(function() {
-                var currentBalance = webu.huc.getBalance(coinbase).toNumber();
-                document.getElementById('current').innerText = 'current: ' + currentBalance;
+                var currentBalance     = webu.huc.getBalance(coinbase).toNumber();
+                var currentBlockNumber = webu.huc.getBlockNumber();
+                document.getElementById('current').innerText = 'current BlockNumber:' + currentBlockNumber + ' Balance: ' + webu.fromWei(currentBalance , "huc");
                 document.getElementById('diff').innerText = 'diff:    ' + (currentBalance - originalBalance);
             });
         }
