@@ -2169,7 +2169,6 @@ var getValueOfUnit = function(unit) {
  */
 var fromWei = function(number, unit) {
     var returnValue = toBigNumber(number).dividedBy(getValueOfUnit(unit));
-
     return isBigNumber(number) ? returnValue : returnValue.toString(10);
 };
 
@@ -2182,7 +2181,6 @@ var fromWei = function(number, unit) {
  */
 var toWei = function(number, unit) {
     var returnValue = toBigNumber(number).times(getValueOfUnit(unit));
-
     return isBigNumber(number) ? returnValue : returnValue.toString(10);
 };
 
@@ -2203,7 +2201,6 @@ var toBigNumber = function(number) {
         (number.indexOf('0x') === 0 || number.indexOf('-0x') === 0)) {
         return new BigNumber(number.replace('0x', ''), 16);
     }
-
     return new BigNumber(number.toString(10), 10);
 };
 
@@ -2532,7 +2529,7 @@ function Webu(provider) {
     this._requestManager = new RequestManager(provider);
     this.currentProvider = provider;
     this.huc = new Huc(this);
-    this.db = new DB(this);
+    this.db  = new DB(this);
     this.shh = new Shh(this);
     this.net = new Net(this);
     this.personal = new Personal(this);
@@ -2543,7 +2540,7 @@ function Webu(provider) {
     };
     this.providers = {
         HttpProvider: HttpProvider,
-        IpcProvider: IpcProvider,
+        IpcProvider : IpcProvider,
     };
     this._extend = extend(this);
     this._extend({
@@ -4551,7 +4548,7 @@ Iban.fromAddress = function(address) {
  * @returns {Iban} the IBAN object
  */
 Iban.fromBban = function(bban) {
-    var countryCode = 'XE';
+    var countryCode = 'XU';
 
     var remainder = mod9710(iso13616Prepare(countryCode + '00' + bban));
     var checkDigit = ('0' + (98 - remainder)).slice(-2);
@@ -4589,7 +4586,7 @@ Iban.isValid = function(iban) {
  * @returns {Boolean} true if it is, otherwise false
  */
 Iban.prototype.isValid = function() {
-    return /^XE[0-9]{2}(HUC[0-9A-Z]{13}|[0-9A-Z]{30,31})$/.test(this._iban) && mod9710(iso13616Prepare(this._iban)) === 1;
+    return /^XU[0-9]{2}(HUC[0-9A-Z]{13}|[0-9A-Z]{30,31})$/.test(this._iban) && mod9710(iso13616Prepare(this._iban)) === 1;
 };
 
 /**
@@ -6581,8 +6578,7 @@ RequestManager.prototype.poll = function() {
 
     var self = this;
     this.provider.sendAsync(payload, function(error, results) {
-
-
+        
         // TODO: console log?
         if (error) {
             return;

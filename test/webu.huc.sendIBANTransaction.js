@@ -1,17 +1,17 @@
-var chai = require('chai');
+var chai   = require('chai');
 var assert = chai.assert;
-var Webu = require('../index');
-var webu = new Webu();
+var Webu   = require('../index');
+var webu   = new Webu();
 var FakeHttpProvider2 = require('./helpers/FakeHttpProvider2');
 
 describe('webu.huc.sendIBANTransaction', function () {
     it('should send transaction', function () {
 
-        var iban = 'XE81HUCXREGGAVOFYORK';
-        var address =   '0x1234567890123456789012345678901234500000';
+        var iban      = 'XE81ETHXREGGAVOFYORK';
+        var address   = '0x1234567890123456789012345678901234500000';
         var exAddress = '0x1234567890123456789012345678901234567890'
 
-        var provider = new FakeHttpProvider2();
+        var provider  = new FakeHttpProvider2();
         webu.setProvider(provider);
         webu.reset();
 
@@ -43,7 +43,6 @@ describe('webu.huc.sendIBANTransaction', function () {
         });
 
         webu.huc.sendIBANTransaction(address, iban, 10000);
-
     });
 });
 

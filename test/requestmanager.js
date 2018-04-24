@@ -1,12 +1,13 @@
-var chai = require('chai');
+var chai   = require('chai');
 var assert = chai.assert;
-var RequestManager = require('../lib/webu/requestmanager');
+var RequestManager   = require('../lib/webu/requestmanager');
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
 // TODO: handling errors!
 // TODO: validation of params!
 
 describe('lib/webu/requestmanager', function () {
+    
     describe('send', function () {
         it('should return expected result synchronously', function () {
             var provider = new FakeHttpProvider();
@@ -24,7 +25,7 @@ describe('lib/webu/requestmanager', function () {
 
         it('should return expected result asynchronously', function (done) {
             var provider = new FakeHttpProvider();
-            var manager = new RequestManager(provider);
+            var manager  = new RequestManager(provider);
             var expected = 'hello_world';
             provider.injectResult(expected);
 

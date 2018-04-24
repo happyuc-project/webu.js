@@ -13,7 +13,7 @@ describe('lib/webu/batch', function () {
             webu.setProvider(provider);
             webu.reset();
 
-            var result = '0x126';
+            var result  = '0x126';
             var result2 = '0x127';
             provider.injectBatchResults([result, result2]);
 
@@ -55,7 +55,7 @@ describe('lib/webu/batch', function () {
             var result2 = '0xb';
             provider.injectBatchResults([result, result2]);
 
-            var counter = 0;
+            var counter  = 0;
             var callback = function (err, r) {
                 counter++;
                 assert.isArray(result, r);
@@ -105,7 +105,7 @@ describe('lib/webu/batch', function () {
 
 
             var address = '0x1000000000000000000000000000000000000001';
-            var result = '0x126';
+            var result  = '0x126';
             var result2 = '0x0000000000000000000000000000000000000000000000000000000000000123';
 
             var counter = 0;
@@ -124,11 +124,11 @@ describe('lib/webu/batch', function () {
                 var first = payload[0];
                 var second = payload[1];
 
-                assert.equal(first.method, 'huc_getBalance');
+                assert.equal(first.method,  'huc_getBalance');
                 assert.deepEqual(first.params, ['0x0000000000000000000000000000000000000000', 'latest']);
                 assert.equal(second.method, 'huc_call');
                 assert.deepEqual(second.params, [{
-                    'to': '0x1000000000000000000000000000000000000001',
+                    'to'  : '0x1000000000000000000000000000000000000001',
                     'data': '0xe3d670d70000000000000000000000001000000000000000000000000000000000000001'
                 }]);
             });
@@ -162,7 +162,7 @@ describe('lib/webu/batch', function () {
 
 
             var address = '0x1000000000000000000000000000000000000001';
-            var result = 'Something went wrong';
+            var result  = 'Something went wrong';
             var result2 = 'Something went wrong 2';
 
 

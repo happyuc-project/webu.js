@@ -1,8 +1,8 @@
-var FakeHttpProvider = require('./FakeHttpProvider');
+var FakeHttpProvider  = require('./FakeHttpProvider');
 
 var FakeHttpProvider2 = function () {
-    this.counter = 0;
-    this.resultList = [];
+    this.counter      = 0;
+    this.resultList   = [];
 };
 
 FakeHttpProvider2.prototype = new FakeHttpProvider();

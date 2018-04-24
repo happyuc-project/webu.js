@@ -1,15 +1,15 @@
-var chai = require('chai');
+var chai   = require('chai');
 var assert = chai.assert;
-var Webu = require('../index');
-var webu = new Webu();
+var Webu   = require('../index');
+var webu   = new Webu();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
 var method = 'coinbase';
 
 var tests = [{
-    result: '0x47d33b27bb249a2dbab4c0612bf9caf4c1950855',
+    result         : '0x47d33b27bb249a2dbab4c0612bf9caf4c1950855',
     formattedResult: '0x47d33b27bb249a2dbab4c0612bf9caf4c1950855',
-    call: 'huc_'+ method
+    call           : 'huc_'+ method
 }];
 
 describe('webu.huc', function () {
