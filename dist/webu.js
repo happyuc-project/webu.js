@@ -2478,7 +2478,7 @@ module.exports = {
 
 },{"./sha3.js":19,"bignumber.js":"bignumber.js","utf8":85}],21:[function(require,module,exports){
 module.exports={
-    "version": "1.0.0"
+    "version": "1.0.5"
 }
 
 },{}],22:[function(require,module,exports){
@@ -3708,8 +3708,8 @@ var Iban = require('./iban');
  * Should the format output to a big number
  *
  * @method outputBigNumberFormatter
- * @param {String|Number|BigNumber}
  * @returns {BigNumber} object
+ * @param number
  */
 var outputBigNumberFormatter = function(number) {
     return utils.toBigNumber(number);
@@ -3740,8 +3740,8 @@ var inputBlockNumberFormatter = function(blockNumber) {
  * Formats the input of a transaction and converts all values to HEX
  *
  * @method inputCallFormatter
- * @param {Object} transaction options
  * @returns object
+ * @param options
  */
 var inputCallFormatter = function(options) {
 
@@ -3751,7 +3751,9 @@ var inputCallFormatter = function(options) {
         options.from = inputAddressFormatter(options.from);
     }
 
+    console.log(options.to);
     if (options.to) { // it might be contract creation
+        console.log("??????????????????????");
         options.to = inputAddressFormatter(options.to);
     }
 
@@ -3768,15 +3770,17 @@ var inputCallFormatter = function(options) {
  * Formats the input of a transaction and converts all values to HEX
  *
  * @method inputTransactionFormatter
- * @param {Object} transaction options
  * @returns object
+ * @param options
  */
 var inputTransactionFormatter = function(options) {
 
     options.from = options.from || config.defaultAccount;
     options.from = inputAddressFormatter(options.from);
 
+    console.log(options.to);
     if (options.to) { // it might be contract creation
+        console.log("??????????????????????");
         options.to = inputAddressFormatter(options.to);
     }
 
@@ -3884,8 +3888,8 @@ var outputLogFormatter = function(log) {
  * Formats the input of a whisper post and converts all values to HEX
  *
  * @method inputPostFormatter
- * @param {Object} transaction object
  * @returns {Object}
+ * @param post
  */
 var inputPostFormatter = function(post) {
 
@@ -3912,8 +3916,8 @@ var inputPostFormatter = function(post) {
  * Formats the output of a received post message
  *
  * @method outputPostFormatter
- * @param {Object}
  * @returns {Object}
+ * @param post
  */
 var outputPostFormatter = function(post) {
 
@@ -4257,7 +4261,7 @@ SolidityFunction.prototype.execute = function() {
  * Should be called to attach function to contract
  *
  * @method attachToContract
- * @param {Contract}
+ * @param contract
  */
 SolidityFunction.prototype.attachToContract = function(contract) {
     var execute = this.execute.bind(this);
@@ -4590,8 +4594,7 @@ Iban.isValid = function(iban) {
  * @returns {Boolean} true if it is, otherwise false
  */
 Iban.prototype.isValid = function() {
-    return /^XE[0-9]{2}(HUC[0-9A-Z]{13}|[0-9A-Z]{30,31})$/.test(this._iban) &&
-        mod9710(iso13616Prepare(this._iban)) === 1;
+    return /^XE[0-9]{2}(HUC[0-9A-Z]{13}|[0-9A-Z]{30,31})$/.test(this._iban) && mod9710(iso13616Prepare(this._iban)) === 1;
 };
 
 /**
@@ -5037,6 +5040,7 @@ Method.prototype.extractCallback = function(args) {
  * @method validateArgs
  * @param {Array} arguments
  * @throws {Error} if it is not
+ * @param args
  */
 Method.prototype.validateArgs = function(args) {
     if (args.length !== this.params) {
@@ -5048,8 +5052,8 @@ Method.prototype.validateArgs = function(args) {
  * Should be called to format input args of method
  *
  * @method formatInput
- * @param {Array}
  * @return {Array}
+ * @param args
  */
 Method.prototype.formatInput = function(args) {
     if (!this.inputFormatter) {
@@ -5065,8 +5069,8 @@ Method.prototype.formatInput = function(args) {
  * Should be called to format output(result) of method
  *
  * @method formatOutput
- * @param {Object}
  * @return {Object}
+ * @param result
  */
 Method.prototype.formatOutput = function(result) {
     return this.outputFormatter && result ?
@@ -6753,6 +6757,7 @@ var exchangeAbi = require('../contracts/SmartExchange.json');
  * Should be used to make Iban transfer
  *
  * @method transfer
+ * @param huc
  * @param {String} from
  * @param {String} to iban
  * @param {Value} value to be tranfered
@@ -6783,6 +6788,7 @@ var transfer = function(huc, from, to, value, callback) {
  * Should be used to transfer funds to certain address
  *
  * @method transferToAddress
+ * @param huc
  * @param {String} from
  * @param {String} to
  * @param {Value} value to be tranfered
@@ -6800,6 +6806,7 @@ var transferToAddress = function(huc, from, to, value, callback) {
  * Should be used to deposit funds to generic Exchange contract (must implement deposit(bytes32) method!)
  *
  * @method deposit
+ * @param huc
  * @param {String} from
  * @param {String} to
  * @param {Value} value to be transfered
@@ -6807,8 +6814,7 @@ var transferToAddress = function(huc, from, to, value, callback) {
  * @param {Function} callback, callback
  */
 var deposit = function(huc, from, to, value, client, callback) {
-    var abi = exchangeAbi;
-    return huc.contract(abi).at(to).deposit(client, {
+    return huc.contract(exchangeAbi).at(to).deposit(client, {
         from: from,
         value: value,
     }, callback);
