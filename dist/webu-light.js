@@ -2478,7 +2478,7 @@ module.exports = {
 
 },{"./sha3.js":19,"bignumber.js":"bignumber.js","utf8":85}],21:[function(require,module,exports){
 module.exports={
-    "version": "1.0.5"
+    "version": "1.0.6"
 }
 
 },{}],22:[function(require,module,exports){
@@ -2827,7 +2827,7 @@ var AllEvents = require('./allevents');
  *
  * @method encodeConstructorParams
  * @param {Array} abi
- * @param {Array} constructor params
+ * @param params
  */
 var encodeConstructorParams = function(abi, params) {
     return abi.filter(function(json) {
@@ -2847,7 +2847,6 @@ var encodeConstructorParams = function(abi, params) {
  *
  * @method addFunctionsToContract
  * @param {Contract} contract
- * @param {Array} abi
  */
 var addFunctionsToContract = function(contract) {
     contract.abi.filter(function(json) {
@@ -2864,7 +2863,6 @@ var addFunctionsToContract = function(contract) {
  *
  * @method addEventsToContract
  * @param {Contract} contract
- * @param {Array} abi
  */
 var addEventsToContract = function(contract) {
     var events = contract.abi.filter(function(json) {
@@ -2892,7 +2890,7 @@ var addEventsToContract = function(contract) {
  * @returns {Undefined}
  */
 var checkForContractAddress = function(contract, callback) {
-    var count = 0,
+    var count         = 0,
         callbackFired = false;
 
     // wait for receipt
@@ -2916,11 +2914,13 @@ var checkForContractAddress = function(contract, callback) {
 
             } else {
 
-                contract._huc.getTransactionReceipt(contract.transactionHash,
+                contract._huc.getTransactionReceipt(
+                    contract.transactionHash,
                     function(e, receipt) {
                         if (receipt && receipt.blockHash && !callbackFired) {
 
-                            contract._huc.getCode(receipt.contractAddress,
+                            contract._huc.getCode(
+                                receipt.contractAddress,
                                 function(e, code) {
                                     /*jshint maxcomplexity: 6 */
 
@@ -2965,6 +2965,7 @@ var checkForContractAddress = function(contract, callback) {
  * Should be called to create new ContractFactory instance
  *
  * @method ContractFactory
+ * @param huc
  * @param {Array} abi
  */
 var ContractFactory = function(huc, abi) {
@@ -2975,10 +2976,6 @@ var ContractFactory = function(huc, abi) {
      * Should be called to create new contract on a blockchain
      *
      * @method new
-     * @param {Any} contract constructor param1 (optional)
-     * @param {Any} contract constructor param2 (optional)
-     * @param {Object} contract transaction object (required)
-     * @param {Function} callback
      * @returns {Contract} returns contract instance
      */
     this.new = function() {
@@ -3011,8 +3008,7 @@ var ContractFactory = function(huc, abi) {
             }
         }
 
-        var bytes = encodeConstructorParams(this.abi, args);
-        options.data += bytes;
+        options.data += encodeConstructorParams(this.abi, args);
 
         if (callback) {
 
@@ -3031,9 +3027,8 @@ var ContractFactory = function(huc, abi) {
                 }
             });
         } else {
-            var hash = this.huc.sendTransaction(options);
             // add the transaction hash
-            contract.transactionHash = hash;
+            contract.transactionHash = this.huc.sendTransaction(options);
             checkForContractAddress(contract);
         }
 
@@ -3058,7 +3053,7 @@ var ContractFactory = function(huc, abi) {
  * Should be called to get access to existing contract on a blockchain
  *
  * @method at
- * @param {Address} contract address (required)
+ * @param address
  * @param {Function} callback {optional)
  * @returns {Contract} returns contract if no callback was passed,
  * otherwise calls callback function (err, contract)
@@ -3091,8 +3086,7 @@ ContractFactory.prototype.getData = function() {
         options = args.pop();
     }
 
-    var bytes = encodeConstructorParams(this.abi, args);
-    options.data += bytes;
+    options.data += encodeConstructorParams(this.abi, args);
 
     return options.data;
 };
@@ -3101,8 +3095,9 @@ ContractFactory.prototype.getData = function() {
  * Should be called to create new contract instance
  *
  * @method Contract
+ * @param huc
  * @param {Array} abi
- * @param {Address} contract address
+ * @param address
  */
 var Contract = function(huc, abi, address) {
     this._huc = huc;
@@ -5568,8 +5563,7 @@ var properties = function() {
 };
 
 Huc.prototype.contract = function(abi) {
-    var factory = new Contract(this, abi);
-    return factory;
+    return new Contract(this, abi);
 };
 
 Huc.prototype.filter = function(
