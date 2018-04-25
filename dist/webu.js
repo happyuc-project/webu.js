@@ -1779,13 +1779,13 @@ if (typeof XMLHttpRequest === 'undefined') {
 var BigNumber = require('bignumber.js');
 
 var HUC_UNITS = [
-     'wei',
+    'wei',
     'kwei',
     'mwei',
     'gwei',
     'twei',
     'pwei',
-     'huc',
+    'huc',
     'khuc',
     'mhuc',
     'ghuc',
@@ -1801,15 +1801,14 @@ var HUC_UNITS = [
 ];
 
 module.exports = {
-    HUC_PADDING: 32,
-    HUC_SIGNATURE_LENGTH: 4,
-    HUC_UNITS: HUC_UNITS,
+    HUC_PADDING                : 32,
+    HUC_SIGNATURE_LENGTH       : 4,
+    HUC_UNITS                  : HUC_UNITS,
     HUC_BIGNUMBER_ROUNDING_MODE: {ROUNDING_MODE: BigNumber.ROUND_DOWN},
-    HUC_POLLING_TIMEOUT: 1000 / 2,
-    defaultBlock: 'latest',
-    defaultAccount: undefined,
+    HUC_POLLING_TIMEOUT        : 1000 / 2,
+    defaultBlock               : 'latest',
+    defaultAccount             : undefined,
 };
-
 
 },{"bignumber.js":"bignumber.js"}],19:[function(require,module,exports){
 /*
@@ -2267,10 +2266,8 @@ var isChecksumAddress = function(address) {
 
     for (var i = 0; i < 40; i++) {
         // the nth letter should be uppercase if the nth digit of casemap is 1
-        if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !==
-            address[i]) ||
-            (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !==
-                address[i])) {
+        if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) ||
+            (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
             return false;
         }
     }
@@ -3736,16 +3733,12 @@ var inputBlockNumberFormatter = function(blockNumber) {
  * @param options
  */
 var inputCallFormatter = function(options) {
-
     options.from = options.from || config.defaultAccount;
-
     if (options.from) {
         options.from = inputAddressFormatter(options.from);
     }
 
-    console.log(options.to);
     if (options.to) { // it might be contract creation
-        console.log("??????????????????????");
         options.to = inputAddressFormatter(options.to);
     }
 
@@ -3766,13 +3759,10 @@ var inputCallFormatter = function(options) {
  * @param options
  */
 var inputTransactionFormatter = function(options) {
-
     options.from = options.from || config.defaultAccount;
     options.from = inputAddressFormatter(options.from);
 
-    console.log(options.to);
     if (options.to) { // it might be contract creation
-        console.log("??????????????????????");
         options.to = inputAddressFormatter(options.to);
     }
 
@@ -3912,7 +3902,6 @@ var inputPostFormatter = function(post) {
  * @param post
  */
 var outputPostFormatter = function(post) {
-
     post.expiry = utils.toDecimal(post.expiry);
     post.sent = utils.toDecimal(post.sent);
     post.ttl = utils.toDecimal(post.ttl);
@@ -3935,7 +3924,7 @@ var outputPostFormatter = function(post) {
     return post;
 };
 
-var inputAddressFormatter = function(address) {
+var inputAddressFormatter = function(address) {;
     var iban = new Iban(address);
     if (iban.isValid() && iban.isDirect()) {
         return '0x' + iban.address();
@@ -5008,6 +4997,7 @@ Method.prototype.setRequestManager = function(rm) {
  * @method getCall
  * @param {Array} arguments
  * @return {String} name of jsonrpc method
+ * @param args
  */
 Method.prototype.getCall = function(args) {
     return utils.isFunction(this.call) ? this.call(args) : this.call;
@@ -5019,6 +5009,7 @@ Method.prototype.getCall = function(args) {
  * @method extractCallback
  * @param {Array} arguments
  * @return {Function|Null} callback, if exists
+ * @param args
  */
 Method.prototype.extractCallback = function(args) {
     if (utils.isFunction(args[args.length - 1])) {
@@ -5065,9 +5056,7 @@ Method.prototype.formatInput = function(args) {
  * @param result
  */
 Method.prototype.formatOutput = function(result) {
-    return this.outputFormatter && result ?
-        this.outputFormatter(result) :
-        result;
+    return this.outputFormatter && result ? this.outputFormatter(result) : result;
 };
 
 /**
@@ -5084,15 +5073,15 @@ Method.prototype.toPayload = function(args) {
     this.validateArgs(params);
 
     return {
-        method: call,
-        params: params,
+        method  : call,
+        params  : params,
         callback: callback,
     };
 };
 
 Method.prototype.attachToObject = function(obj) {
     var func = this.buildCall();
-    func.call = this.call; // TODO!!! that's ugly. filter.js uses it
+    func.call = this.call;
     var name = this.name.split('.');
     if (name.length > 1) {
         obj[name[0]] = obj[name[0]] || {};
@@ -5104,15 +5093,11 @@ Method.prototype.attachToObject = function(obj) {
 
 Method.prototype.buildCall = function() {
     var method = this;
-    // var _name = this.name;
-    // var _call = this.call;
     var send = function() {
-        // console.log(_name + ' : ' + _call);
-        // console.log(arguments);
         var payload = method.toPayload(Array.prototype.slice.call(arguments));
-        // console.log(payload);
         if (payload.callback) {
-            return method.requestManager.sendAsync(payload,
+            return method.requestManager.sendAsync(
+                payload,
                 function(err, result) {
                     payload.callback(err, method.formatOutput(result));
                 });
@@ -5127,7 +5112,7 @@ Method.prototype.buildCall = function() {
  * Should be called to create pure JSONRPC request which can be used in batch request
  *
  * @method request
- * @param {...} params
+ * @param {...} arguments
  * @return {Object} jsonrpc request
  */
 Method.prototype.request = function() {
