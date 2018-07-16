@@ -697,16 +697,12 @@ SolidityCoder.prototype.encodeParams = function(types, params) {
     var dynamicOffset = solidityTypes.reduce(
         function(acc, solidityType, index) {
             var staticPartLength = solidityType.staticPartLength(types[index]);
-            var roundedStaticPartLength = Math.floor((staticPartLength + 31) /
-                32) * 32;
+            var roundedStaticPartLength = Math.floor((staticPartLength + 31) / 32) * 32;
 
-            return acc + (isDynamic(solidityTypes[index], types[index]) ?
-                32 :
-                roundedStaticPartLength);
+            return acc + (isDynamic(solidityTypes[index], types[index]) ? 32 : roundedStaticPartLength);
         }, 0);
 
-    var result = this.encodeMultiWithOffset(types, solidityTypes, encodeds,
-        dynamicOffset);
+    var result = this.encodeMultiWithOffset(types, solidityTypes, encodeds, dynamicOffset);
 
     return result;
 };
@@ -1923,8 +1919,7 @@ var unitMap = {
  * @returns {String} right aligned string
  */
 var padLeft = function(string, chars, sign) {
-    return new Array(chars - string.length + 1).join(sign ? sign : '0') +
-        string;
+    return new Array(chars - string.length + 1).join(sign ? sign : '0') + string;
 };
 
 /**
@@ -1937,8 +1932,7 @@ var padLeft = function(string, chars, sign) {
  * @returns {String} right aligned string
  */
 var padRight = function(string, chars, sign) {
-    return string +
-        (new Array(chars - string.length + 1).join(sign ? sign : '0'));
+    return string + (new Array(chars - string.length + 1).join(sign ? sign : '0'));
 };
 
 /**
@@ -1957,8 +1951,7 @@ var toUtf8 = function(hex) {
     }
     for (; i < l; i += 2) {
         var code = parseInt(hex.substr(i, 2), 16);
-        if (code === 0)
-            break;
+        if (code === 0) break;
         str += String.fromCharCode(code);
     }
 
@@ -1992,7 +1985,7 @@ var toAscii = function(hex) {
  *
  * @method fromUtf8
  * @param str
- * @param {Boolean} allowZero to convert code point zero to 00 instead of end of string
+ * @param {String | Boolean} allowZero to convert code point zero to 00 instead of end of string
  * @returns {String} hex representation of input string
  */
 var fromUtf8 = function(str, allowZero) {
@@ -2061,9 +2054,7 @@ var transformToFullName = function(json) {
 var extractDisplayName = function(name) {
     var stBracket = name.indexOf('(');
     var endBracket = name.indexOf(')');
-    return (stBracket !== -1 && endBracket !== -1) ?
-        name.substr(0, stBracket) :
-        name;
+    return (stBracket !== -1 && endBracket !== -1) ? name.substr(0, stBracket) : name;
 };
 
 /**
@@ -2076,10 +2067,9 @@ var extractDisplayName = function(name) {
 var extractTypeName = function(name) {
     var stBracket = name.indexOf('(');
     var endBracket = name.indexOf(')');
-    return (stBracket !== -1 && endBracket !== -1) ?
-        name.substr(stBracket + 1, endBracket - stBracket - 1).
-            replace(' ', '') :
-        '';
+    return (stBracket !== -1 && endBracket !== -1)
+        ? name.substr(stBracket + 1, endBracket - stBracket - 1).replace(' ', '')
+        : '';
 };
 
 /**
@@ -2130,12 +2120,13 @@ var toHex = function(val) {
 
     // if its a negative number, pass it through fromDecimal
     if (isString(val)) {
-        if (val.indexOf('-0x') === 0)
+        if (val.indexOf('-0x') === 0) {
             return fromDecimal(val);
-        else if (val.indexOf('0x') === 0)
+        } else if (val.indexOf('0x') === 0) {
             return val;
-        else if (!isFinite(val))
+        } else if (!isFinite(val)) {
             return fromUtf8(val, 1);
+        }
     }
 
     return fromDecimal(val);
@@ -2153,8 +2144,7 @@ var getValueOfUnit = function(unit) {
     unit = unit ? unit.toLowerCase() : 'huc';
     var unitValue = unitMap[unit];
     if (unitValue === undefined) {
-        throw new Error('This unit doesn\'t exists, please use the one of the following units' +
-            JSON.stringify(unitMap, null, 2));
+        throw new Error('This unit doesn\'t exists, please use the one of the following units' + JSON.stringify(unitMap, null, 2));
     }
     return new BigNumber(unitValue, 10);
 };
@@ -2213,9 +2203,7 @@ var toBigNumber = function(number) {
 var toTwosComplement = function(number) {
     var bigNumber = toBigNumber(number).round();
     if (bigNumber.lessThan(0)) {
-        return new BigNumber(
-            'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-            16).plus(bigNumber).plus(1);
+        return new BigNumber('ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 16).plus(bigNumber).plus(1);
     }
     return bigNumber;
 };
@@ -2326,9 +2314,7 @@ var toAddress = function(address) {
  * @param object
  */
 var isBigNumber = function(object) {
-    return object instanceof BigNumber ||
-        (object && object.constructor && object.constructor.name ===
-            'BigNumber');
+    return object instanceof BigNumber || (object && object.constructor && object.constructor.name === 'BigNumber');
 };
 
 /**
@@ -2339,8 +2325,7 @@ var isBigNumber = function(object) {
  * @param object
  */
 var isString = function(object) {
-    return typeof object === 'string' ||
-        (object && object.constructor && object.constructor.name === 'String');
+    return typeof object === 'string' || (object && object.constructor && object.constructor.name === 'String');
 };
 
 /**
@@ -2362,8 +2347,7 @@ var isFunction = function(object) {
  * @param object
  */
 var isObject = function(object) {
-    return object !== null && !(Array.isArray(object)) && typeof object ===
-        'object';
+    return object !== null && !(Array.isArray(object)) && typeof object === 'object';
 };
 
 /**
@@ -2472,7 +2456,7 @@ module.exports = {
 
 },{"./sha3.js":19,"bignumber.js":"bignumber.js","utf8":85}],21:[function(require,module,exports){
 module.exports={
-    "version": "1.0.8"
+    "version": "1.0.9"
 }
 
 },{}],22:[function(require,module,exports){
@@ -2562,6 +2546,7 @@ Webu.prototype.reset = function(keepIsSyncing) {
 };
 
 Webu.prototype.BigNumber = BigNumber;
+Webu.prototype.utils = utils;
 Webu.prototype.toHex = utils.toHex;
 Webu.prototype.toAscii = utils.toAscii;
 Webu.prototype.toUtf8 = utils.toUtf8;
@@ -2825,8 +2810,7 @@ var AllEvents = require('./allevents');
  */
 var encodeConstructorParams = function(abi, params) {
     return abi.filter(function(json) {
-        return json.type === 'constructor' && json.inputs.length ===
-            params.length;
+        return json.type === 'constructor' && json.inputs.length === params.length;
     }).map(function(json) {
         return json.inputs.map(function(input) {
             return input.type;
@@ -2859,20 +2843,13 @@ var addFunctionsToContract = function(contract) {
  * @param {Contract} contract
  */
 var addEventsToContract = function(contract) {
-    var events = contract.abi.filter(function(json) {
-        return json.type === 'event';
-    });
+    var events = contract.abi.filter(function(json) { return json.type === 'event'; });
 
-    var All = new AllEvents(contract._huc._requestManager, events,
-        contract.address);
+    var All = new AllEvents(contract._huc._requestManager, events, contract.address);
     All.attachToContract(contract);
 
-    events.map(function(json) {
-        return new SolidityEvent(contract._huc._requestManager, json,
-            contract.address);
-    }).forEach(function(e) {
-        e.attachToContract(contract);
-    });
+    events.map(function(json) { return new SolidityEvent(contract._huc._requestManager, json, contract.address); })
+          .forEach(function(e) { e.attachToContract(contract); });
 };
 
 /**
@@ -2894,20 +2871,15 @@ var checkForContractAddress = function(contract, callback) {
 
             // stop watching after 50 blocks (timeout)
             if (count > 50) {
-
-                filter.stopWatching(function() {
-                });
+                filter.stopWatching(function() { });
                 callbackFired = true;
 
-                if (callback)
-                    callback(new Error(
-                        'Contract transaction couldn\'t be found after 50 blocks'));
-                else
-                    throw new Error(
-                        'Contract transaction couldn\'t be found after 50 blocks');
-
+                if (callback) {
+                    callback(new Error('Contract transaction couldn\'t be found after 50 blocks'));
+                } else {
+                    throw new Error('Contract transaction couldn\'t be found after 50 blocks');
+                }
             } else {
-
                 contract._huc.getTransactionReceipt(
                     contract.transactionHash,
                     function(e, receipt) {
@@ -2916,19 +2888,12 @@ var checkForContractAddress = function(contract, callback) {
                             contract._huc.getCode(
                                 receipt.contractAddress,
                                 function(e, code) {
-                                    /*jshint maxcomplexity: 6 */
+                                    if (callbackFired || !code) return;
 
-                                    if (callbackFired || !code)
-                                        return;
-
-                                    filter.stopWatching(function() {
-                                    });
+                                    filter.stopWatching(function() { });
                                     callbackFired = true;
 
-                                    if (code.length > 3) {
-
-                                        // console.log('Contract code deployed!');
-
+                                    if (code.length > 1) {
                                         contract.address = receipt.contractAddress;
 
                                         // attach events and methods again after we have
@@ -2936,16 +2901,13 @@ var checkForContractAddress = function(contract, callback) {
                                         addEventsToContract(contract);
 
                                         // call callback for the second time
-                                        if (callback)
-                                            callback(null, contract);
-
+                                        if (callback) callback(null, contract);
                                     } else {
-                                        if (callback)
-                                            callback(new Error(
-                                                'The contract code couldn\'t be stored, please check your gas amount.'));
-                                        else
-                                            throw new Error(
-                                                'The contract code couldn\'t be stored, please check your gas amount.');
+                                        if (callback) {
+                                            callback(new Error('The contract code couldn\'t be stored, please check your gas amount.'));
+                                        } else {
+                                            throw new Error('The contract code couldn\'t be stored, please check your gas amount.');
+                                        }
                                     }
                                 });
                         }
@@ -2973,9 +2935,7 @@ var ContractFactory = function(huc, abi) {
      * @returns {Contract} returns contract instance
      */
     this.new = function() {
-        /*jshint maxcomplexity: 7 */
-
-        var contract = new Contract(this.huc, this.abi);
+        var contract = new Contract(this.huc, this.abi, null);
 
         // parse arguments
         var options = {}; // required!
@@ -2993,8 +2953,7 @@ var ContractFactory = function(huc, abi) {
 
         if (options.value > 0) {
             var constructorAbi = abi.filter(function(json) {
-                return json.type === 'constructor' && json.inputs.length ===
-                    args.length;
+                return json.type === 'constructor' && json.inputs.length === args.length;
             })[0] || {};
 
             if (!constructorAbi.payable) {
@@ -3002,7 +2961,9 @@ var ContractFactory = function(huc, abi) {
             }
         }
 
+        console.log("1");
         options.data += encodeConstructorParams(this.abi, args);
+        console.log("2");
 
         if (callback) {
 
@@ -3023,7 +2984,7 @@ var ContractFactory = function(huc, abi) {
         } else {
             // add the transaction hash
             contract.transactionHash = this.huc.sendTransaction(options);
-            checkForContractAddress(contract);
+            checkForContractAddress(contract, null);
         }
 
         return contract;
@@ -3031,17 +2992,6 @@ var ContractFactory = function(huc, abi) {
 
     this.new.getData = this.getData.bind(this);
 };
-
-/**
- * Should be called to create new ContractFactory
- *
- * @method contract
- * @param {Array} abi
- * @returns {ContractFactory} new contract factory
- */
-//var contract = function (abi) {
-//return new ContractFactory(abi);
-//};
 
 /**
  * Should be called to get access to existing contract on a blockchain
@@ -3349,7 +3299,7 @@ SolidityEvent.prototype.execute = function(indexed, options, callback) {
  * Should be used to attach event to contract object
  *
  * @method attachToContract
- * @param {Contract}
+ * @param contract
  */
 SolidityEvent.prototype.attachToContract = function(contract) {
     var execute = this.execute.bind(this);
@@ -3924,7 +3874,7 @@ var outputPostFormatter = function(post) {
     return post;
 };
 
-var inputAddressFormatter = function(address) {;
+var inputAddressFormatter = function(address) {
     var iban = new Iban(address);
     if (iban.isValid() && iban.isDirect()) {
         return '0x' + iban.address();
@@ -3995,7 +3945,7 @@ module.exports = {
 var coder = require('../solidity/coder');
 var utils = require('../utils/utils');
 var errors = require('./errors');
-var formatters = require('./formatters');
+var formatter = require('./formatters');
 var sha3 = require('../utils/sha3');
 
 /**
@@ -4034,6 +3984,7 @@ SolidityFunction.prototype.extractDefaultBlock = function(args) {
  * @method validateArgs
  * @param {Array} arguments
  * @throws {Error} if it is not
+ * @param args
  */
 SolidityFunction.prototype.validateArgs = function(args) {
     var inputArgs = args.filter(function(a) {
@@ -4052,19 +4003,16 @@ SolidityFunction.prototype.validateArgs = function(args) {
  * Should be used to create payload from arguments
  *
  * @method toPayload
- * @param {Array} solidity function params
- * @param {Object} optional payload options
+ * @param args
  */
 SolidityFunction.prototype.toPayload = function(args) {
     var options = {};
-    if (args.length > this._inputTypes.length &&
-        utils.isObject(args[args.length - 1])) {
+    if (args.length > this._inputTypes.length && utils.isObject(args[args.length - 1])) {
         options = args[args.length - 1];
     }
     this.validateArgs(args);
     options.to = this._address;
-    options.data = '0x' + this.signature() +
-        coder.encodeParams(this._inputTypes, args);
+    options.data = '0x' + this.signature() + coder.encodeParams(this._inputTypes, args);
     return options;
 };
 
@@ -4092,8 +4040,7 @@ SolidityFunction.prototype.unpackOutput = function(output) {
  * Calls a contract function.
  *
  * @method call
- * @param {...Object} Contract function arguments
- * @param {function} If the last argument is a function, the contract function
+ * @param {...Object} arguments Contract function arguments
  *   call will be asynchronous, and the callback will be passed the
  *   error and result.
  * @return {String} output bytes
@@ -4213,10 +4160,10 @@ SolidityFunction.prototype.request = function() {
     var format = this.unpackOutput.bind(this);
 
     return {
-        method: this._constant ? 'huc_call' : 'huc_sendTransaction',
+        method  : this._constant ? 'huc_call' : 'huc_sendTransaction',
         callback: callback,
-        params: [payload],
-        format: format,
+        params  : [payload],
+        format  : format,
     };
 };
 
@@ -4230,8 +4177,7 @@ SolidityFunction.prototype.execute = function() {
 
     // send transaction
     if (transaction) {
-        return this.sendTransaction.apply(this,
-            Array.prototype.slice.call(arguments));
+        return this.sendTransaction.apply(this, Array.prototype.slice.call(arguments));
     }
 
     // call
@@ -4919,8 +4865,8 @@ Jsonrpc.toPayload = function(method, params) {
  * Should be called to check if jsonrpc response is valid
  *
  * @method isValidResponse
- * @param {Object}
  * @returns {Boolean} true if response is valid, otherwise false
+ * @param response
  */
 Jsonrpc.isValidResponse = function(response) {
     return Array.isArray(response) ?
@@ -6425,7 +6371,7 @@ RequestManager.prototype.sendAsync = function(data, callback) {
  * Should be called to asynchronously send batch request
  *
  * @method sendBatch
- * @param {Array} batch data
+ * @param data
  * @param {Function} callback
  */
 RequestManager.prototype.sendBatch = function(data, callback) {
@@ -6563,7 +6509,7 @@ RequestManager.prototype.poll = function() {
 
     var self = this;
     this.provider.sendAsync(payload, function(error, results) {
-        
+
         // TODO: console log?
         if (error) {
             return;
