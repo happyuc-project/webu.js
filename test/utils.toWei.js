@@ -12,7 +12,7 @@ describe('lib/utils/utils', function () {
             assert.equal(utils.toWei(1, 'gwei'),   '1000000000');
             assert.equal(utils.toWei(1, 'twei'),   '1000000000000');
             assert.equal(utils.toWei(1, 'pwei'),   '1000000000000000');
-            assert.equal(utils.toWei(1,  'huc'),   '1000000000000000000');
+            assert.equal(utils.toWei(1,  'irc'),   '1000000000000000000');
             assert.equal(utils.toWei(1, 'khuc'),   '1000000000000000000000');
             assert.equal(utils.toWei(1, 'mhuc'),   '1000000000000000000000000');
             assert.equal(utils.toWei(1, 'ghuc'),   '1000000000000000000000000000');

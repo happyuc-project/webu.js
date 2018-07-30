@@ -5,7 +5,7 @@ var Webu = require('../index');
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 
-describe('huc', function () {
+describe('irc', function () {
     describe('getSyncing', function () {
         it('syncing object', function (done) {
             // given
@@ -22,7 +22,7 @@ describe('huc', function () {
             });
 
             // call
-            webu.huc.getSyncing(function(err, res){
+            webu.irc.getSyncing(function(err, res){
                 assert.deepEqual(res, {
                     startingBlock: 11,
                     currentBlock: 11,
@@ -43,7 +43,7 @@ describe('huc', function () {
             });
 
             // call
-            webu.huc.getSyncing(function(err, res){
+            webu.irc.getSyncing(function(err, res){
                 console.log('err', err, 'res', res)
                 assert.strictEqual(res, false);
                 done();

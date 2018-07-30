@@ -12,8 +12,8 @@
         var webu = new Webu();
         var BigNumber = require('bignumber.js');
         webu.setProvider(new webu.providers.HttpProvider('http://localhost:8545'));
-        var from = webu.huc.coinbase;
-        webu.huc.defaultAccount = from;
+        var from = webu.irc.coinbase;
+        webu.irc.defaultAccount = from;
 
         var nameregAbi = [
             {
@@ -129,10 +129,10 @@
                 'type': 'function',
             }];
 
-        var Namereg = webu.huc.contract(nameregAbi);
-        var Deposit = webu.huc.contract(depositAbi);
+        var Namereg = webu.irc.contract(nameregAbi);
+        var Deposit = webu.irc.contract(depositAbi);
 
-        var namereg = webu.huc.ibanNamereg;
+        var namereg = webu.irc.ibanNamereg;
         var deposit;
         var iban;
 
@@ -140,7 +140,7 @@
             var address = document.getElementById('namereg').value;
             var ok = webu.isAddress(address) || address === 'default';
             if (ok) {
-                namereg = address === 'default' ? webu.huc.ibanNamereg : Namereg.at(address);
+                namereg = address === 'default' ? webu.irc.ibanNamereg : Namereg.at(address);
                 document.getElementById('nameregValidation').innerText = 'ok!';
             } else {
                 document.getElementById('nameregValidation').innerText = 'namereg address is incorrect!';
@@ -211,7 +211,7 @@
         function updateIBAN(ok) {
             var exchangeId = document.getElementById('exchange').value;
             var clientId = document.getElementById('client').value;
-            iban = webu.huc.iban.createIndirect({
+            iban = webu.irc.iban.createIndirect({
                 institution: exchangeId,
                 identifier: clientId,
             });

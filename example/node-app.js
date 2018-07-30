@@ -5,8 +5,8 @@ var webu = new Webu();
 
 webu.setProvider(new webu.providers.HttpProvider('http://localhost:8545'));
 
-var coinbase = webu.huc.coinbase;
+var coinbase = webu.irc.coinbase;
 console.log(coinbase);
 
-var balance = webu.huc.getBalance(coinbase);
+var balance = webu.irc.getBalance(coinbase);
 console.log(balance.toString(10));

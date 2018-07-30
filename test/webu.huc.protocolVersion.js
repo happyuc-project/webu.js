@@ -11,7 +11,7 @@ var tests = [{
     call: 'huc_'+ method
 }];
 
-describe('huc.protocolVersion', function () {
+describe('irc.protocolVersion', function () {
     describe(method, function () {
         tests.forEach(function (test, index) {
             it('property test: ' + index, function () {
@@ -27,7 +27,7 @@ describe('huc.protocolVersion', function () {
                 });
 
                 // when
-                var result = webu.huc[method];
+                var result = webu.irc[method];
 
                 // then
                 assert.deepEqual(test.result, result);

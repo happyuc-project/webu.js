@@ -6,7 +6,7 @@ var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 var utils = require('../lib/utils/utils');
 
 var tests = [{
-    protocol: 'huc',
+    protocol: 'irc',
     args: ['latest'],
     firstResult: 1,
     firstPayload: {
@@ -19,7 +19,7 @@ var tests = [{
     }
 },
 {
-    protocol: 'huc',
+    protocol: 'irc',
     args: ['pending'],
     firstResult: 1,
     firstPayload: {
@@ -34,7 +34,7 @@ var tests = [{
 
 var testPolling = function (tests) {
 
-    describe('webu.huc.filter.polling', function () {
+    describe('webu.irc.filter.polling', function () {
         tests.forEach(function (test, index) {
             it('should create && successfully poll filter', function (done) {
 

@@ -3,7 +3,7 @@ var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 var Webu = require('../index');
 
 
-describe('webu.huc.contract', function() {
+describe('webu.irc.contract', function() {
     it('should create simple contract with one method from abi with explicit type name', function () {
 
         // given
@@ -26,7 +26,7 @@ describe('webu.huc.contract', function() {
 
         // when
         var webu = new Webu();
-        var myCon = webu.huc.contract(description).at(address);
+        var myCon = webu.irc.contract(description).at(address);
 
         // then
         assert.equal('function', typeof myCon.test);
@@ -55,7 +55,7 @@ describe('webu.huc.contract', function() {
 
         // when
         var webu = new Webu();
-        var myCon = webu.huc.contract(description).at(address);
+        var myCon = webu.irc.contract(description).at(address);
 
         // then
         assert.equal('function', typeof myCon.test);
@@ -98,7 +98,7 @@ describe('webu.huc.contract', function() {
 
         // when
         var webu = new Webu();
-        var myCon = webu.huc.contract(description).at(address);
+        var myCon = webu.irc.contract(description).at(address);
 
         // then
         assert.equal('function', typeof myCon.test);
@@ -143,7 +143,7 @@ describe('webu.huc.contract', function() {
 
         // when
         var webu = new Webu();
-        var myCon = webu.huc.contract(description).at(address);
+        var myCon = webu.irc.contract(description).at(address);
 
         // then
         assert.equal('function', typeof myCon.test);
@@ -172,7 +172,7 @@ describe('webu.huc.contract', function() {
 
         // when
         var webu = new Webu();
-        var myCon = webu.huc.contract(description).at(address);
+        var myCon = webu.irc.contract(description).at(address);
 
         // then
         assert.equal('undefined', typeof myCon.test);
@@ -201,7 +201,7 @@ describe('webu.huc.contract', function() {
 
         // when
         var webu = new Webu();
-        var myCon = webu.huc.contract(description).at(address);
+        var myCon = webu.irc.contract(description).at(address);
 
         // then
         assert.equal('function', typeof myCon.test);
@@ -241,9 +241,9 @@ describe('webu.huc.contract', function() {
     //         }
     //     });
     //
-    //     webu.huc.contract(description).new(2, {from: address, data: code}, function(e, myCon){
+    //     webu.irc.contract(description).new(2, {from: address, data: code}, function(e, myCon){
     //             done();
-    //             webu.huc.filter().stopWatching();
+    //             webu.irc.filter().stopWatching();
     //     });
     // });
 });

@@ -133,4 +133,4 @@ var tests = [{
     call: 'huc_getUncleByBlockNumberAndIndex'
 }];
 
-testMethod.runTests('huc', method, tests);
+testMethod.runTests('irc', method, tests);

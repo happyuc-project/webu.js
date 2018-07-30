@@ -40,5 +40,5 @@ var tests = [{
     call: 'huc_'+ method + 'ByHash'
 }];
 
-testMethod.runTests('huc', method, tests);
+testMethod.runTests('irc', method, tests);
 

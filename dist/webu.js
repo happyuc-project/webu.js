@@ -672,7 +672,7 @@ SolidityCoder.prototype._requireType = function(type) {
  *
  * @method encodeParam
  * @param {String} type
- * @param {Object} plain param
+ * @param param
  * @return {String} encoded plain param
  */
 SolidityCoder.prototype.encodeParam = function(type, param) {
@@ -702,9 +702,7 @@ SolidityCoder.prototype.encodeParams = function(types, params) {
             return acc + (isDynamic(solidityTypes[index], types[index]) ? 32 : roundedStaticPartLength);
         }, 0);
 
-    var result = this.encodeMultiWithOffset(types, solidityTypes, encodeds, dynamicOffset);
-
-    return result;
+    return this.encodeMultiWithOffset(types, solidityTypes, encodeds, dynamicOffset);
 };
 
 SolidityCoder.prototype.encodeMultiWithOffset = function(
@@ -922,7 +920,7 @@ var SolidityParam = require('./param');
  * @returns {SolidityParam}
  */
 var formatInputInt = function(value) {
-    BigNumber.config(c.HUC_BIGNUMBER_ROUNDING_MODE);
+    BigNumber.config(c.IRC_BIGNUMBER_ROUNDING_MODE);
     var result = utils.padLeft(utils.toTwosComplement(value).toString(16), 64);
     return new SolidityParam(result);
 };
@@ -1771,37 +1769,37 @@ if (typeof XMLHttpRequest === 'undefined') {
  */
 
 
-/// required to define HUC_BIGNUMBER_ROUNDING_MODE
+/// required to define IRC_BIGNUMBER_ROUNDING_MODE
 var BigNumber = require('bignumber.js');
 
-var HUC_UNITS = [
+var IRC_UNITS = [
     'wei',
     'kwei',
     'mwei',
     'gwei',
     'twei',
     'pwei',
-    'huc',
-    'khuc',
-    'mhuc',
-    'ghuc',
-    'thuc',
-    'phuc',
-    'ehuc',
-    'zhuc',
-    'yhuc',
-    'nhuc',
-    'dhuc',
-    'vhuc',
-    'uhuc',
+    'irc',
+    'kirc',
+    'mirc',
+    'girc',
+    'tirc',
+    'pirc',
+    'eirc',
+    'zirc',
+    'yirc',
+    'nirc',
+    'dirc',
+    'virc',
+    'uirc',
 ];
 
 module.exports = {
-    HUC_PADDING                : 32,
-    HUC_SIGNATURE_LENGTH       : 4,
-    HUC_UNITS                  : HUC_UNITS,
-    HUC_BIGNUMBER_ROUNDING_MODE: {ROUNDING_MODE: BigNumber.ROUND_DOWN},
-    HUC_POLLING_TIMEOUT        : 1000 / 2,
+    IRC_PADDING                : 32,
+    IRC_SIGNATURE_LENGTH       : 4,
+    IRC_UNITS                  : IRC_UNITS,
+    IRC_BIGNUMBER_ROUNDING_MODE: {ROUNDING_MODE: BigNumber.ROUND_DOWN},
+    IRC_POLLING_TIMEOUT        : 1000 / 2,
     defaultBlock               : 'latest',
     defaultAccount             : undefined,
 };
@@ -1888,25 +1886,24 @@ var sha3 = require('./sha3.js');
 var utf8 = require('utf8');
 
 var unitMap = {
-    'nohuc': '0',
     'wei'  : '1',
     'kwei' : '1000',
     'mwei' : '1000000',
     'gwei' : '1000000000',
     'twei' : '1000000000000',
     'pwei' : '1000000000000000',
-    'huc'  : '1000000000000000000',
-    'khuc' : '1000000000000000000000',
-    'ghuc' : '1000000000000000000000000',
-    'thuc' : '1000000000000000000000000000',
-    'phuc' : '1000000000000000000000000000000',
-    'ehuc' : '1000000000000000000000000000000000',
-    'zhuc' : '1000000000000000000000000000000000000',
-    'yhuc' : '1000000000000000000000000000000000000000',
-    'nhuc' : '1000000000000000000000000000000000000000000',
-    'dhuc' : '1000000000000000000000000000000000000000000000',
-    'vhuc' : '1000000000000000000000000000000000000000000000000',
-    'uhuc' : '1000000000000000000000000000000000000000000000000000',
+    'irc'  : '1000000000000000000',
+    'kirc' : '1000000000000000000000',
+    'girc' : '1000000000000000000000000',
+    'tirc' : '1000000000000000000000000000',
+    'pirc' : '1000000000000000000000000000000',
+    'eirc' : '1000000000000000000000000000000000',
+    'zirc' : '1000000000000000000000000000000000000',
+    'yirc' : '1000000000000000000000000000000000000000',
+    'nirc' : '1000000000000000000000000000000000000000000',
+    'dirc' : '1000000000000000000000000000000000000000000000',
+    'virc' : '1000000000000000000000000000000000000000000000000',
+    'uirc' : '1000000000000000000000000000000000000000000000000000',
 };
 
 /**
@@ -2136,12 +2133,12 @@ var toHex = function(val) {
  * Returns value of unit in Wei
  *
  * @method getValueOfUnit
- * @param {String} unit the unit to convert to, default huc
+ * @param {String} unit the unit to convert to, default irc
  * @returns {BigNumber} value of the unit (in Wei)
  * @throws error if the unit is not correct:w
  */
 var getValueOfUnit = function(unit) {
-    unit = unit ? unit.toLowerCase() : 'huc';
+    unit = unit ? unit.toLowerCase() : 'irc';
     var unitValue = unitMap[unit];
     if (unitValue === undefined) {
         throw new Error('This unit doesn\'t exists, please use the one of the following units' + JSON.stringify(unitMap, null, 2));
@@ -2150,10 +2147,10 @@ var getValueOfUnit = function(unit) {
 };
 
 /**
- * Takes a number of wei and converts it to any other huc unit.
+ * Takes a number of wei and converts it to any other irc unit.
  * @method fromWei
  * @param {Number|String} number can be a number, number string or a HEX of a decimal
- * @param {String} unit the unit to convert to, default huc
+ * @param {String} unit the unit to convert to, default irc
  * @return {String|Object} When given a BigNumber object it returns one as well, otherwise a number
  */
 var fromWei = function(number, unit) {
@@ -2165,7 +2162,7 @@ var fromWei = function(number, unit) {
  * Takes a number of a unit and converts it to wei.
  * @method toWei
  * @param {Number|String|BigNumber} number can be a number, number string or a HEX of a decimal
- * @param {String} unit the unit to convert from, default huc
+ * @param {String} unit the unit to convert from, default irc
  * @return {String|Object} When given a BigNumber object it returns one as well, otherwise a number
  */
 var toWei = function(number, unit) {
@@ -2388,7 +2385,7 @@ var isJson = function(str) {
 };
 
 /**
- * Returns true if given string is a valid Happyuc block header bloom.
+ * Returns true if given string is a valid irchain block header bloom.
  *
  * @method isBloom
  * @return {Boolean}
@@ -2489,7 +2486,7 @@ module.exports={
 
 var RequestManager = require('./webu/requestmanager');
 var Iban = require('./webu/iban');
-var Huc = require('./webu/methods/huc');
+var Irc = require('./webu/methods/irc');
 var DB = require('./webu/methods/db');
 var Shh = require('./webu/methods/shh');
 var Net = require('./webu/methods/net');
@@ -2509,7 +2506,7 @@ var BigNumber = require('bignumber.js');
 function Webu(provider) {
     this._requestManager = new RequestManager(provider);
     this.currentProvider = provider;
-    this.huc = new Huc(this);
+    this.irc = new Irc(this);
     this.db  = new DB(this);
     this.shh = new Shh(this);
     this.net = new Net(this);
@@ -2588,8 +2585,8 @@ var properties = function() {
             inputFormatter: utils.toDecimal,
         }),
         new Property({
-            name: 'version.happyuc',
-            getter: 'huc_protocolVersion',
+            name: 'version.irchain',
+            getter: 'irc_protocolVersion',
             inputFormatter: utils.toDecimal,
         }),
         new Property({
@@ -2611,7 +2608,7 @@ Webu.prototype.createBatch = function() {
 module.exports = Webu;
 
 
-},{"./utils/sha3":19,"./utils/utils":20,"./version.json":21,"./webu/batch":24,"./webu/extend":28,"./webu/httpprovider":32,"./webu/iban":33,"./webu/ipcprovider":34,"./webu/methods/db":37,"./webu/methods/huc":38,"./webu/methods/net":39,"./webu/methods/personal":40,"./webu/methods/shh":41,"./webu/methods/swarm":42,"./webu/property":45,"./webu/requestmanager":46,"./webu/settings":47,"bignumber.js":"bignumber.js"}],23:[function(require,module,exports){
+},{"./utils/sha3":19,"./utils/utils":20,"./version.json":21,"./webu/batch":24,"./webu/extend":28,"./webu/httpprovider":32,"./webu/iban":33,"./webu/ipcprovider":34,"./webu/methods/db":37,"./webu/methods/irc":38,"./webu/methods/net":39,"./webu/methods/personal":40,"./webu/methods/shh":41,"./webu/methods/swarm":42,"./webu/property":45,"./webu/requestmanager":46,"./webu/settings":47,"bignumber.js":"bignumber.js"}],23:[function(require,module,exports){
 /*
     This file is part of webu.js.
 
@@ -2689,7 +2686,7 @@ AllSolidityEvents.prototype.execute = function(options, callback) {
 
     var o = this.encode(options);
     var formatter = this.decode.bind(this);
-    return new Filter(o, 'huc', this._requestManager, watches.huc(), formatter,
+    return new Filter(o, 'irc', this._requestManager, watches.irc(), formatter,
         callback);
 };
 
@@ -2830,7 +2827,7 @@ var addFunctionsToContract = function(contract) {
     contract.abi.filter(function(json) {
         return json.type === 'function';
     }).map(function(json) {
-        return new SolidityFunction(contract._huc, json, contract.address);
+        return new SolidityFunction(contract._irc, json, contract.address);
     }).forEach(function(f) {
         f.attachToContract(contract);
     });
@@ -2845,10 +2842,10 @@ var addFunctionsToContract = function(contract) {
 var addEventsToContract = function(contract) {
     var events = contract.abi.filter(function(json) { return json.type === 'event'; });
 
-    var All = new AllEvents(contract._huc._requestManager, events, contract.address);
+    var All = new AllEvents(contract._irc._requestManager, events, contract.address);
     All.attachToContract(contract);
 
-    events.map(function(json) { return new SolidityEvent(contract._huc._requestManager, json, contract.address); })
+    events.map(function(json) { return new SolidityEvent(contract._irc._requestManager, json, contract.address); })
           .forEach(function(e) { e.attachToContract(contract); });
 };
 
@@ -2865,7 +2862,7 @@ var checkForContractAddress = function(contract, callback) {
         callbackFired = false;
 
     // wait for receipt
-    var filter = contract._huc.filter('latest', function(e) {
+    var filter = contract._irc.filter('latest', function(e) {
         if (!e && !callbackFired) {
             count++;
 
@@ -2880,12 +2877,12 @@ var checkForContractAddress = function(contract, callback) {
                     throw new Error('Contract transaction couldn\'t be found after 50 blocks');
                 }
             } else {
-                contract._huc.getTransactionReceipt(
+                contract._irc.getTransactionReceipt(
                     contract.transactionHash,
                     function(e, receipt) {
                         if (receipt && receipt.blockHash && !callbackFired) {
 
-                            contract._huc.getCode(
+                            contract._irc.getCode(
                                 receipt.contractAddress,
                                 function(e, code) {
                                     if (callbackFired || !code) return;
@@ -2921,11 +2918,11 @@ var checkForContractAddress = function(contract, callback) {
  * Should be called to create new ContractFactory instance
  *
  * @method ContractFactory
- * @param huc
+ * @param irc
  * @param {Array} abi
  */
-var ContractFactory = function(huc, abi) {
-    this.huc = huc;
+var ContractFactory = function(irc, abi) {
+    this.irc = irc;
     this.abi = abi;
 
     /**
@@ -2935,7 +2932,7 @@ var ContractFactory = function(huc, abi) {
      * @returns {Contract} returns contract instance
      */
     this.new = function() {
-        var contract = new Contract(this.huc, this.abi, null);
+        var contract = new Contract(this.irc, this.abi, null);
 
         // parse arguments
         var options = {}; // required!
@@ -2961,14 +2958,12 @@ var ContractFactory = function(huc, abi) {
             }
         }
 
-        console.log("1");
         options.data += encodeConstructorParams(this.abi, args);
-        console.log("2");
 
         if (callback) {
 
             // wait for the contract address and check if the code was deployed
-            this.huc.sendTransaction(options, function(err, hash) {
+            this.irc.sendTransaction(options, function(err, hash) {
                 if (err) {
                     callback(err);
                 } else {
@@ -2983,7 +2978,7 @@ var ContractFactory = function(huc, abi) {
             });
         } else {
             // add the transaction hash
-            contract.transactionHash = this.huc.sendTransaction(options);
+            contract.transactionHash = this.irc.sendTransaction(options);
             checkForContractAddress(contract, null);
         }
 
@@ -3003,7 +2998,7 @@ var ContractFactory = function(huc, abi) {
  * otherwise calls callback function (err, contract)
  */
 ContractFactory.prototype.at = function(address, callback) {
-    var contract = new Contract(this.huc, this.abi, address);
+    var contract = new Contract(this.irc, this.abi, address);
 
     // this functions are not part of prototype,
     // because we dont want to spoil the interface
@@ -3039,12 +3034,12 @@ ContractFactory.prototype.getData = function() {
  * Should be called to create new contract instance
  *
  * @method Contract
- * @param huc
+ * @param irc
  * @param {Array} abi
  * @param address
  */
-var Contract = function(huc, abi, address) {
-    this._huc = huc;
+var Contract = function(irc, abi, address) {
+    this._irc = irc;
     this.transactionHash = null;
     this.address = address;
     this.abi = abi;
@@ -3249,7 +3244,8 @@ SolidityEvent.prototype.decode = function(data) {
     var indexedParams = coder.decodeParams(this.types(true), indexedData);
 
     var notIndexedData = data.data.slice(2);
-    var notIndexedParams = coder.decodeParams(this.types(false),
+    var notIndexedParams = coder.decodeParams(
+        this.types(false),
         notIndexedData);
 
     var result = formatters.outputLogFormatter(data);
@@ -3275,6 +3271,7 @@ SolidityEvent.prototype.decode = function(data) {
  * @method execute
  * @param {Object} indexed
  * @param {Object} options
+ * @param callback
  * @return {Object} filter object
  */
 SolidityEvent.prototype.execute = function(indexed, options, callback) {
@@ -3291,8 +3288,7 @@ SolidityEvent.prototype.execute = function(indexed, options, callback) {
 
     var o = this.encode(indexed, options);
     var formatter = this.decode.bind(this);
-    return new Filter(o, 'huc', this._requestManager, watches.huc(), formatter,
-        callback);
+    return new Filter(o, 'irc', this._requestManager, watches.irc(), formatter, callback);
 };
 
 /**
@@ -3423,8 +3419,7 @@ var getOptions = function(options, type) {
     options = options || {};
 
     switch (type) {
-        case 'huc':
-
+        case 'irc':
             // make sure topics, get converted to hex
             options.topics = options.topics || [];
             options.topics = options.topics.map(function(topic) {
@@ -3951,8 +3946,8 @@ var sha3 = require('../utils/sha3');
 /**
  * This prototype should be used to call/sendTransaction to solidity functions
  */
-var SolidityFunction = function(huc, json, address) {
-    this._huc = huc;
+var SolidityFunction = function(irc, json, address) {
+    this._irc = irc;
     this._inputTypes = json.inputs.map(function(i) {
         return i.type;
     });
@@ -4054,12 +4049,12 @@ SolidityFunction.prototype.call = function() {
     var payload = this.toPayload(args);
 
     if (!callback) {
-        var output = this._huc.call(payload, defaultBlock);
+        var output = this._irc.call(payload, defaultBlock);
         return this.unpackOutput(output);
     }
 
     var self = this;
-    this._huc.call(payload, defaultBlock, function(error, output) {
+    this._irc.call(payload, defaultBlock, function(error, output) {
         if (error) return callback(error, null);
 
         var unpacked = null;
@@ -4091,10 +4086,10 @@ SolidityFunction.prototype.sendTransaction = function() {
     }
 
     if (!callback) {
-        return this._huc.sendTransaction(payload);
+        return this._irc.sendTransaction(payload);
     }
 
-    this._huc.sendTransaction(payload, callback);
+    this._irc.sendTransaction(payload, callback);
 };
 
 /**
@@ -4108,10 +4103,10 @@ SolidityFunction.prototype.estimateGas = function() {
     var payload = this.toPayload(args);
 
     if (!callback) {
-        return this._huc.estimateGas(payload);
+        return this._irc.estimateGas(payload);
     }
 
-    this._huc.estimateGas(payload, callback);
+    this._irc.estimateGas(payload, callback);
 };
 
 /**
@@ -4160,7 +4155,7 @@ SolidityFunction.prototype.request = function() {
     var format = this.unpackOutput.bind(this);
 
     return {
-        method  : this._constant ? 'huc_call' : 'huc_sendTransaction',
+        method  : this._constant ? 'irc_call' : 'irc_sendTransaction',
         callback: callback,
         params  : [payload],
         format  : format,
@@ -4460,7 +4455,7 @@ var Iban = function(iban) {
 };
 
 /**
- * This method should be used to create iban object from happyuc address
+ * This method should be used to create iban object from irchain address
  *
  * @method fromAddress
  * @param {String} address
@@ -4499,7 +4494,7 @@ Iban.fromBban = function(bban) {
  * @return {Iban} the IBAN object
  */
 Iban.createIndirect = function(options) {
-    return Iban.fromBban('HUC' + options.institution + options.identifier);
+    return Iban.fromBban('IRC' + options.institution + options.identifier);
 };
 
 /**
@@ -4521,7 +4516,7 @@ Iban.isValid = function(iban) {
  * @returns {Boolean} true if it is, otherwise false
  */
 Iban.prototype.isValid = function() {
-    return /^XU[0-9]{2}(HUC[0-9A-Z]{13}|[0-9A-Z]{30,31})$/.test(this._iban) && mod9710(iso13616Prepare(this._iban)) === 1;
+    return /^XU[0-9]{2}(IRC[0-9A-Z]{13}|[0-9A-Z]{30,31})$/.test(this._iban) && mod9710(iso13616Prepare(this._iban)) === 1;
 };
 
 /**
@@ -5155,7 +5150,7 @@ module.exports = DB;
     along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
- * @file huc.js
+ * @file irc.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @author Fabian Vogelsteller <fabian@ethdev.com>
  * @date 2015
@@ -5178,35 +5173,35 @@ var transfer = require('../transfer');
 
 var blockCall = function(args) {
     return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ?
-        'huc_getBlockByHash' :
-        'huc_getBlockByNumber';
+        'irc_getBlockByHash' :
+        'irc_getBlockByNumber';
 };
 
 var transactionFromBlockCall = function(args) {
     return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ?
-        'huc_getTransactionByBlockHashAndIndex' :
-        'huc_getTransactionByBlockNumberAndIndex';
+        'irc_getTransactionByBlockHashAndIndex' :
+        'irc_getTransactionByBlockNumberAndIndex';
 };
 
 var uncleCall = function(args) {
     return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ?
-        'huc_getUncleByBlockHashAndIndex' :
-        'huc_getUncleByBlockNumberAndIndex';
+        'irc_getUncleByBlockHashAndIndex' :
+        'irc_getUncleByBlockNumberAndIndex';
 };
 
 var getBlockTransactionCountCall = function(args) {
     return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ?
-        'huc_getBlockTransactionCountByHash' :
-        'huc_getBlockTransactionCountByNumber';
+        'irc_getBlockTransactionCountByHash' :
+        'irc_getBlockTransactionCountByNumber';
 };
 
 var uncleCountCall = function(args) {
     return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ?
-        'huc_getUncleCountByHucBlockHash' :
-        'huc_getUncleCountByBlockNumber';
+        'irc_getUncleCountByIrcBlockHash' :
+        'irc_getUncleCountByBlockNumber';
 };
 
-function Huc(webu) {
+function Irc(webu) {
     this._requestManager = webu._requestManager;
 
     var self = this;
@@ -5225,7 +5220,7 @@ function Huc(webu) {
     this.sendIBANTransaction = transfer.bind(null, this);
 }
 
-Object.defineProperty(Huc.prototype, 'defaultBlock', {
+Object.defineProperty(Irc.prototype, 'defaultBlock', {
     get: function() {
         return c.defaultBlock;
     },
@@ -5235,7 +5230,7 @@ Object.defineProperty(Huc.prototype, 'defaultBlock', {
     },
 });
 
-Object.defineProperty(Huc.prototype, 'defaultAccount', {
+Object.defineProperty(Irc.prototype, 'defaultAccount', {
     get: function() {
         return c.defaultAccount;
     },
@@ -5248,7 +5243,7 @@ Object.defineProperty(Huc.prototype, 'defaultAccount', {
 var methods = function() {
     var getBalance = new Method({
         name: 'getBalance',
-        call: 'huc_getBalance',
+        call: 'irc_getBalance',
         params: 2,
         inputFormatter: [
             formatters.inputAddressFormatter,
@@ -5258,7 +5253,7 @@ var methods = function() {
 
     var getStorageAt = new Method({
         name: 'getStorageAt',
-        call: 'huc_getStorageAt',
+        call: 'irc_getStorageAt',
         params: 3,
         inputFormatter: [
             null,
@@ -5268,7 +5263,7 @@ var methods = function() {
 
     var getCode = new Method({
         name: 'getCode',
-        call: 'huc_getCode',
+        call: 'irc_getCode',
         params: 2,
         inputFormatter: [
             formatters.inputAddressFormatter,
@@ -5297,7 +5292,7 @@ var methods = function() {
 
     var getCompilers = new Method({
         name: 'getCompilers',
-        call: 'huc_getCompilers',
+        call: 'irc_getCompilers',
         params: 0,
     });
 
@@ -5319,7 +5314,7 @@ var methods = function() {
 
     var getTransaction = new Method({
         name: 'getTransaction',
-        call: 'huc_getTransactionByHash',
+        call: 'irc_getTransactionByHash',
         params: 1,
         outputFormatter: formatters.outputTransactionFormatter,
     });
@@ -5334,14 +5329,14 @@ var methods = function() {
 
     var getTransactionReceipt = new Method({
         name: 'getTransactionReceipt',
-        call: 'huc_getTransactionReceipt',
+        call: 'irc_getTransactionReceipt',
         params: 1,
         outputFormatter: formatters.outputTransactionReceiptFormatter,
     });
 
     var getTransactionCount = new Method({
         name: 'getTransactionCount',
-        call: 'huc_getTransactionCount',
+        call: 'irc_getTransactionCount',
         params: 2,
         inputFormatter: [null, formatters.inputDefaultBlockNumberFormatter],
         outputFormatter: utils.toDecimal,
@@ -5349,35 +5344,35 @@ var methods = function() {
 
     var sendRawTransaction = new Method({
         name: 'sendRawTransaction',
-        call: 'huc_sendRawTransaction',
+        call: 'irc_sendRawTransaction',
         params: 1,
         inputFormatter: [null],
     });
 
     var sendTransaction = new Method({
         name: 'sendTransaction',
-        call: 'huc_sendTransaction',
+        call: 'irc_sendTransaction',
         params: 1,
         inputFormatter: [formatters.inputTransactionFormatter],
     });
 
     var signTransaction = new Method({
         name: 'signTransaction',
-        call: 'huc_signTransaction',
+        call: 'irc_signTransaction',
         params: 1,
         inputFormatter: [formatters.inputTransactionFormatter],
     });
 
     var sign = new Method({
         name: 'sign',
-        call: 'huc_sign',
+        call: 'irc_sign',
         params: 2,
         inputFormatter: [formatters.inputAddressFormatter, null],
     });
 
     var call = new Method({
         name: 'call',
-        call: 'huc_call',
+        call: 'irc_call',
         params: 2,
         inputFormatter: [
             formatters.inputCallFormatter,
@@ -5386,7 +5381,7 @@ var methods = function() {
 
     var estimateGas = new Method({
         name: 'estimateGas',
-        call: 'huc_estimateGas',
+        call: 'irc_estimateGas',
         params: 1,
         inputFormatter: [formatters.inputCallFormatter],
         outputFormatter: utils.toDecimal,
@@ -5394,31 +5389,31 @@ var methods = function() {
 
     var compileSolidity = new Method({
         name: 'compile.solidity',
-        call: 'huc_compileSolidity',
+        call: 'irc_compileSolidity',
         params: 1,
     });
 
     var compileLLL = new Method({
         name: 'compile.lll',
-        call: 'huc_compileLLL',
+        call: 'irc_compileLLL',
         params: 1,
     });
 
     var compileSerpent = new Method({
         name: 'compile.serpent',
-        call: 'huc_compileSerpent',
+        call: 'irc_compileSerpent',
         params: 1,
     });
 
     var submitWork = new Method({
         name: 'submitWork',
-        call: 'huc_submitWork',
+        call: 'irc_submitWork',
         params: 3,
     });
 
     var getWork = new Method({
         name: 'getWork',
-        call: 'huc_getWork',
+        call: 'irc_getWork',
         params: 0,
     });
 
@@ -5453,66 +5448,66 @@ var properties = function() {
     return [
         new Property({
             name: 'coinbase',
-            getter: 'huc_coinbase',
+            getter: 'irc_coinbase',
         }),
         new Property({
             name: 'mining',
-            getter: 'huc_mining',
+            getter: 'irc_mining',
         }),
         new Property({
             name: 'hashrate',
-            getter: 'huc_hashrate',
+            getter: 'irc_hashrate',
             outputFormatter: utils.toDecimal,
         }),
         new Property({
             name: 'syncing',
-            getter: 'huc_syncing',
+            getter: 'irc_syncing',
             outputFormatter: formatters.outputSyncingFormatter,
         }),
         new Property({
             name: 'gasPrice',
-            getter: 'huc_gasPrice',
+            getter: 'irc_gasPrice',
             outputFormatter: formatters.outputBigNumberFormatter,
         }),
         new Property({
             name: 'accounts',
-            getter: 'huc_accounts',
+            getter: 'irc_accounts',
         }),
         new Property({
             name: 'blockNumber',
-            getter: 'huc_blockNumber',
+            getter: 'irc_blockNumber',
             outputFormatter: utils.toDecimal,
         }),
         new Property({
             name: 'protocolVersion',
-            getter: 'huc_protocolVersion',
+            getter: 'irc_protocolVersion',
         }),
     ];
 };
 
-Huc.prototype.contract = function(abi) {
+Irc.prototype.contract = function(abi) {
     return new Contract(this, abi);
 };
 
-Huc.prototype.filter = function(
+Irc.prototype.filter = function(
     options, callback, filterCreationErrorCallback) {
-    return new Filter(options, 'huc', this._requestManager, watches.huc(),
+    return new Filter(options, 'irc', this._requestManager, watches.irc(),
         formatters.outputLogFormatter, callback, filterCreationErrorCallback);
 };
 
-Huc.prototype.namereg = function() {
+Irc.prototype.namereg = function() {
     return this.contract(namereg.global.abi).at(namereg.global.address);
 };
 
-Huc.prototype.icapNamereg = function() {
+Irc.prototype.icapNamereg = function() {
     return this.contract(namereg.icap.abi).at(namereg.icap.address);
 };
 
-Huc.prototype.isSyncing = function(callback) {
+Irc.prototype.isSyncing = function(callback) {
     return new IsSyncing(this._requestManager, callback);
 };
 
-module.exports = Huc;
+module.exports = Irc;
 
 },{"../../utils/config":18,"../../utils/utils":20,"../contract":25,"../filter":29,"../formatters":30,"../iban":33,"../method":36,"../namereg":44,"../property":45,"../syncing":48,"../transfer":49,"./watches":43}],39:[function(require,module,exports){
 /*
@@ -5531,7 +5526,7 @@ module.exports = Huc;
     You should have received a copy of the GNU Lesser General Public License
     along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** @file huc.js
+/** @file irc.js
  * @authors:
  *   Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -5551,7 +5546,7 @@ var Net = function(webu) {
     });
 };
 
-/// @returns an array of objects describing webu.huc api properties
+/// @returns an array of objects describing webu.irc api properties
 var properties = function() {
     return [
         new Property({
@@ -5586,7 +5581,7 @@ module.exports = Net;
     along with webu.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
- * @file huc.js
+ * @file irc.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @author Fabian Vogelsteller <fabian@ethdev.com>
  * @date 2015
@@ -5854,7 +5849,7 @@ module.exports = Shh;
  * @author Alex Beregszaszi <alex@rtfs.hu>
  * @date 2016
  * TODO update reference
- * Reference: https://github.com/happyuc-project/happyuc-go/blob/swarm/internal/webuext/webuext.go#L33
+ * Reference: https://github.com/irchain/go-irchain/blob/swarm/internal/webuext/webuext.go#L33
  */
 
 'use strict';
@@ -6003,21 +5998,21 @@ module.exports = Swarm;
 
 var Method = require('../method');
 
-/// @returns an array of objects describing webu.huc.filter api methods
-var huc = function() {
+/// @returns an array of objects describing webu.irc.filter api methods
+var irc = function() {
     var newFilterCall = function(args) {
         var type = args[0];
         switch (type) {
             case 'latest':
                 args.shift();
                 this.params = 0;
-                return 'huc_newBlockFilter';
+                return 'irc_newBlockFilter';
             case 'pending':
                 args.shift();
                 this.params = 0;
-                return 'huc_newPendingTransactionFilter';
+                return 'irc_newPendingTransactionFilter';
             default:
-                return 'huc_newFilter';
+                return 'irc_newFilter';
         }
     };
 
@@ -6029,19 +6024,19 @@ var huc = function() {
 
     var uninstallFilter = new Method({
         name: 'uninstallFilter',
-        call: 'huc_uninstallFilter',
+        call: 'irc_uninstallFilter',
         params: 1,
     });
 
     var getLogs = new Method({
         name: 'getLogs',
-        call: 'huc_getFilterLogs',
+        call: 'irc_getFilterLogs',
         params: 1,
     });
 
     var poll = new Method({
         name: 'poll',
-        call: 'huc_getFilterChanges',
+        call: 'irc_getFilterChanges',
         params: 1,
     });
 
@@ -6081,7 +6076,7 @@ var shh = function() {
 };
 
 module.exports = {
-    huc: huc,
+    irc: irc,
     shh: shh,
 };
 
@@ -6308,7 +6303,7 @@ var errors = require('./errors');
 
 /**
  * It's responsible for passing messages to providers
- * It's also responsible for polling the happyuc node for incoming messages
+ * It's also responsible for polling the irchain node for incoming messages
  * Default poll timeout is 1 second
  * Singleton
  */
@@ -6477,7 +6472,7 @@ RequestManager.prototype.reset = function(keepIsSyncing) {
  */
 RequestManager.prototype.poll = function() {
     /*jshint maxcomplexity: 6 */
-    this.timeout = setTimeout(this.poll.bind(this), c.HUC_POLLING_TIMEOUT);
+    this.timeout = setTimeout(this.poll.bind(this), c.IRC_POLLING_TIMEOUT);
 
     if (Object.keys(this.polls).length === 0) {
         return;
@@ -6617,7 +6612,7 @@ var pollSyncing = function(self) {
     };
 
     self.requestManager.startPolling({
-        method: 'huc_syncing',
+        method: 'irc_syncing',
         params: [],
     }, self.pollId, onMessage, self.stopWatching.bind(self));
 
@@ -6678,29 +6673,29 @@ var exchangeAbi = require('../contracts/SmartExchange.json');
  * Should be used to make Iban transfer
  *
  * @method transfer
- * @param huc
+ * @param irc
  * @param {String} from
  * @param {String} to iban
  * @param {Value} value to be tranfered
  * @param {Function} callback, callback
  */
-var transfer = function(huc, from, to, value, callback) {
+var transfer = function(irc, from, to, value, callback) {
     var iban = new Iban(to);
     if (!iban.isValid()) {
         throw new Error('invalid iban address');
     }
 
     if (iban.isDirect()) {
-        return transferToAddress(huc, from, iban.address(), value, callback);
+        return transferToAddress(irc, from, iban.address(), value, callback);
     }
 
     if (!callback) {
-        var address = huc.icapNamereg().addr(iban.institution());
-        return deposit(huc, from, address, value, iban.client());
+        var address = irc.icapNamereg().addr(iban.institution());
+        return deposit(irc, from, address, value, iban.client(), null);
     }
 
-    huc.icapNamereg().addr(iban.institution(), function(err, address) {
-        return deposit(huc, from, address, value, iban.client(), callback);
+    irc.icapNamereg().addr(iban.institution(), function(err, address) {
+        return deposit(irc, from, address, value, iban.client(), callback);
     });
 
 };
@@ -6709,14 +6704,14 @@ var transfer = function(huc, from, to, value, callback) {
  * Should be used to transfer funds to certain address
  *
  * @method transferToAddress
- * @param huc
+ * @param irc
  * @param {String} from
  * @param {String} to
  * @param {Value} value to be tranfered
  * @param {Function} callback, callback
  */
-var transferToAddress = function(huc, from, to, value, callback) {
-    return huc.sendTransaction({
+var transferToAddress = function(irc, from, to, value, callback) {
+    return irc.sendTransaction({
         address: to,
         from: from,
         value: value,
@@ -6727,15 +6722,15 @@ var transferToAddress = function(huc, from, to, value, callback) {
  * Should be used to deposit funds to generic Exchange contract (must implement deposit(bytes32) method!)
  *
  * @method deposit
- * @param huc
+ * @param irc
  * @param {String} from
  * @param {String} to
  * @param {Value} value to be transfered
  * @param {String} client unique identifier
  * @param {Function} callback, callback
  */
-var deposit = function(huc, from, to, value, client, callback) {
-    return huc.contract(exchangeAbi).at(to).deposit(client, {
+var deposit = function(irc, from, to, value, client, callback) {
+    return irc.contract(exchangeAbi).at(to).deposit(client, {
         from: from,
         value: value,
     }, callback);

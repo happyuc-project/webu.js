@@ -56,10 +56,10 @@ var tests = [
         call: 'huc_newPendingTransactionFilter',
     }];
 
-describe('webu.huc', () => describe(method, () =>
+describe('webu.irc', () => describe(method, () =>
     it('rpc node', () => {
         webu.setProvider(new webu.providers.HttpProvider());
-        var filter = webu.huc[method].apply(webu.huc, ['latest']);
+        var filter = webu.irc[method].apply(webu.irc, ['latest']);
         filter.watch();
         filter.stopWatching();
     })));
@@ -80,7 +80,7 @@ describe('webu.huc', () => describe(method, () =>
 //         });
 //
 //         // call
-//         var filter = webu.huc[method].apply(webu.huc, test.args);
+//         var filter = webu.irc[method].apply(webu.irc, test.args);
 //
 //         // test filter.get
 //         if (typeof test.args === 'object') {
@@ -124,6 +124,6 @@ describe('webu.huc', () => describe(method, () =>
 //                 assert.include(errors, err);
 //                 done();
 //             });
-//             webu.huc[method].apply(webu.huc, args);
+//             webu.irc[method].apply(webu.irc, args);
 //         });
 // });

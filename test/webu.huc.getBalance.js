@@ -25,7 +25,7 @@ var tests = [{
     call: 'huc_'+ method
 }, {
     args: ['0x000000000000000000000000000000000000012d'],
-    formattedArgs: ['0x000000000000000000000000000000000000012d', webu.huc.defaultBlock],
+    formattedArgs: ['0x000000000000000000000000000000000000012d', webu.irc.defaultBlock],
     result: '0x31981',
     formattedResult: new BigNumber('0x31981', 16),
     call: 'huc_'+ method
@@ -67,5 +67,5 @@ var tests = [{
     call: 'huc_'+ method
 }];
 
-testMethod.runTests('huc', method, tests);
+testMethod.runTests('irc', method, tests);
 

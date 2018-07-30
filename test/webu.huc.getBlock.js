@@ -132,5 +132,5 @@ var tests = [{
     call: 'huc_'+ method + 'ByNumber'
 }];
 
-testMethod.runTests('huc', method, tests);
+testMethod.runTests('irc', method, tests);
 

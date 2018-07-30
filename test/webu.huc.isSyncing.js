@@ -39,7 +39,7 @@ var tests = [{
     call: 'huc_syncing'
 }];
 
-describe('huc', function () {
+describe('irc', function () {
     describe(method, function () {
         tests.forEach(function (test, index) {
             it('property test: ' + index, function (done) {
@@ -59,7 +59,7 @@ describe('huc', function () {
 
 
                 // call
-                var syncing = webu.huc[method](function(e, res){
+                var syncing = webu.irc[method](function(e, res){
                     if(count === 1) {
                         assert.isTrue(res);
                         count++;

@@ -40,8 +40,8 @@ describe('lib/webu/batch', function () {
             });
 
             var batch = webu.createBatch();
-            batch.add(webu.huc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
-            batch.add(webu.huc.getBalance.request('0x0000000000000000000000000000000000000005', 'latest', callback2));
+            batch.add(webu.irc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
+            batch.add(webu.irc.getBalance.request('0x0000000000000000000000000000000000000005', 'latest', callback2));
             batch.execute();
         });
 
@@ -78,7 +78,7 @@ describe('lib/webu/batch', function () {
             });
 
             var batch = webu.createBatch();
-            batch.add(webu.huc.getAccounts.request(callback));
+            batch.add(webu.irc.getAccounts.request(callback));
             batch.add(webu.net.getPeerCount.request(callback2));
             batch.execute();
         });
@@ -134,8 +134,8 @@ describe('lib/webu/batch', function () {
             });
 
             var batch = webu.createBatch();
-            batch.add(webu.huc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
-            batch.add(webu.huc.contract(abi).at(address).balance.request(address, callback2));
+            batch.add(webu.irc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
+            batch.add(webu.irc.contract(abi).at(address).balance.request(address, callback2));
             provider.injectBatchResults([result, result2]);
             batch.execute();
         });
@@ -192,8 +192,8 @@ describe('lib/webu/batch', function () {
             });
 
             var batch = webu.createBatch();
-            batch.add(webu.huc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
-            batch.add(webu.huc.contract(abi).at(address).balance.request(address, callback2));
+            batch.add(webu.irc.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
+            batch.add(webu.irc.contract(abi).at(address).balance.request(address, callback2));
             provider.injectBatchResults([result, result2], true); // injects error
             batch.execute();
         });

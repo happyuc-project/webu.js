@@ -13,7 +13,7 @@ var tests = [{
     call: 'huc_'+ method
 }];
 
-describe('webu.huc', function () {
+describe('webu.irc', function () {
     describe(method, function () {
         tests.forEach(function (test, index) {
             it('property test: ' + index, function () {
@@ -29,7 +29,7 @@ describe('webu.huc', function () {
                 });
 
                 // when
-                var result = webu.huc[method];
+                var result = webu.irc[method];
 
                 // then
                 assert.deepEqual(test.formattedResult, result);

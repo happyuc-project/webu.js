@@ -4,7 +4,7 @@ var Webu   = require('../index');
 var webu   = new Webu();
 var FakeHttpProvider2 = require('./helpers/FakeHttpProvider2');
 
-describe('webu.huc.sendIBANTransaction', function () {
+describe('webu.irc.sendIBANTransaction', function () {
     it('should send transaction', function () {
 
         var iban      = 'XE81ETHXREGGAVOFYORK';
@@ -28,7 +28,7 @@ describe('webu.huc.sendIBANTransaction', function () {
                 assert.equal(payload.method, 'huc_call');
                 assert.deepEqual(payload.params, [{
                    data: "0x3b3b57de5852454700000000000000000000000000000000000000000000000000000000",
-                   to: webu.huc.icapNamereg().address
+                   to: webu.irc.icapNamereg().address
                 }, "latest"]);
 
                 return;
@@ -42,7 +42,7 @@ describe('webu.huc.sendIBANTransaction', function () {
             }]);
         });
 
-        webu.huc.sendIBANTransaction(address, iban, 10000);
+        webu.irc.sendIBANTransaction(address, iban, 10000);
     });
 });
 

@@ -36,5 +36,5 @@ var tests = [{
     call: 'huc_'+ method
 }];
 
-testMethod.runTests('huc', method, tests);
+testMethod.runTests('irc', method, tests);
 

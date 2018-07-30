@@ -8,7 +8,7 @@ var method = 'getCode';
 
 var tests = [{
     args: ['0x47d33b27bb249a2dbab4c0612bf9caf4c1950855'],
-    formattedArgs: ['0x47d33b27bb249a2dbab4c0612bf9caf4c1950855', webu.huc.defaultBlock],
+    formattedArgs: ['0x47d33b27bb249a2dbab4c0612bf9caf4c1950855', webu.irc.defaultBlock],
     result: '0x47d33b27bb249a2dbab4c0612bf9caf4747d33b27bb249a2dbab4c0612bf9cafd33b27bb249a2dbab4c0612bf9caf4c1950855',
     formattedResult: '0x47d33b27bb249a2dbab4c0612bf9caf4747d33b27bb249a2dbab4c0612bf9cafd33b27bb249a2dbab4c0612bf9caf4c1950855',
     call: 'huc_'+ method
@@ -20,5 +20,5 @@ var tests = [{
     call: 'huc_'+ method
 }];
 
-testMethod.runTests('huc', method, tests);
+testMethod.runTests('irc', method, tests);
 

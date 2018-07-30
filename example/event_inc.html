@@ -22,7 +22,7 @@
             '    uint x; ' +
             '}';
 
-        var compiled = webu.huc.compile.solidity(source);
+        var compiled = webu.irc.compile.solidity(source);
         var code = compiled.code;
         var abi = compiled.info.abiDefinition;
 
@@ -36,12 +36,12 @@
 
         var createContract = function() {
             // let's assume that we have a private key to coinbase ;)
-            webu.huc.defaultAccount = webu.huc.coinbase;
+            webu.irc.defaultAccount = webu.irc.coinbase;
 
             document.getElementById('create').style.visibility = 'hidden';
             document.getElementById('status').innerText = 'transaction sent, waiting for confirmation';
 
-            webu.huc.contract(abi).new({data: code}, function(err, c) {
+            webu.irc.contract(abi).new({data: code}, function(err, c) {
                 if (err) {
                     console.error(err);
                     return;

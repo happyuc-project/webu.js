@@ -36,7 +36,7 @@ describe('async', function () {
             });
 
             // when
-            webu.huc[method](test.input, function(error, result){
+            webu.irc[method](test.input, function(error, result){
 
                 // then
                 assert.isNull(error);
@@ -63,7 +63,7 @@ describe('async', function () {
             });
 
             // when
-            webu.huc[method](test.input, function(error, result){
+            webu.irc[method](test.input, function(error, result){
 
                 // then
                 assert.isUndefined(result);

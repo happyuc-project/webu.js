@@ -17,7 +17,7 @@ describe('webu', function() {
         u.methodExists(webu, 'reset');
 
         u.propertyExists(webu, 'providers');
-        u.propertyExists(webu, 'huc');
+        u.propertyExists(webu, 'irc');
         u.propertyExists(webu, 'db');
         u.propertyExists(webu, 'shh');
     });

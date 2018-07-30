@@ -46,7 +46,7 @@ function initializeHappyucConnection() {
 
     if (hucWebu.isConnected() === true) {
         if (defaultAc === '') {
-            defaultAc = hucWebu.huc.accounts[1];
+            defaultAc = hucWebu.irc.accounts[1];
         }
         return true;
     }
@@ -68,7 +68,7 @@ function initializeContract() {
         return;
     }
     var abi = JSON.parse(strAbi);
-    var contract = hucWebu.huc.contract(abi);
+    var contract = hucWebu.irc.contract(abi);
 
     sigContractInstance = contract.at(sigContractAddress);
 }
@@ -83,7 +83,7 @@ function signMessageFun(message) {
     var state = unlockAccount(defaultAc);
 
     const msg = new Buffer(message);
-    return hucWebu.huc.sign(defaultAc, '0x' + msg.toString('hex'));
+    return hucWebu.irc.sign(defaultAc, '0x' + msg.toString('hex'));
 }
 
 function verifySignedByAc(message, sig) {
