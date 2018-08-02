@@ -1,19 +1,15 @@
-# Migration 0.13.0 -> 0.14.0
+# IrChain JavaScript API
 
-To migrate to this version, please follow the guide:
+[![Join the chat at https://gitter.im/irchain/webu.js](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/irchain/webu.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-# Happyuc JavaScript API
-
-[![Join the chat at https://gitter.im/happyuc-project/webu.js](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/happyuc-project/webu.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-This is the Happyuc compatible [JavaScript API](https://github.com/happyuc-project/wiki/wiki/JavaScript-API)
-which implements the [Generic JSON RPC](https://github.com/happyuc-project/wiki/wiki/JSON-RPC) spec. It's available on npm as a node module, for bower and component as an embeddable js and as a meteor.js package.
+This is the IrChain compatible [JavaScript API](https://github.com/irchain/wiki/wiki/JavaScript-API)
+which implements the [Generic JSON RPC](https://github.com/irchain/wiki/wiki/JSON-RPC) spec. It's available on npm as a node module, for bower and component as an embeddable js and as a meteor.js package.
 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![dependency status][dep-image]][dep-url] [![dev dependency status][dep-dev-image]][dep-dev-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Stories in Ready][waffle-image]][waffle-url]
 
-You need to run a local Happyuc node to use this library.
+You need to run a local IrChain node to use this library.
 
-[Documentation](https://github.com/happyuc-project/wiki/wiki/JavaScript-API)
+[Documentation](https://github.com/irchain/wiki/wiki/JavaScript-API)
 
 ## Installation
 
@@ -32,7 +28,7 @@ yarn add webu
 ### Meteor.js
 
 ```bash
-meteor add happyuc-project:webu
+meteor add irchain:webu
 ```
 
 ### As Browser module
@@ -45,7 +41,7 @@ bower install webu
 Component
 
 ```bash
-component install happyuc-project/webu.js
+component install irchain/webu.js
 ```
 
 * Include `webu.min.js` in your html file. (not required for the meteor package)
@@ -81,7 +77,7 @@ var coinbase = webu.huc.coinbase;
 var balance = webu.huc.getBalance(coinbase);
 ```
 
-You can find more examples in [`example`](https://github.com/happyuc-project/webu.js/tree/master/example) directory.
+You can find more examples in [`example`](https://github.com/irchain/webu.js/tree/master/example) directory.
 
 
 ## Contribute!
@@ -105,12 +101,12 @@ npm test
 ```
 
 ### Community
- - [Gitter](https://gitter.im/happyuc-project/webu.js?source=orgpage)
- - [Forum](https://forum.happyuc-project.org/categories/happyuc-project-js)
+ - [Gitter](https://gitter.im/irchain/webu.js?source=orgpage)
+ - [Forum](https://forum.irchain.org/categories/irchain-js)
 
 
 ### Other implementations
- - Python [Webu.py](https://github.com/happyuc-project/webu.py)
+ - Python [Webu.py](https://github.com/irchain/webu.py)
  - Haskell [hs-webu](https://github.com/airalab/hs-webu)
  - Java [webuj](https://github.com/webuj/webuj)
  - Scala [webuj-scala](https://github.com/mslinn/webuj-scala)
@@ -120,13 +116,13 @@ npm test
 
 [npm-image]: https://badge.fury.io/js/webu.svg
 [npm-url]: https://npmjs.org/package/webu
-[travis-image]: https://travis-ci.org/happyuc-project/webu.js.svg
-[travis-url]: https://travis-ci.org/happyuc-project/webu.js
-[dep-image]: https://david-dm.org/happyuc-project/webu.js.svg
-[dep-url]: https://david-dm.org/happyuc-project/webu.js
-[dep-dev-image]: https://david-dm.org/happyuc-project/webu.js/dev-status.svg
-[dep-dev-url]: https://david-dm.org/happyuc-project/webu.js#info=devDependencies
-[coveralls-image]: https://coveralls.io/repos/happyuc-project/webu.js/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/r/happyuc-project/webu.js?branch=master
-[waffle-image]: https://badge.waffle.io/happyuc-project/webu.js.svg?label=ready&title=Ready
-[waffle-url]: https://waffle.io/happyuc-project/webu.js
+[travis-image]: https://travis-ci.org/irchain/webu.js.svg
+[travis-url]: https://travis-ci.org/irchain/webu.js
+[dep-image]: https://david-dm.org/irchain/webu.js.svg
+[dep-url]: https://david-dm.org/irchain/webu.js
+[dep-dev-image]: https://david-dm.org/irchain/webu.js/dev-status.svg
+[dep-dev-url]: https://david-dm.org/irchain/webu.js#info=devDependencies
+[coveralls-image]: https://coveralls.io/repos/irchain/webu.js/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/r/irchain/webu.js?branch=master
+[waffle-image]: https://badge.waffle.io/irchain/webu.js.svg?label=ready&title=Ready
+[waffle-url]: https://waffle.io/irchain/webu.js

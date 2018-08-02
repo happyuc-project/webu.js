@@ -1,6 +1,6 @@
 {
   "name": "webu",
-  "namespace": "happyuc-project",
+  "namespace": "irchain",
   "version": "1.0.9",
   "description": "Happyuc Compatible JavaScript API",
   "main": [
@@ -13,34 +13,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/happyuc-project/webu.js.git"
+    "url": "https://github.com/irchain/webu.js.git"
   },
-  "homepage": "https://github.com/happyuc-project/webu.js",
+  "homepage": "https://github.com/irchain/webu.js",
   "bugs": {
-    "url": "https://github.com/happyuc-project/webu.js/issues"
+    "url": "https://github.com/irchain/webu.js/issues"
   },
   "keywords": [
-    "happyuc",
+    "irchain",
     "javascript",
     "API"
   ],
-  "authors": [
-    {
-      "name": "Marek Kotewicz",
-      "email": "marek@ethdev.com",
-      "homepage": "https://github.com/debris"
-    },
-    {
-      "name": "Marian Oancea",
-      "email": "marian@ethdev.com",
-      "homepage": "https://github.com/cubedro"
-    },
-    {
-      "name": "Fabian Vogelsteller",
-      "email": "fabian@ethdev.com",
-      "homepage": "https://github.com/frozeman"
-    }
-  ],
+  "authors": [],
   "license": "LGPL-3.0",
   "ignore": [
     "example",
