@@ -1,8 +1,8 @@
 {
     "name": "webu",
-    "namespace": "happyuc-project",
-    "version": "1.0.9",
-    "description": "Happyuc JavaScript API, middleware to talk to a happyuc-project node over RPC",
+    "namespace": "irchain",
+    "version": "2.0.1",
+    "description": "IrChain JavaScript API, middleware to talk to a irchain node over RPC",
     "main": "./index.js",
     "directories": {
         "example": "example",
@@ -47,17 +47,17 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/happyuc-project/webu.js.git"
+        "url": "git+https://github.com/irchain/webu.js.git"
     },
-    "homepage": "https://github.com/happyuc-project/webu.js",
+    "homepage": "https://github.com/irchain/webu.js",
     "bugs": {
-        "url": "https://github.com/happyuc-project/webu.js/issues"
+        "url": "https://github.com/irchain/webu.js/issues"
     },
     "keywords": [
-        "happyuc-project",
+        "irchain",
         "javascript",
         "API"
     ],
-    "author": "ethdev.com",
+    "author": "irchain.io",
     "license": "LGPL-3.0"
 }
