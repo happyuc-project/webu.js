@@ -1,8 +1,8 @@
 /* jshint ignore:start */
 Package.describe({
-  name: 'happyuc:webu',
-  version: '1.0.9',
-  summary: 'Happyuc JavaScript API, middleware to talk to a irchain node over RPC',
+  name: 'irchain-io:webu',
+  version: '2.0.1',
+  summary: 'IrChain JavaScript API, middleware to talk to a irchain node over RPC',
   git: 'https://github.com/irchain/webu.js',
   // By default, Meteor will default to using README.md for documentation.
   // To avoid submitting documentation, set this field to null.

@@ -1,10 +1,10 @@
 /**
  * This utility module helps to demonstrate following features
- * a. Signing a message by an Happyuc user
+ * a. Signing a message by an IrChain user
  * b. Finding the account address using which the message was signed
  */
 var Webu = require('../index.js');
-var hucURL = '';
+var ircURL = '';
 var defaultAc = '';
 var defaultAcPWD = '';
 var signatureContractCodeReadable = '\n\tcontract SignatureVerifier {\n\t\tfunction verify( bytes32 hash, uint8 v, bytes32 r, bytes32 s) \n' +
@@ -15,7 +15,7 @@ var sigContractInstance = null;
 var strAbi = '[{"constant":true,"inputs":[{"name":"hash","type":"bytes32"},{"name":"v","type":"uint8"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"}],"name":"verify","outputs":[{"name":"returnAddress","type":"address"}],"payable":false,"type":"function"}]';
 var signMessage = '';
 
-var hucWebu = null;
+var ircWebu = null;
 
 function setContractAddress(conAddress) {
     sigContractAddress = conAddress;
@@ -29,24 +29,24 @@ function setPassword(pwd) {
     defaultAcPWD = pwd;
 }
 
-function setHappyucURL(url) {
-    hucURL = url;
+function setIrChainURL(url) {
+    ircURL = url;
 }
 
 function setMessage(msg) {
     signMessage = msg;
 }
 
-function initializeHappyucConnection() {
-    if (hucWebu != null && hucWebu.isConnected() === true) {
+function initializeIrChainConnection() {
+    if (ircWebu != null && ircWebu.isConnected() === true) {
         return true;
     }
 
-    hucWebu = new Webu(new Webu.providers.HttpProvider(hucURL));
+    ircWebu = new Webu(new Webu.providers.HttpProvider(ircURL));
 
-    if (hucWebu.isConnected() === true) {
+    if (ircWebu.isConnected() === true) {
         if (defaultAc === '') {
-            defaultAc = hucWebu.irc.accounts[1];
+            defaultAc = ircWebu.irc.accounts[1];
         }
         return true;
     }
@@ -56,40 +56,40 @@ function initializeHappyucConnection() {
 
 function unlockAccount(acAddress) {
     if (acAddress !== undefined && acAddress != null) {
-        return hucWebu.personal.unlockAccount(defaultAc, defaultAcPWD, 100);
+        return ircWebu.personal.unlockAccount(defaultAc, defaultAcPWD, 100);
     }
 
     return false;
 }
 
 function initializeContract() {
-    initializeHappyucConnection();
-    if (hucWebu.isConnected() === false) {
+    initializeIrChainConnection();
+    if (ircWebu.isConnected() === false) {
         return;
     }
     var abi = JSON.parse(strAbi);
-    var contract = hucWebu.irc.contract(abi);
+    var contract = ircWebu.irc.contract(abi);
 
     sigContractInstance = contract.at(sigContractAddress);
 }
 
 function signMessageFun(message) {
 
-    initializeHappyucConnection();
-    if (hucWebu.isConnected() === false) {
+    initializeIrChainConnection();
+    if (ircWebu.isConnected() === false) {
         return false;
     }
 
     var state = unlockAccount(defaultAc);
 
     const msg = new Buffer(message);
-    return hucWebu.irc.sign(defaultAc, '0x' + msg.toString('hex'));
+    return ircWebu.irc.sign(defaultAc, '0x' + msg.toString('hex'));
 }
 
 function verifySignedByAc(message, sig) {
-    initializeHappyucConnection();
+    initializeIrChainConnection();
 
-    if (hucWebu.isConnected() === false) {
+    if (ircWebu.isConnected() === false) {
         return false;
     }
     initializeContract();
@@ -98,16 +98,16 @@ function verifySignedByAc(message, sig) {
 
     // Unfortunately Ghuc client adds this line to the message as a prefix while signing
     // So while finding who signed it we need to prefix this part
-    const prefix = new Buffer('\x19Happyuc Signed Message:\n');
+    const prefix = new Buffer('\x19IrChain Signed Message:\n');
     const msg = new Buffer(message);
-    var strPrefixedMsg = hucWebu.sha3(Buffer.concat([prefix, new Buffer(String(msg.length)), msg]).toString('utf8'));
+    var strPrefixedMsg = ircWebu.sha3(Buffer.concat([prefix, new Buffer(String(msg.length)), msg]).toString('utf8'));
 
     return sigContractInstance.verify.call(strPrefixedMsg, res.v, res.r, '0x' + res.s);
 }
 
 function splitSig(sig) {
     return {
-        v: hucWebu.toDecimal('0x' + sig.slice(130, 132)),
+        v: ircWebu.toDecimal('0x' + sig.slice(130, 132)),
         r: sig.slice(0, 66),
         s: sig.slice(66, 130),
     };
@@ -128,18 +128,18 @@ function execute() {
     console.log('\n\n**********************************************************************');
     console.log('Steps to Run');
     console.log('**********************************************************************');
-    console.log('1. Deploy the following contract in your happyuc environment');
+    console.log('1. Deploy the following contract in your irchain environment');
     console.log(signatureContractCodeReadable);
     console.log('2. Set the following parameters (i.e. at the end of the code)');
-    console.log('\ta. Happyuc URL');
-    console.log('\tb. Happyuc Account Address');
-    console.log('\tc. Happyuc Account Passphrase');
+    console.log('\ta. IrChain URL');
+    console.log('\tb. IrChain Account Address');
+    console.log('\tc. IrChain Account Passphrase');
     console.log('\td. Signature Contract Address');
     console.log('\te. Message for signing');
     console.log('**********************************************************************');
 
-    if (hucURL === '') {
-        console.log('Error: Happyuc URL is not specified');
+    if (ircURL === '') {
+        console.log('Error: IrChain URL is not specified');
         return;
     }
     if (defaultAc === '') {
@@ -160,9 +160,9 @@ function execute() {
     }
 
     console.log('Following parameters applied');
-    console.log('\ta. Happyuc URL                  :', hucURL);
-    console.log('\tb. Happyuc Account Address      :', defaultAc);
-    console.log('\tc. Happyuc Account Passphrase   :', defaultAcPWD);
+    console.log('\ta. IrChain URL                  :', ircURL);
+    console.log('\tb. IrChain Account Address      :', defaultAc);
+    console.log('\tc. IrChain Account Passphrase   :', defaultAcPWD);
     console.log('\td. Signature Contract Address    :', sigContractAddress);
     console.log('\te. Message for signing           :', signMessage);
 
@@ -185,7 +185,7 @@ function execute() {
 
 // Please uncomment the below listed three lines of code and provide the required values
 
-// Value 1- Please provide the happyuc account address which you want to use to perform the operation
+// Value 1- Please provide the irchain account address which you want to use to perform the operation
 //setAccount('<Provide the account address>');
 
 // Value 2- Please provide the password of the accound to be used
@@ -197,9 +197,9 @@ function execute() {
 //setContractAddress('<Provide the deployed contract address>');
 
 // Value 4- If required please update with a different message
-setHappyucURL('http://localhost:8545');
+setIrChainURL('http://localhost:8545');
 
-// Value 5- If required please update with a Happyuc URL
+// Value 5- If required please update with a IrChain URL
 setMessage('This the test sign message');
 
 execute();
