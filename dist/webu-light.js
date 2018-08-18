@@ -1785,13 +1785,6 @@ var IRC_UNITS = [
     'girc',
     'tirc',
     'pirc',
-    'eirc',
-    'zirc',
-    'yirc',
-    'nirc',
-    'dirc',
-    'virc',
-    'uirc',
 ];
 
 module.exports = {
@@ -1894,16 +1887,10 @@ var unitMap = {
     'pwei' : '1000000000000000',
     'irc'  : '1000000000000000000',
     'kirc' : '1000000000000000000000',
-    'girc' : '1000000000000000000000000',
-    'tirc' : '1000000000000000000000000000',
-    'pirc' : '1000000000000000000000000000000',
-    'eirc' : '1000000000000000000000000000000000',
-    'zirc' : '1000000000000000000000000000000000000',
-    'yirc' : '1000000000000000000000000000000000000000',
-    'nirc' : '1000000000000000000000000000000000000000000',
-    'dirc' : '1000000000000000000000000000000000000000000000',
-    'virc' : '1000000000000000000000000000000000000000000000000',
-    'uirc' : '1000000000000000000000000000000000000000000000000000',
+    'mirc' : '1000000000000000000000000',
+    'girc' : '1000000000000000000000000000',
+    'tirc' : '1000000000000000000000000000000',
+    'pirc' : '1000000000000000000000000000000000',
 };
 
 /**
@@ -3499,9 +3486,7 @@ var pollFilter = function(self) {
 
 };
 // TODO fixed call back error
-var Filter = function(
-    options, type, requestManager, methods, formatter, callback,
-    filterCreationErrorCallback) {
+var Filter = function(options, type, requestManager, methods, formatter, callback, filterCreationErrorCallback) {
     var self = this;
     var implementation = {};
     methods.forEach(function(method) {
@@ -4255,7 +4240,7 @@ var HttpProvider = function(host, timeout, user, password, headers) {
  * Should be called to prepare new XMLHttpRequest
  *
  * @method prepareRequest
- * @param {Boolean} true if request should be async
+ * @param {Boolean} async True if request should be async
  * @return {XMLHttpRequest} object
  */
 HttpProvider.prototype.prepareRequest = function(async) {
@@ -5489,8 +5474,7 @@ Irc.prototype.contract = function(abi) {
     return new Contract(this, abi);
 };
 
-Irc.prototype.filter = function(
-    options, callback, filterCreationErrorCallback) {
+Irc.prototype.filter = function(options, callback, filterCreationErrorCallback) {
     return new Filter(options, 'irc', this._requestManager, watches.irc(),
         formatters.outputLogFormatter, callback, filterCreationErrorCallback);
 };

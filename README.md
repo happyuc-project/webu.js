@@ -50,7 +50,7 @@ component install irchain/webu.js
 Use the `webu` object directly from global namespace:
 
 ```js
-console.log(webu); // {huc: .., shh: ...} // it's here!
+console.log(webu); // {irc: .., shh: ...} // it's here!
 ```
 
 Set a provider (HttpProvider)
@@ -73,8 +73,8 @@ webu.setProvider(new webu.providers.HttpProvider('http://host.url', 0, BasicAuth
 There you go, now you can use it:
 
 ```js
-var coinbase = webu.huc.coinbase;
-var balance = webu.huc.getBalance(coinbase);
+var coinbase = webu.irc.coinbase;
+var balance = webu.irc.getBalance(coinbase);
 ```
 
 You can find more examples in [`example`](https://github.com/irchain/webu.js/tree/master/example) directory.
