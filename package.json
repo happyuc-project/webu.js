@@ -1,7 +1,7 @@
 {
     "name": "webu",
     "namespace": "irchain",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "IrChain JavaScript API, middleware to talk to a irchain node over RPC",
     "main": "./index.js",
     "directories": {
