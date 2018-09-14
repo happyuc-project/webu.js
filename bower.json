@@ -1,7 +1,7 @@
 {
   "name": "webu",
   "namespace": "irchain",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "IrChain Compatible JavaScript API",
   "main": [
     "./dist/webu.js",
